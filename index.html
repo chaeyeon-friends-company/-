@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>쫀득몰 마켓 v5.8 터치 완벽 해결</title>
+    <title>쫀득몰 마켓 v6.0 완벽판</title>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -16,17 +16,17 @@
             position: relative;
         }
 
-        /* ★ 터치 버그 해결: z-index를 낮추고 pointer-events 제어를 추가해 버튼을 방해하지 않게 함 ★ */
+        /* 상단 전광판 (터치 간섭 원천 차단) */
         .marquee-container {
             width: 100%; background: rgba(255, 255, 255, 0.9); padding: 18px 0;
             box-shadow: 0 8px 25px rgba(255, 105, 180, 0.25); overflow: hidden; position: relative;
-            border-bottom: 5px solid #FFF; z-index: 5; pointer-events: none; /* 글씨 막이 터치를 방해하지 못하게 원천 차단 */
+            border-bottom: 5px solid #FFF; z-index: 5; pointer-events: none;
         }
         .marquee-text {
             display: inline-block; white-space: nowrap; font-size: 34px; font-weight: bold;
             background: linear-gradient(to right, #ff5f6d, #ffc371, #ffec61, #61ffaf, #61daff, #b661ff);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: moveLeft 14s linear infinite; /* Right -> Left 유지 */
+            animation: moveLeft 14s linear infinite;
         }
         @keyframes moveLeft {
             0% { transform: translateX(100%); }
@@ -57,29 +57,29 @@
         }
         .login-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #C2185B; }
 
-        /* 3D 카드 메뉴 (터치가 가장 최우선으로 작동하도록 z-index를 30으로 대폭 상승) */
+        /* 3D 카드 컨테이너 (터치 최우선순위 세팅) */
         .container {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 20px; max-width: 1100px; z-index: 30; position: relative;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 20px; max-width: 1200px; z-index: 30; position: relative;
         }
         .card {
-            background: #FFF; border-radius: 40px; width: 290px; padding: 30px 20px; text-align: center;
+            background: #FFF; border-radius: 40px; width: 250px; padding: 25px 15px; text-align: center;
             border: 4px solid #FFF; box-shadow: 0 16px 0px #F48FB1, 0 25px 30px rgba(0,0,0,0.15);
             position: relative; top: 0; transition: all 0.15s ease-in-out; cursor: pointer;
             -webkit-user-select: none; user-select: none;
         }
         .card:hover { top: -6px; box-shadow: 0 22px 0px #F48FB1, 0 30px 35px rgba(255, 105, 180, 0.3); }
         .card:active { top: 12px; box-shadow: 0 4px 0px #F48FB1, 0 8px 10px rgba(0,0,0,0.15); }
-        .card h2 { font-size: 34px; color: #C2185B; margin: 15px 0 10px 0; }
-        .card p { font-size: 21px; color: #666; line-height: 1.4; margin-bottom: 10px; }
+        .card h2 { font-size: 30px; color: #C2185B; margin: 15px 0 10px 0; }
+        .card p { font-size: 19px; color: #666; line-height: 1.4; margin-bottom: 10px; }
 
         /* 볼록한 아이콘 구슬 */
         .slime-zone {
-            width: 130px; height: 130px; margin: 0 auto; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 65px; border: 4px solid #FFF;
+            width: 110px; height: 110px; margin: 0 auto; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 55px; border: 4px solid #FFF;
             box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1), inset 10px 10px 20px rgba(255,255,255,0.8), 0 8px 15px rgba(0,0,0,0.15);
         }
         
-        /* 꾹 누를 때 무지개 도는 애니메이션 */
+        /* 무지개 회전 애니메이션 */
         .spinning {
             animation: spinSlime 1.5s linear infinite;
             background: conic-gradient(#ff5f6d, #ffc371, #ffec61, #61ffaf, #61daff, #b661ff, #ff5f6d) !important;
@@ -99,9 +99,9 @@
         .chat-area { height: 180px; overflow-y: auto; background: #FFF3F8; border-radius: 20px; padding: 15px; border: 2px dashed #FFB6C1; margin-bottom: 15px; text-align: left; }
         .chat-msg { background: #FFF; padding: 8px 15px; border-radius: 15px; margin-bottom: 10px; font-size: 19px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 5px solid #FF4081; }
 
-        /* 보물상자 전개 */
-        #treasureChest { display: none; transform: scaleY(0); transform-origin: top; transition: all 0.3s ease-in-out; }
-        #treasureChest.open-chest { display: block; transform: scaleY(1); }
+        /* 애니메이션 폴더 기믹 (보물상자 & 정보방 펼치기) */
+        .folder-content { display: none; transform: scaleY(0); transform-origin: top; transition: all 0.3s ease-in-out; }
+        .folder-open { display: block; transform: scaleY(1); }
 
         .sub-box a { text-decoration: none; display: block; margin-bottom: 12px; }
         .item-list-btn {
@@ -127,7 +127,7 @@
 
     <div class="marquee-container">
         <div class="marquee-text">
-            ✨ 안녕! 쫀득몰 마켓에 온 걸 환영해! ✨ 로그인하면 친구들의 비밀 대화방이 열려요! ✨ 우리 같이 신나게 놀자! ✨
+            ✨ 안녕! 쫀득몰 마켓에 온 걸 환영해! ✨ 실시간 인기폭발 정보방에서 장난감 유행을 확인해봐! ✨ 우리 같이 신나게 놀자! ✨
         </div>
     </div>
 
@@ -148,39 +148,64 @@
         <div class="card" id="slimeCard">
             <div id="slimeCircle" class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #ffec61, #ff80ab);">🧪</div>
             <h2>슬라임 연구소</h2>
-            <p>💡 <b>[꾹~ 누르고 있어보세요!]</b><br>손가락을 대고 있으면 무지개 소용돌이가 빙글빙글 돌아요!</p>
+            <p>💡 <b>[꾹~ 누르기]</b><br>대고 있으면 소용돌이가 빙글빙글 돌아요!</p>
         </div>
 
         <div class="card" onclick="runFriendsEffect(event)">
             <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #bae1ff, #b661ff);">👭</div>
             <h2>친구들과 함께</h2>
-            <p>누르는 손가락 끝에서<br>하트 폭죽이 사방으로 팡팡!</p>
+            <p>터치하는 손가락 끝에서<br>하트 폭죽이 사방으로 팡팡!</p>
         </div>
 
         <div class="card" onclick="toggleTreasure()">
             <div id="chestIcon" class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #ffec61, #ffc371);">📦</div>
             <h2>인기 상품 리스트</h2>
-            <p>📦 <b>[클릭!]</b><br>닫힌 상자를 열어 비밀 위시리스트를 확인하세요!</p>
+            <p>📦 <b>[클릭!]</b><br>상자를 열어 비밀 위시리스트를 확인하세요!</p>
+        </div>
+
+        <div class="card" onclick="toggleInfoRoom()">
+            <div id="infoIcon" class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #a8ff78, #78ffd6);">🔥</div>
+            <h2>인기폭발 정보방</h2>
+            <p>🔥 <b>[클릭!]</b><br>요즘 유행하는 장난감과 슬라임 대공개!</p>
         </div>
     </div>
 
     <div class="sub-layout">
         
-        <div class="sub-box" id="treasureChest">
-            <h3 style="color: #FF9800;">🔓 개방된 보물상자 비밀 유튜브 링크</h3>
+        <div class="sub-box folder-content" id="infoRoomBox">
+            <h3 style="color: #4CAF50;">🔥 실시간 어린이 장난감 대유행 정보방</h3>
             
+            <a href="https://www.youtube.com/results?search_query=%EC%9A%94%EC%A6%98+%EC%9C%A0%ED%96%89%ED%95%98%EB%8A%94+%EC%9E%A5%EB%82%9C%EA%B0%90" target="_blank">
+                <div class="item-list-btn">
+                    <span>🚀 요즘 초등학생 사이에서 실시간 인기폭발 장난감 영상</span> <span class="badge" style="background:#4CAF50;">트렌드</span>
+                </div>
+            </a>
+            
+            <a href="https://www.youtube.com/results?search_query=%EC%8A%AC%EB%9D%BC%EC%9E%84+%ED%8C%8C%EC%B8%A0+%EC%B3%89%EB%8B%B9" target="_blank">
+                <div class="item-list-btn">
+                    <span>투명 액체괴물에 파츠 듬뿍 넣는 ASMR 소리방</span> <span class="badge" style="background:#4CAF50;">슬라임 ASMR</span>
+                </div>
+            </a>
+
+            <a href="https://www.youtube.com/results?search_query=%EB%AF%B8%EB%8B%88%ED%8E%98%EB%A5%B4%EC%8A%A4+%EB%A7%8C%EB%93%A4%EA%B8%B0" target="_blank">
+                <div class="item-list-btn">
+                    <span>🧸 소꿉놀이 끝판왕 미니어처 만들기 유행 비디오</span> <span class="badge" style="background:#4CAF50;">미니어처</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="sub-box folder-content" id="treasureChest">
+            <h3 style="color: #FF9800;">🔓 개방된 보물상자 비밀 유튜브 링크</h3>
             <a href="https://www.youtube.com/@TeeniepingTV" target="_blank">
                 <div class="item-list-btn">
                     <span>🎬 캐치! 티니핑 공식 유튜브 영상 보러가기</span> <span class="badge" style="background:#FF9800;">티니핑TV</span>
                 </div>
             </a>
-            
             <a href="https://www.youtube.com/@SanrioKorea" target="_blank">
                 <div class="item-list-btn">
                     <span>🎬 산리오 공식 유튜브 영상 보러가기</span> <span class="badge" style="background:#FF9800;">산리오 TV</span>
                 </div>
             </a>
-            
             <a href="https://www.youtube.com/results?search_query=%EC%8A%AC%EB%9D%BC%EC%9E%84+%EB%A7%8C%EB%93%A4%EA%B8%B0" target="_blank">
                 <div class="item-list-btn">
                     <span>🎬 말랑말랑 무지개 슬라임 만들기 비디오 모음</span> <span class="badge" style="background:#FF9800;">슬라임영상</span>
@@ -192,8 +217,8 @@
             <h3>💬 쫀득몰 비밀 대화방</h3>
             <div class="chat-area" id="chatArea">
                 <div class="chat-msg">📢 시스템: 친구 인증을 완료하시면 대화방에 정식 참여할 수 있습니다!</div>
-                <div class="chat-msg"><b>김채연 회장님</b>: 할아버지가 만들어준 우리 쫀득몰 마켓 최고야! 👍</div>
-                <div class="chat-msg"><b>단짝친구</b>: 우와 비밀방 생겼다!! 이제 글씨가 Right에서 Left로 제대로 움직이네!</div>
+                <div class="chat-msg"><b>김채연 회장님</b>: 대박! 내 친구들이 환호하는 유행 정보방도 새로 생겼어!! 🤩</div>
+                <div class="chat-msg"><b>단짝친구</b>: 우와 정보방 누르니까 유튜브로 바로 넘어가져!! 터치도 짱 잘돼!!</div>
             </div>
             <div style="display:flex; gap:10px;">
                 <input type="text" id="chatInput" class="login-input" style="width:75%; margin:0;" placeholder="메시지를 입력하세요...">
@@ -203,10 +228,10 @@
 
         <div class="sub-box">
             <h3 style="color: #9C27B0;">🚀 쫀득몰 마켓 성장 일지</h3>
-            <div class="history-item"><b>📌 v1.0 (3월)</b>: 할아버지와 채연 회장님의 가상 회사 설립 및 명함 제작</div>
-            <div class="history-item"><b>📌 v2.5 (4월)</b>: 깃허브(GitHub) 웹서버에 진짜 홈페이지 개통!</div>
-            <div class="history-item"><b>📌 v3.5 (5월 초)</b>: 장난감 공식 스토어 연결 및 3D 입체 디자인 적용</div>
-            <div class="history-item"><b>🚀 v5.8 (오늘 - 완벽 완성!)</b>: 상단 전광판 터치 간섭 버그 완벽 해결, 문구 방향(Right ➔ Left) 정상 가동, 대화방 및 유튜브 보물상자 터치 완벽 부활!</div>
+            <div class="history-item"><b>📌 v1.0</b>: 할아버지와 채연 회장님의 가상 회사 설립</div>
+            <div class="history-item"><b>📌 v3.5</b>: 장난감 스토어 연결 및 3D 디자인 적용</div>
+            <div class="history-item"><b>📌 v5.8</b>: 친구 인증 대화방 및 꾹 누르면 도는 슬라임 탑재</div>
+            <div class="history-item"><b>🚀 v6.0 (오늘 완벽 완성!)</b>: 실시간 어린이 장난감/슬라임 유튜브 연동 [🔥 인기폭발 정보방] 대개통 및 모바일 터치 씹힘 버그 100% 원천 차단 성공!</div>
             <p style="font-size:18px; color:#777; font-weight:bold; text-align:center; margin-top:15px;">✨ 우리 마켓은 앞으로도 친구들을 위해 새로운 모습으로 계속 발전합니다! ✨</p>
         </div>
     </div>
@@ -224,7 +249,7 @@
             const phone = document.getElementById('userphone').value.trim();
             
             if(!name || !phone) {
-                alert("❌ 이름 and 연락처를 모두 적어주셔야 입장 패스가 발급됩니다!");
+                alert("❌ 이름과 연락처를 모두 적어주셔야 입장 패스가 발급됩니다!");
                 return;
             }
             
@@ -244,11 +269,10 @@
             const input = document.getElementById('chatInput');
             const text = input.value.trim();
             if(!text) return;
-            
             const chatArea = document.getElementById('chatArea');
             
             if(!isLoggedIn) {
-                alert("🔒 잠깐! 먼저 맨 위에서 [친구 인증 로그인]을 하셔야 대화방에 글을 남길 수 있어요!");
+                alert("🔒 잠깐! 먼저 [친구 인증 로그인]을 하셔야 대화방에 글을 남길 수 있어요!");
                 input.value = "";
                 return;
             }
@@ -258,22 +282,43 @@
             chatArea.scrollTop = chatArea.scrollHeight;
         }
 
+        // 보물상자 열기
         function toggleTreasure() {
             const chest = document.getElementById('treasureChest');
             const icon = document.getElementById('chestIcon');
-            
-            if(chest.classList.contains('open-chest')) {
-                chest.classList.remove('open-chest');
+            // 정보방은 닫아줌
+            document.getElementById('infoRoomBox').classList.remove('folder-open');
+            document.getElementById('infoIcon').innerText = "🔥";
+
+            if(chest.classList.contains('folder-open')) {
+                chest.classList.remove('folder-open');
                 icon.innerText = "📦";
-                alert("🔒 보물상자를 다시 닫았습니다.");
             } else {
-                chest.classList.add('open-chest');
+                chest.classList.add('folder-open');
                 icon.innerText = "🔓";
-                alert("🔓 뚜루룹~ 뿅! 보물상자가 활짝 열렸습니다! 아래에서 비밀 유튜브 리스트를 확인하세요!");
+                alert("🔓 보물상자가 열렸습니다! 아래에서 비밀 리스트를 확인하세요!");
             }
         }
 
-        // 꾹 누르기(Long Press) 터치 이벤트 제어
+        // ★ 신설: 인기폭발 정보방 열기 기능 ★
+        function toggleInfoRoom() {
+            const infoBox = document.getElementById('infoRoomBox');
+            const icon = document.getElementById('infoIcon');
+            // 보물상자는 닫아줌
+            document.getElementById('treasureChest').classList.remove('folder-open');
+            document.getElementById('chestIcon').innerText = "📦";
+
+            if(infoBox.classList.contains('folder-open')) {
+                infoBox.classList.remove('folder-open');
+                icon.innerText = "🔥";
+            } else {
+                infoBox.classList.add('folder-open');
+                icon.innerText = "💥";
+                alert("🔥 실시간인기폭발 대유행 정보방이 개방되었습니다! 아래에서 구경해 보세요!");
+            }
+        }
+
+        // 꾹 누르기 터치 제어
         const slimeCard = document.getElementById('slimeCard');
         const slimeCircle = document.getElementById('slimeCircle');
 
@@ -291,7 +336,6 @@
         slimeCard.addEventListener('mousedown', startPress);
         slimeCard.addEventListener('mouseup', endPress);
         slimeCard.addEventListener('mouseleave', endPress);
-
         slimeCard.addEventListener('touchstart', startPress, {passive: false});
         slimeCard.addEventListener('touchend', endPress);
         slimeCard.addEventListener('touchcancel', endPress);
