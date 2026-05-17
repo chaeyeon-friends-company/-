@@ -3,127 +3,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>채연 프랜즈 컴퍼니 v2.0</title>
+    <title>채연 프랜즈 컴퍼니 v3.0</title>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* 1. 전체 배경색: 예쁜 딸기우유 핑크 */
+        /* 1. 전체 배경: 3D 질감이 느껴지는 입체적인 핑크 파스텔 그라데이션 */
         body {
-            background-color: #FFD1DC;
+            background: linear-gradient(135deg, #FFD1DC 0%, #FFB6C1 50%, #E0BBE4 100%);
             font-family: 'Gaegu', cursive;
-            margin: 0;
-            padding: 0;
+            margin: 0; padding: 0;
             overflow-x: hidden;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh;
         }
 
-        /* 2. 무지개색으로 움직이는 인사말 설정 (★좌측 -> 우측 완벽 수정★) */
+        /* 2. 상단 문구: 왼쪽에서 오른쪽으로 흐르는 무지개 전광판 */
         .marquee-container {
-            width: 100%;
-            background-color: white;
-            padding: 15px 0;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-            position: relative;
+            width: 100%; background: rgba(255, 255, 255, 0.85); padding: 15px 0;
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2); overflow: hidden; position: relative;
+            border-bottom: 4px solid #FFF;
         }
-
         .marquee-text {
-            display: inline-block;
-            white-space: nowrap;
-            font-size: 32px;
-            font-weight: bold;
-            /* 무지개색 그라데이션 */
-            background: linear-gradient(to right, red, orange, yellow, green, blue, indigo, violet);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            /* 왼쪽에서 나타나 오른쪽으로 스윽 사라지는 마법 */
+            display: inline-block; white-space: nowrap; font-size: 34px; font-weight: bold;
+            background: linear-gradient(to right, #ff5f6d, #ffc371, #ffec61, #61ffaf, #61daff, #b661ff);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: moveRight 12s linear infinite;
         }
-
         @keyframes moveRight {
             0% { transform: translateX(-100%); }
             100% { transform: translateX(100%); }
         }
 
-        /* 3. 제목 스타일 */
-        header {
-            text-align: center;
-            padding: 40px;
-        }
-
+        /* 3. 메인 타이틀 (입체 효과) */
+        header { text-align: center; padding: 30px; }
         header h1 {
-            font-size: 60px;
-            color: #D81B60;
-            margin: 0;
-            text-shadow: 2px 2px white;
+            font-size: 65px; color: #D81B60; margin: 0;
+            text-shadow: 3px 3px 0px #FFF, 6px 6px 12px rgba(0,0,0,0.15);
         }
 
-        /* 4. 카드 메뉴 스타일 (활성화 기능 포함) */
+        /* 4. 3D 입체 카드 레이아웃 */
         .container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-            padding: 20px;
-            max-width: 1000px;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; padding: 20px; max-width: 1100px;
         }
-
         .card {
-            background-color: white;
-            border-radius: 30px;
-            width: 300px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: transform 0.3s, box-shadow 0.3s;
-            border: 4px solid #F8BBD0;
+            background: #FFF; border-radius: 40px; width: 300px; padding: 25px; text-align: center;
+            box-shadow: 0 15px 0px #F8BBD0, 0 25px 30px rgba(0,0,0,0.1);
+            cursor: pointer; position: relative;
+            transition: all 0.2s ease; border: 3px solid #FFF;
         }
-
+        /* 마우스를 올리거나 터치하면 부풀어 오르는 효과 */
         .card:hover {
-            transform: scale(1.1);
-            box-shadow: 0 15px 30px rgba(255, 105, 180, 0.4);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 0px #F8BBD0, 0 30px 35px rgba(255, 105, 180, 0.3);
+        }
+        /* 클릭하면 진짜 버튼처럼 쏙 들어가는 3D 손맛 효과 */
+        .card:active {
+            transform: translateY(10px);
+            box-shadow: 0 5px 0px #F8BBD0, 0 10px 15px rgba(0,0,0,0.1);
+        }
+        .card h2 { font-size: 32px; color: #C2185B; margin: 10px 0; }
+        .card p { font-size: 22px; color: #666; margin-bottom: 15px; }
+
+        /* 5. 슬라임 연구소 무지개 소용돌이 시뮬레이션 전용 공간 */
+        .slime-zone {
+            width: 120px; height: 120px; margin: 0 auto; border-radius: 50%;
+            background: radial-gradient(circle, #ffec61, #ff80ab, #bae1ff);
+            box-shadow: inset 0 0 20px rgba(216,27,96,0.2), 0 8px 15px rgba(0,0,0,0.1);
+            display: flex; align-items: center; justify-content: center; font-size: 60px;
+            position: relative;
+        }
+        /* 시뮬레이션 작동 시 회전하는 마법 클래스 */
+        .spinning {
+            animation: spinSlime 2s linear infinite;
+            background: conic-gradient(red, orange, yellow, green, blue, purple, red) !important;
+        }
+        @keyframes spinSlime {
+            100% { transform: rotate(360deg); }
         }
 
-        .card h2 {
-            font-size: 30px;
-            color: #C2185B;
+        /* 6. 부가 목록 창 (인기 상품 & 방명록) */
+        .sub-layout {
+            display: flex; flex-wrap: wrap; gap: 30px; margin-top: 40px; width: 90%; max-width: 1000px; justify-content: center;
         }
+        .sub-box {
+            background: rgba(255,255,255,0.9); border-radius: 35px; padding: 25px; flex: 1; min-width: 320px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05); border: 4px solid #FFF;
+        }
+        .sub-box h3 { font-size: 28px; color: #D81B60; margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        .item-list { list-style: none; padding: 0; margin: 0; }
+        .item-list li {
+            background: #FFF; padding: 12px 20px; border-radius: 20px; margin-bottom: 10px;
+            font-size: 20px; color: #444; display: flex; justify-content: space-between; align-items: center;
+            border: 2px solid #FFDEEB; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+        .badge { background: #FF4081; color: white; padding: 3px 10px; border-radius: 12px; font-size: 16px; font-weight: bold; }
 
-        .card p {
-            font-size: 20px;
-            color: #555;
-        }
-
-        .icon {
-            font-size: 50px;
-            margin-bottom: 10px;
-        }
-
-        footer {
-            margin-top: 50px;
-            padding: 20px;
-            font-size: 18px;
-            color: #888;
-        }
-
-        .hidden-msg {
-            display: none;
-            background: #fff;
-            padding: 10px;
-            border-radius: 10px;
-            margin-top: 10px;
-            color: #E91E63;
-            font-weight: bold;
-        }
+        /* 하단 서명 */
+        footer { margin: 60px 0 30px 0; font-size: 20px; color: #D81B60; font-weight: bold; text-shadow: 1px 1px white; }
     </style>
 </head>
 <body>
 
     <div class="marquee-container">
         <div class="marquee-text">
-            ✨ 안녕! 채연이의 홈페이지에 온 걸 환영해! ✨ 반가워 채연아! ✨ 우리 같이 재미있게 놀자! ✨
+            ✨ 안녕! 채연이의 창의적인 공간에 온 걸 환영해! ✨ 반가워 채연 회장님! ✨ 우리 같이 신나게 슬라임 만들자! ✨
         </div>
     </div>
 
@@ -132,46 +114,70 @@
     </header>
 
     <div class="container">
-        <div class="card" onclick="activateCard('slime')">
-            <div class="icon">🧪</div>
+        <div class="card" onclick="runSlimeSimulation()">
+            <div id="slimeCircle" class="slime-zone">🧪</div>
             <h2>슬라임 연구소</h2>
-            <p>말랑말랑 무지개 슬라임을<br>만들어보는 실험실이에요!</p>
-            <div id="slime-msg" class="hidden-msg">말랑말랑~ 슬라임이 완성됐어요!</div>
+            <p>누르면 무지개 빛깔 소용돌이가<br>빙글빙글 돌며 활성화돼요!</p>
         </div>
 
-        <div class="card" onclick="activateCard('friends')">
-            <div class="icon">👭</div>
+        <div class="card" onclick="runFriendsEffect()">
+            <div class="slime-zone" style="background: radial-gradient(circle, #bae1ff, #b661ff);">👭</div>
             <h2>친구들과 함께</h2>
-            <p>채연이와 친구들이 모여서<br>재미있게 노는 공간이에요!</p>
-            <div id="friends-msg" class="hidden-msg">친구들아 모여라! 하트 뿅뿅! ❤️</div>
+            <p>우리 반 친구들을 소환하고<br>하트 폭죽을 터트려봐요!</p>
         </div>
 
-        <div class="card" onclick="activateCard('toys')">
-            <div class="icon">🎁</div>
+        <div class="card" onclick="runToyEffect()">
+            <div class="slime-zone" style="background: radial-gradient(circle, #ffec61, #ffc371);">🎁</div>
             <h2>인기 상품 리스트</h2>
-            <p>티니핑, 산리오 등 요즘<br>가장 갖고 싶은 보물들!</p>
-            <div id="toys-msg" class="hidden-msg">캐치! 티니핑과 쿠로미가 기다려요!</div>
+            <p>티니핑과 산리오 친구들의<br>숨겨진 보물상자 열기!</p>
+        </div>
+    </div>
+
+    <div class="sub-layout">
+        <div class="sub-box">
+            <h3>🧸 어린이 위시리스트 (인기상품)</h3>
+            <ul class="item-list">
+                <li>캐치! 티니핑 피규어 세트 <span class="badge">인기폭발</span></li>
+                <li>산리오 쿠로미 다이어리 키트 <span class="badge">추천</span></li>
+                <li>말랑말랑 투명 무지개 파츠 <span class="badge">NEW</span></li>
+            </ul>
+        </div>
+        <div class="sub-box">
+            <h3>💬 슬라임 연구소 소식통</h3>
+            <ul class="item-list">
+                <li>채연 회장님 홈페이지 오픈! 🎉</li>
+                <li>오늘의 연구: 반짝이 구름 슬라임 개발 중 ☁️</li>
+            </ul>
         </div>
     </div>
 
     <footer>
-        채연이의 홈페이지 | 제작: 할아버지 ❤️
+        채연이의 특별한 홈페이지 | 언제나 응원하는 할아버지가 ❤️
     </footer>
 
     <script>
-        function activateCard(type) {
-            document.querySelectorAll('.hidden-msg').forEach(el => el.style.display = 'none');
+        function runSlimeSimulation() {
+            var slime = document.getElementById('slimeCircle');
+            // 1. 무지개 회전 효과 활성화
+            slime.classList.add('spinning');
+            slime.innerText = "🌈";
             
-            if(type === 'slime') {
-                document.getElementById('slime-msg').style.display = 'block';
-                alert("🧪 슬라임 연구실 활성화! 말랑말랑 소리가 들려요!");
-            } else if(type === 'friends') {
-                document.getElementById('friends-msg').style.display = 'block';
-                alert("👭 친구들 소환 완료! 하트 폭죽이 팡팡!");
-            } else if(type === 'toys') {
-                document.getElementById('toys-msg').style.display = 'block';
-                alert("🎁 위시리스트 오픈! 티니핑 친구들이 나타났어요!");
-            }
+            // 2. 사운드 느낌의 팝업 창 활성화
+            alert("✨ 뽀용! 무지개 빛깔 슬라임 시뮬레이션 가동! 말랑말랑 소용돌이가 움직입니다!");
+            
+            // 3. 3초 뒤에 원래대로 부드럽게 복구시키는 타이머 설정
+            setTimeout(function() {
+                slime.classList.remove('spinning');
+                slime.innerText = "🧪";
+            }, 3000);
+        }
+
+        function runFriendsEffect() {
+            alert("❤️ 친구들 소환 완료! 채연이 홈페이지에 하트 폭죽이 팡팡 터집니다!");
+        }
+
+        function runToyEffect() {
+            alert("🎁 보물상자 오픈! 캐치! 티니핑과 산리오 친구들 위시리스트가 활성화되었습니다!");
         }
     </script>
 </body>
