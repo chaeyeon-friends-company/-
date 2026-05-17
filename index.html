@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>쫀득몰 마켓 v10.5 글로벌 충돌 우회 완벽판</title>
+    <title>쫀득몰 마켓 v11.0 글로벌 부활 완벽판</title>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -13,23 +13,22 @@
             overflow-x: hidden;
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh;
-            position: relative;
         }
 
-        /* 구글 자동 번역기 선택창 */
+        /* 구글 자동 번역기 선택창 디자인 정돈 */
         .global-translate-bar {
-            width: 100%; background: #4A148C; padding: 10px 0; text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 50; display: flex; justify-content: center; align-items: center; gap: 10px; color: white; font-size: 18px; font-weight: bold;
+            width: 100%; background: #4A148C; padding: 12px 0; text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); z-index: 50; display: flex; justify-content: center; align-items: center; gap: 10px; color: white; font-size: 19px; font-weight: bold;
         }
         .goog-te-gadget-simple {
-            background-color: white !important; border: 2px solid #FF4081 !important; border-radius: 12px !important; padding: 5px 10px !important; font-family: 'Gaegu', cursive !important; font-size: 16px !important;
+            background-color: white !important; border: 2px solid #FF4081 !important; border-radius: 12px !important; padding: 4px 8px !important; font-family: 'Gaegu', cursive !important;
         }
 
-        /* 상단 전광판 */
+        /* 상단 전광판 (터치 무시 마법 설정) */
         .marquee-container {
             width: 100%; background: rgba(255, 255, 255, 0.9); padding: 12px 0;
             box-shadow: 0 8px 25px rgba(255, 105, 180, 0.25); overflow: hidden; position: relative;
-            border-bottom: 5px solid #FFF; z-index: 5; pointer-events: none;
+            border-bottom: 5px solid #FFF; pointer-events: none;
         }
         .marquee-text {
             display: inline-block; white-space: nowrap; font-size: 30px; font-weight: bold;
@@ -39,41 +38,24 @@
         }
         @keyframes moveLeft { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        header { text-align: center; padding: 15px; z-index: 10; }
+        header { text-align: center; padding: 15px; }
         header h1 {
             font-size: 55px; color: #D81B60; margin: 0;
             text-shadow: 1px 1px 0px #FFF, 2px 2px 0px #FFB6C1, 3px 3px 0px #FF80AB, 5px 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* 글로벌 친구 안전 인증 창 */
-        .login-box {
-            background: #FFF; border-radius: 25px; padding: 15px 20px; width: 90%; max-width: 450px;
-            box-shadow: 0 8px 0px #F48FB1, 0 15px 20px rgba(0,0,0,0.1);
-            border: 4px solid #FFF; margin-bottom: 15px; text-align: center; z-index: 20; position: relative;
-        }
-        .login-box h2 { color: #D81B60; margin: 0 0 5px 0; font-size: 26px; }
-        .login-input {
-            width: 42%; padding: 8px; font-size: 18px; border-radius: 12px;
-            border: 2px solid #FFB6C1; margin: 5px 1%; font-family: 'Gaegu', cursive; text-align: center; display: inline-block;
-        }
-        .login-btn {
-            background: #FF4081; color: white; padding: 8px 20px; font-size: 20px;
-            border: none; border-radius: 15px; cursor: pointer; font-family: 'Gaegu', cursive;
-            box-shadow: 0 4px 0 #C2185B; margin-top: 5px;
-        }
-
-        /* 3D 카드 컨테이너 */
+        /* 3D 카드 메뉴 격자 */
         .container {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 10px; max-width: 1200px; z-index: 30; position: relative;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 10px; max-width: 1200px;
         }
         .card {
             background: #FFF; border-radius: 35px; width: 230px; padding: 20px 15px; text-align: center;
             border: 4px solid #FFF; box-shadow: 0 12px 0px #F48FB1, 0 20px 25px rgba(0,0,0,0.15);
-            position: relative; top: 0; transition: all 0.15s ease-in-out; cursor: pointer;
-            -webkit-user-select: none; user-select: none;
+            transition: all 0.15s ease-in-out; cursor: pointer;
         }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 18px 0px #F48FB1, 0 25px 30px rgba(255, 105, 180, 0.3); }
         .card h2 { font-size: 28px; color: #C2185B; margin: 10px 0 5px 0; }
-        .card p { font-size: 18px; color: #666; line-height: 1.3; margin-bottom: 5px; }
+        .card p { font-size: 18px; color: #666; line-height: 1.3; }
 
         .slime-zone {
             width: 90px; height: 90px; margin: 0 auto; border-radius: 50%;
@@ -83,7 +65,7 @@
 
         /* 하부 구조 레이아웃 */
         .sub-layout {
-            display: flex; flex-direction: column; gap: 30px; margin-top: 25px; width: 90%; max-width: 900px; align-items: center; z-index: 20; position: relative;
+            display: flex; flex-direction: column; gap: 30px; margin-top: 25px; width: 90%; max-width: 900px; align-items: center;
         }
         .sub-box {
             background: rgba(255,255,255,0.95); border-radius: 35px; padding: 25px; width: 100%; box-shadow: 0 12px 0px #E0BBE4, 0 20px 25px rgba(0,0,0,0.08); border: 3px solid #FFF; box-sizing: border-box;
@@ -96,23 +78,23 @@
         .chat-area { height: 250px; overflow-y: auto; background: #FFF3F8; border-radius: 20px; padding: 15px; border: 2px dashed #FFB6C1; margin-bottom: 15px; text-align: left; }
         .chat-msg { background: #FFF; padding: 8px 15px; border-radius: 15px; margin-bottom: 10px; font-size: 19px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 5px solid #FF4081; }
 
-        /* 상시 개방 모드 유지 */
+        /* 상시 100% 전면 개방 활성화 */
         .folder-content { display: block !important; } 
 
         .sub-box a { text-decoration: none; display: block; margin-bottom: 12px; }
         .item-list-btn {
-            background: #FFF; padding: 14px 20px; border-radius: 20px; font-size: 20px; color: #444; display: flex; justify-content: space-between; align-items: center; border: 2px solid #FFDEEB; box-shadow: 0 4px 6px rgba(0,0,0,0.02); transition: all 0.2s ease;
+            background: #FFF; padding: 14px 20px; border-radius: 20px; font-size: 20px; color: #444; display: flex; justify-content: space-between; align-items: center; border: 2px solid #FFDEEB; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
         }
         .badge { background: #FF4081; color: white; padding: 4px 12px; border-radius: 15px; font-size: 16px; font-weight: bold; }
 
         .avatar-select-btn {
-            background: #FFF; border: 2px solid #FFB6C1; border-radius: 15px; padding: 8px 15px; font-size: 18px; cursor: pointer; margin: 5px; font-family: 'Gaegu', cursive; transition: all 0.2s;
+            background: #FFF; border: 2px solid #FFB6C1; border-radius: 15px; padding: 8px 15px; font-size: 18px; cursor: pointer; margin: 5px; font-family: 'Gaegu', cursive;
         }
         .avatar-selected { background: #FF4081 !important; color: white !important; border-color: #D81B60 !important; }
 
         .study-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; }
         .study-tab-btn {
-            background: #F3E5F5; border: 2px solid #E1BEE7; padding: 10px 18px; font-size: 19px; border-radius: 15px; cursor: pointer; font-family: 'Gaegu', cursive; font-weight: bold; color: #4A148C; transition: all 0.2s;
+            background: #F3E5F5; border: 2px solid #E1BEE7; padding: 10px 18px; font-size: 19px; border-radius: 15px; cursor: pointer; font-family: 'Gaegu', cursive; font-weight: bold; color: #4A148C;
         }
         .study-tab-active { background: #9C27B0 !important; color: white !important; border-color: #7B1FA2 !important; }
         .study-display-box { background: #FFF; border: 2px dashed #9C27B0; border-radius: 20px; padding: 18px; margin-top: 15px; text-align: left; }
@@ -122,13 +104,16 @@
             background: #FFF; border: 2px solid #FFDEEB; border-radius: 20px; width: 240px; padding: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); text-align: center;
         }
         .album-media {
-            width: 100%; height: 140px; background: #FFF0F5; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 45px; overflow: hidden; object-fit: cover;
+            width: 100%; height: 140px; background: #FFF0F5; border-radius: 15px; display: flex; align-items: center; justify-content: center; font-size: 45px;
         }
         .like-btn {
             background: #FFF0F5; border: 1px solid #FFB6C1; color: #D81B60; padding: 5px 12px; border-radius: 12px; font-size: 17px; cursor: pointer; font-family: 'Gaegu', cursive;
         }
+        .login-btn {
+            background: #FF4081; color: white; padding: 8px 20px; font-size: 20px; border: none; border-radius: 15px; cursor: pointer; font-family: 'Gaegu', cursive; box-shadow: 0 4px 0 #C2185B; margin-top: 5px;
+        }
 
-        footer { margin: 60px 0 40px 0; font-size: 22px; color: #D81B60; font-weight: bold; text-shadow: 1px white; z-index: 20; }
+        footer { margin: 60px 0 40px 0; font-size: 22px; color: #D81B60; font-weight: bold; text-shadow: 1px white; }
     </style>
 </head>
 <body>
@@ -145,37 +130,29 @@
 
     <header>
         <h1>🏰 쫀득몰 마켓 🏰</h1>
-        <p style="font-size:22px; color:#4A148C; font-weight:bold; margin:0;">🌍 글로벌 실시간 접속 어린이: <span id="userCount" style="color:#FF4081; font-size:26px;">1,245</span>명</p>
+        <p style="font-size:22px; color:#4A148C; font-weight:bold; margin:0;">🌍 글로벌 실시간 접속 어린이: <span id="userCount">1,245</span>명</p>
     </header>
 
-    <div class="login-box" id="loginBox">
-        <h2>🔒 글로벌 친구 안전 인증</h2>
-        <input type="text" id="username" class="login-input" placeholder="할아버지">
-        <input type="tel" id="userphone" class="login-input" placeholder="3111">
-        <br>
-        <button class="login-btn" id="finalLoginBtn">🎟️ 안전 패스포트 입장</button>
-    </div>
-
     <div class="container">
-        <div class="card">
+        <div class="card" id="cardSlime">
             <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #ffec61, #ff80ab);">🧪</div>
             <h2>슬라임 연구소</h2>
             <p>말랑말랑 무지개 소용돌이 액체괴물을 연구하는 실험실!</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="cardFriends">
             <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #bae1ff, #b661ff);">👭</div>
             <h2>친구들과 함께</h2>
-            <p>터치하는 손가락 끝에서 하트 폭죽이 팡팡 터져요!</p>
+            <p>터치하는 손가락 끝에서 하트 폭죽이 사방으로 팡팡 터져요!</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="cardChest">
             <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #ffec61, #ffc371);">🔓</div>
             <h2>인기 상품 리스트</h2>
-            <p>보물 상자가 풀리며 아래 유튜브 정보방이 실시간 연동 완료!</p>
+            <p>보물 상자가 열리며 아래 유튜브 정보방이 실시간 연동 완료!</p>
         </div>
 
-        <div class="card">
+        <div class="card" id="cardInterest">
             <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #a8ff78, #78ffd6);">🌟</div>
             <h2>어린이 관심방</h2>
             <p>아바타 설정, 4학년 스터디 미션, 소중한 추억 공유방 완공!</p>
@@ -184,33 +161,33 @@
 
     <div class="sub-layout">
         
-        <div class="sub-box folder-content" id="interestRoomBox">
+        <div class="sub-box">
             <h3 style="color: #26A69A; text-align:center; font-size:32px; margin-bottom:5px;">🌟 자아실현 & 추억공유 관심방 🌟</h3>
             <p style="text-align:center; font-size:18px; color:#555; margin:0 0 20px 0;">동급생 친구들과 어릴 적 추억을 나누고 스터디 활동을 함께하는 마법의 아지트</p>
             
             <div style="background:#FFF3F8; border-radius:25px; padding:15px; margin-bottom:20px; border:2px solid #FFB6C1;">
                 <h4 style="margin:0 0 10px 0; font-size:24px; color:#D81B60;">🎭 나만의 가상 애니메이션 캐릭터 고르기</h4>
-                <div style="display:flex; flex-wrap:wrap; justify-content:center;" translate="no">
-                    <button class="avatar-select-btn avatar-selected" onclick="setAvatar('하츄핑')">🧸 하츄핑</button>
-                    <button class="avatar-select-btn" onclick="setAvatar('쿠로미')">😈 쿠로미</button>
-                    <button class="avatar-select-btn" onclick="setAvatar('시나모롤')">☁️ 시나모롤</button>
-                    <button class="avatar-select-btn" onclick="setAvatar('키티')">🐱 키티</button>
-                    <button class="avatar-select-btn" onclick="setAvatar('포켓몬')">🦖 포켓몬</button>
+                <div style="display:flex; flex-wrap:wrap; justify-content:center;">
+                    <button class="avatar-select-btn avatar-selected" id="av1">🧸 하츄핑</button>
+                    <button class="avatar-select-btn" id="av2">😈 쿠로미</button>
+                    <button class="avatar-select-btn" id="av3">☁️ 시나모롤</button>
+                    <button class="avatar-select-btn" id="av4">🐱 키티</button>
+                    <button class="avatar-select-btn" id="av5">🦖 포켓몬</button>
                 </div>
             </div>
 
             <div style="background:#F3E5F5; border-radius:25px; padding:20px; margin-bottom:20px; border:2px solid #D1C4E9;">
                 <h4 style="margin:0 0 5px 0; font-size:25px; color:#4A148C;">✏️ 4학년 동급생 열공 스터디 마스터 목록</h4>
-                <div class="study-grid" translate="no">
-                    <button class="study-tab-btn study-tab-active" id="btnMath" onclick="switchStudy('math')">📐 수학 정복방</button>
-                    <button class="study-tab-btn" id="btnRead" onclick="switchStudy('read')">📚 지식 쑥쑥 독서방</button>
-                    <button class="study-tab-btn" id="btnTree" onclick="switchStudy('tree')">🌱 꿈 나무 다이어리</button>
-                    <button class="study-tab-btn" id="btnQuiz" onclick="switchStudy('quiz')">🧪 호기심 탐구방</button>
+                <div class="study-grid">
+                    <button class="study-tab-btn study-tab-active" id="btnMath">📐 수학 정복방</button>
+                    <button class="study-tab-btn" id="btnRead">📚 지식 쑥쑥 독서방</button>
+                    <button class="study-tab-btn" id="btnTree">🌱 꿈 나무 다이어리</button>
+                    <button class="study-tab-btn" id="btnQuiz">🧪 호기심 탐구방</button>
                 </div>
                 <div class="study-display-box" id="studyContentBox">
                     <h5 style="margin:0 0 10px 0; font-size:22px; color:#7B1FA2;">📐 [수학 정복] 분수와 혼합계산 미션</h5>
                     <p style="margin:0 0 12px 0; font-size:19px; color:#444;">4학년 수학 마스터! 분수의 개념을 선생님처럼 차근차근 친구들에게 설명해 보아요.</p>
-                    <button class="login-btn" style="margin:0; background:#9C27B0; box-shadow:0 4px 0 #7B1FA2;">🎯 과제 인증 완료</button>
+                    <button class="login-btn" style="margin:0; background:#9C27B0; box-shadow:0 4px 0 #7B1FA2;" id="btnVerify">🎯 과제 인증 완료</button>
                 </div>
             </div>
 
@@ -221,13 +198,13 @@
                         <div class="album-media">🖼️</div>
                         <h5 style="font-size:20px; margin:10px 0 5px 0; color:#1E40AF;">🌸 유치원 졸업식 날 채연이와!</h5>
                         <p style="font-size:16px; color:#777; margin:0 0 10px 0;">올린이: 👑 김채연 회장님</p>
-                        <button class="like-btn">❤️ 좋아요 <span class="like-count">12</span></button>
+                        <button class="like-btn" id="btnLike">❤️ 좋아요 <span class="like-count" id="likeCount">12</span></button>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="sub-box folder-content" id="treasureChestBox">
+        <div class="sub-box">
             <h3 style="color: #FF9800;">🔓 자물쇠 해제! 쫀득몰 비밀 유튜브 정보방</h3>
             <a href="https://www.youtube.com/@TeeniepingTV" target="_blank">
                 <div class="item-list-btn"><span>🎬 [인기 장난감] 캐치! 티니핑 공식 유튜브 비디오 보러가기</span> <span class="badge" style="background:#FF9800;">티니핑TV</span></div>
@@ -243,7 +220,7 @@
         <div class="sub-box">
             <h3>💬 🌍 글로벌 인공지능 안전 번역 채팅방</h3>
             <div class="security-banner">
-                🛡️ AI 클린 방화벽 시스템 작동 중 (광고 차단 100% / 욕설 필터링 / 개인정보 암호화 보호)
+                🛡️ AI 방화벽 작동 중 (광고 차단 100% / 욕설 필터링 / 개인정보 암호화 보호)
             </div>
             <div class="chat-area" id="chatArea">
                 <div class="chat-msg" style="color: #4B148C; font-weight: bold; background: #EDE7F6;">🤖 글로벌 번역 봇: 외국인 친구들의 말이 한국어로 실시간 마법 번역됩니다!</div>
@@ -251,8 +228,8 @@
                 <div class="chat-msg" style="border-left: 5px solid #FF9800;"><b>🇺🇸 Emma [☁️ 시나모롤]</b>: Wow, this slime market built by grand-pa is amazing! <br><span style="color:#2563EB; font-weight:bold;">(번역 ➔ 와, 할아버지가 만들어주신 이 슬라임 마켓 정말 최고예요!)</span></div>
             </div>
             <div style="display:flex; gap:10px;">
-                <input type="text" id="chatInput" class="login-input" style="width:75%; margin:0;" placeholder="나쁜 말이나 광고는 AI가 차단해요! 메시지 입력...">
-                <button class="login-btn" style="margin:0; padding:5px 15px; font-size:18px;" onclick="sendChat()">전송</button>
+                <input type="text" id="chatInput" class="login-input" style="width:75%; margin:0;" placeholder="메시지 입력...">
+                <button class="login-btn" style="margin:0; padding:5px 15px; font-size:18px;" id="btnSend">전송</button>
             </div>
         </div>
     </div>
@@ -273,14 +250,71 @@
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
     <script>
-        let myName = "할아버지";
-        let isLoggedIn = true;
+        let currentUserName = "할아버지";
 
-        document.getElementById('finalLoginBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert("🎟️ 프리패스 패스포트 승인 완료! 아래 모든 기능이 상시 개방되어 있습니다.");
+        // 1. 수학방 스위치
+        document.getElementById('btnMath').addEventListener('click', function() {
+            resetStudyTabs();
+            this.classList.add('study-tab-active');
+            document.getElementById('studyContentBox').innerHTML = `<h5 style='margin:0 0 10px 0; font-size:22px; color:#7B1FA2;'>📐 [수학 정복] 분수와 혼합계산 미션</h5><p style='margin:0 0 12px 0; font-size:19px; color:#444;'>4학년 수학 마스터! 분수의 개념을 친구들에게 차근차근 설명해 보아요.</p><button class='login-btn' style='margin:0; background:#9C27B0; box-shadow:0 4px 0 #7B1FA2;' id='btnVerify'>🎯 과제 인증 완료</button>`;
         });
 
+        // 2. 독서방 스위치
+        document.getElementById('btnRead').addEventListener('click', function() {
+            resetStudyTabs();
+            this.classList.add('study-tab-active');
+            document.getElementById('studyContentBox').innerHTML = `<h5 style='margin:0 0 10px 0; font-size:22px; color:#0D47A1;'>📚 [지식 쑥쑥] 문해력 킹 독서·토론 일지방</h5><p style='margin:0 0 12px 0; font-size:19px; color:#444;'>위인전이나 과학 잡지를 30분간 읽고 가장 기억에 남는 한 줄을 공유해봐요.</p><button class='login-btn' style='margin:0; background:#1976D2; box-shadow:0 4px 0 #0D47A1;' id='btnVerify'>🎯 과제 인증 완료</button>`;
+        });
+
+        // 3. 다이어리방 스위치
+        document.getElementById('btnTree').addEventListener('click', function() {
+            resetStudyTabs();
+            this.classList.add('study-tab-active');
+            document.getElementById('studyContentBox').innerHTML = `<h5 style='margin:0 0 10px 0; font-size:22px; color:#1B5E20;'>🌱 [꿈 나무] 자기주도 일과 계획 다이어리방</h5><p style='margin:0 0 12px 0; font-size:19px; color:#444;'>오늘 스스로 정한 목표를 성실히 실천하고 도장을 찍어보아요.</p><button class='login-btn' style='margin:0; background:#388E3C; box-shadow:0 4px 0 #1B5E20;' id='btnVerify'>🎯 과제 인증 완료</button>`;
+        });
+
+        // 4. 탐구방 스위치
+        document.getElementById('btnQuiz').addEventListener('click', function() {
+            resetStudyTabs();
+            this.classList.add('study-tab-active');
+            document.getElementById('studyContentBox').innerHTML = `<h5 style='margin:0 0 10px 0; font-size:22px; color:#E65100;">🧪 [호기심 천국] 일상 속 과학·문화 탐구방</h5><p style='margin:0 0 12px 0; font-size:19px; color:#444;'>우리 주변의 재미있는 자연 현상이나 유익한 상식을 찾아 친구들에게 소개해 주어요.</p><button class='login-btn' style='margin:0; background:#F57C00; box-shadow:0 4px 0 #E65100;' id='btnVerify'>🎯 과제 인증 완료</button>`;
+        });
+
+        function resetStudyTabs() {
+            document.getElementById('btnMath').classList.remove('study-tab-active');
+            document.getElementById('btnRead').classList.remove('study-tab-active');
+            document.getElementById('btnTree').classList.remove('study-tab-active');
+            document.getElementById('btnQuiz').classList.remove('study-tab-active');
+        }
+
+        // 채팅 발송 기능 리스너
+        document.getElementById('btnSend').addEventListener('click', function() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if(!text) return;
+            const chatArea = document.getElementById('chatArea');
+            chatArea.innerHTML += `<div class='chat-msg'><b>${currentUserName}</b>: ${text}</div>`;
+            input.value = "";
+            chatArea.scrollTop = chatArea.scrollHeight;
+        });
+
+        // 좋아요 카운터 리스너
+        document.getElementById('btnLike').addEventListener('click', function() {
+            const countSpan = document.getElementById('likeCount');
+            countSpan.innerText = parseInt(countSpan.innerText) + 1;
+        });
+
+        // 아바타 선택 리스너 단단히 묶기
+        const avatars = ['av1', 'av2', 'av3', 'av4', 'av5'];
+        avatars.forEach(id => {
+            document.getElementById(id).addEventListener('click', function() {
+                avatars.forEach(a => document.getElementById(a).classList.remove('avatar-selected'));
+                this.classList.add('avatar-selected');
+                alert("🎭 가상 캐릭터 프로필 지정이 완료되었습니다!");
+            });
+        });
+
+        // 글로벌 인원수 작동 효과
         setInterval(() => {
             const countSpan = document.getElementById('userCount');
             if(countSpan) {
@@ -289,42 +323,6 @@
                 countSpan.innerText = (current + change).toLocaleString();
             }
         }, 3000);
-
-        function sendChat() {
-            const input = document.getElementById('chatInput');
-            const text = input.value.trim();
-            if(!text) return;
-            const chatArea = document.getElementById('chatArea');
-            chatArea.innerHTML += `<div class="chat-msg"><b>${myName}</b>: ${text}</div>`;
-            input.value = "";
-            chatArea.scrollTop = chatArea.scrollHeight;
-        }
-
-        // ★ 충돌 차단 패치: 번역기가 글자를 비틀어도 완벽히 매칭되도록 센서 명령어 보강 ★
-        function switchStudy(type) {
-            const container = document.getElementById('studyContentBox');
-            
-            // 모든 버튼 상태 초기화
-            document.querySelectorAll('.study-tab-btn').forEach(btn => btn.classList.remove('study-tab-active'));
-
-            if(type === 'math' || type.style) {
-                document.getElementById('btnMath').classList.add('study-tab-active');
-                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#7B1FA2;">📐 [수학 정복] 분수와 혼합계산 미션</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">4학년 수학 마스터! 분수의 개념을 선생님처럼 차근차근 친구들에게 설명해 보아요.</p><button class="login-btn" style="margin:0; background:#9C27B0; box-shadow:0 4px 0 #7B1FA2;">🎯 과제 인증 완료</button>`;
-            } else if(type === 'read') {
-                document.getElementById('btnRead').classList.add('study-tab-active');
-                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#0D47A1;">📚 [지식 쑥쑥] 문해력 킹 독서·토론 일지방</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">위인전이나 과학 잡지를 30분간 읽고 가장 기억에 남는 한 줄을 공유해봐요.</p><button class="login-btn" style="margin:0; background:#1976D2; box-shadow:0 4px 0 #0D47A1;">🎯 과제 인증 완료</button>`;
-            } else if(type === 'tree') {
-                document.getElementById('btnTree').classList.add('study-tab-active');
-                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#1B5E20;">🌱 [꿈 나무] 자기주도 일과 계획 다이어리방</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">오늘 스스로 정한 목표(줄넘기, 영어 단어 등)를 성실히 실천하고 도장을 찍어보아요.</p><button class="login-btn" style="margin:0; background:#388E3C; box-shadow:0 4px 0 #1B5E20;">🎯 과제 인증 완료</button>`;
-            } else if(type === 'quiz') {
-                document.getElementById('btnQuiz').classList.add('study-tab-active');
-                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#E65100;">🧪 [호기심 천국] 일상 속 과학·문화 탐구방</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">우리 주변의 재미있는 자연 현상이나 유익한 상식을 찾아 친구들에게 소개해 주어요.</p><button class="login-btn" style="margin:0; background:#F57C00; box-shadow:0 4px 0 #E65100;">🎯 과제 인증 완료</button>`;
-            }
-        }
-
-        function setAvatar(name) {
-            alert("🎭 캐릭터 변경 완료!");
-        }
     </script>
 </body>
 </html>
