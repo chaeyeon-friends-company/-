@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>쫀득몰 마켓 v7.0 완벽판</title>
+    <title>쫀득몰 마켓 v7.5 스터디 마스터판</title>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -95,7 +95,7 @@
         .sub-box h3 { font-size: 28px; color: #D81B60; margin-top: 0; }
         
         /* 대화방 */
-        .chat-area { height: 180px; overflow-y: auto; background: #FFF3F8; border-radius: 20px; padding: 15px; border: 2px dashed #FFB6C1; margin-bottom: 15px; text-align: left; }
+        .chat-area { height: 220px; overflow-y: auto; background: #FFF3F8; border-radius: 20px; padding: 15px; border: 2px dashed #FFB6C1; margin-bottom: 15px; text-align: left; }
         .chat-msg { background: #FFF; padding: 8px 15px; border-radius: 15px; margin-bottom: 10px; font-size: 19px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 5px solid #FF4081; }
 
         /* 애니메이션 폴더 기믹 */
@@ -115,6 +115,15 @@
         }
         .avatar-select-btn:hover { background: #FFDEEB; transform: scale(1.05); }
         .avatar-selected { background: #FF4081 !important; color: white !important; border-color: #D81B60 !important; }
+
+        /* [신규 스타일] 스터디 보드 인터페이스 */
+        .study-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; }
+        .study-tab-btn {
+            background: #F3E5F5; border: 2px solid #E1BEE7; padding: 10px 18px; font-size: 19px; border-radius: 15px; cursor: pointer; font-family: 'Gaegu', cursive; font-weight: bold; color: #4A148C; transition: all 0.2s;
+        }
+        .study-tab-btn:hover { background: #E1BEE7; transform: scale(1.03); }
+        .study-tab-active { background: #9C27B0 !important; color: white !important; border-color: #7B1FA2 !important; }
+        .study-display-box { background: #FFF; border: 2px dashed #9C27B0; border-radius: 20px; padding: 18px; margin-top: 15px; text-align: left; }
 
         /* 자기계발 체크리스트 */
         .todo-item { display: flex; align-items: center; gap: 10px; background: white; padding: 10px 15px; border-radius: 15px; margin-bottom: 8px; border: 1px solid #FFE4ED; font-size: 19px; }
@@ -136,7 +145,7 @@
 
     <div class="marquee-container">
         <div class="marquee-text">
-            ✨ 안녕! 쫀득몰 마켓에 온 걸 환영해! ✨ 새로 개통된 어린이 관심방에서 나만의 가상 캐릭터를 설정해봐! ✨ 우리 같이 멋지게 성장하자! ✨
+            ✨ 안녕! 쫀득몰 마켓에 온 걸 환영해! ✨ 새로 개통된 어린이 관심방에서 나만의 가상 캐릭터를 고르고 친구들과 4학년 열공 스터디 미션 목록을 실행해봐! ✨
         </div>
     </div>
 
@@ -175,14 +184,15 @@
         <div class="card" onclick="toggleInterestRoom()">
             <div id="interestIcon" class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #a8ff78, #78ffd6);">✨</div>
             <h2>어린이 관심방</h2>
-            <p>✨ <b>[클릭!]</b><br>가상 캐릭터 설정, 나의 꿈 가꾸기, 유행 공유방 대오픈!</p>
+            <p>✨ <b>[클릭!]</b><br>가상 캐릭터 설정, 4학년 동급생 친구들과 초강력 스터디 활동 대오픈!</p>
         </div>
     </div>
 
     <div class="sub-layout">
         
         <div class="sub-box folder-content" id="interestRoomBox">
-            <h3 style="color: #26A69A; text-align:center; font-size:32px;">🌟 자아실현 & 소통 어린이 관심방 🌟</h3>
+            <h3 style="color: #26A69A; text-align:center; font-size:32px; margin-bottom:5px;">🌟 자아실현 & 스터디 연동 관심방 🌟</h3>
+            <p style="text-align:center; font-size:18px; color:#555; margin:0 0 20px 0;">동급생 친구들과 목표를 정하고 매일 성장해나가는 마법의 학습 공간</p>
             
             <div style="background:#FFF3F8; border-radius:25px; padding:15px; margin-bottom:20px; border:2px solid #FFB6C1;">
                 <h4 style="margin:0 0 10px 0; font-size:24px; color:#D81B60;">🎭 나만의 가상 애니메이션 캐릭터 고르기</h4>
@@ -196,30 +206,30 @@
                 </div>
             </div>
 
-            <div style="background:#F0FDF4; border-radius:25px; padding:15px; margin-bottom:20px; border:2px solid #BBF7D0;">
-                <h4 style="margin:0 0 10px 0; font-size:24px; color:#166534;">🌱 반짝반짝 나의 꿈 나무 키우기 (자기계발)</h4>
-                <div class="todo-item">
-                    <input type="checkbox" id="todo1" style="transform: scale(1.5);" onclick="scoreUp('todo1')">
-                    <label for="todo1">🥇 오늘 국가대표급 줄넘기 연습 성공하기!</label>
+            <div style="background:#F3E5F5; border-radius:25px; padding:20px; margin-bottom:20px; border:2px solid #D1C4E9;">
+                <h4 style="margin:0 0 5px 0; font-size:25px; color:#4A148C;">✏️ 4학년 동급생 열공 스터디 마스터 목록</h4>
+                <p style="margin:0 0 15px 0; font-size:18px; color:#6A1B9A;">원하는 활동방을 선택하고 오늘의 미션을 친구들과 인증해 보세요!</p>
+                
+                <div class="study-grid">
+                    <button class="study-tab-btn study-tab-active" id="btnMath" onclick="switchStudy('math')">📐 수학 정복방</button>
+                    <button class="study-tab-btn" id="btnRead" onclick="switchStudy('read')">📚 지식 쑥쑥 독서방</button>
+                    <button class="study-tab-btn" id="btnTree" onclick="switchStudy('tree')">🌱 꿈 나무 다이어리</button>
+                    <button class="study-tab-btn" id="btnQuiz" onclick="switchStudy('quiz')">🧪 호기심 탐구방</button>
                 </div>
-                <div class="todo-item">
-                    <input type="checkbox" id="todo2" style="transform: scale(1.5);" onclick="scoreUp('todo2')">
-                    <label for="todo2">📚 마음의 양식 채우기! 재미있는 책 30분 읽기</label>
+
+                <div class="study-display-box" id="studyContentBox">
+                    <h5 style="margin:0 0 10px 0; font-size:22px; color:#7B1FA2;">📐 [수학 정복] 분수와 혼합계산 칠판 설명 미션</h5>
+                    <p style="margin:0 0 12px 0; font-size:19px; color:#444; line-height:1.4;">
+                        <b>🎯 스터디 핵심 목표:</b> 4학년부터 갑자기 어려워지는 분수의 덧셈과 뺄셈, 다각형 개념을 암기하지 않고 확실하게 내 것으로 만들기!<br>
+                        <b>📝 오늘의 활동 과제:</b> 오늘 정성 들여 푼 수학 문제 하나를 골라, 친구들에게 왜 그렇게 풀었는지 선생님처럼 풀이 과정을 설명하는 영상이나 메모 인증하기.
+                    </p>
+                    <button class="login-btn" style="margin:0; background:#9C27B0; box-shadow:0 4px 0 #7B1FA2; font-size:18px; padding:6px 15px;" onclick="verifyStudy('수학 정복 미션 완료!')">🎯 과제 완료 인증하고 성장 점수 받기</button>
                 </div>
-                <div class="todo-item">
-                    <input type="checkbox" id="todo3" style="transform: scale(1.5);" onclick="scoreUp('todo3')">
-                    <label for="todo3">🧪 쫀득몰 마켓 출석하고 할아버지에게 감사 인사하기</label>
-                </div>
-                <p style="text-align:right; font-size:20px; font-weight:bold; color:#166534; margin:5px 0 0 0;">✨ 나의 성장 발전 포인트: <span id="myScore" style="color:#FF4081;">0</span>점 ✨</p>
             </div>
 
-            <div style="background:#EFF6FF; border-radius:25px; padding:15px; border:2px solid #BFDBFE;">
-                <h4 style="margin:0 0 10px 0; font-size:24px; color:#1E40AF;">🎵 요즘 학교에서 완전 유행하는 챌린지 소통방</h4>
-                <a href="https://www.youtube.com/results?search_query=%EC%9A%94%EC%A6%98+%EC%9C%A0%ED%96%89%ED%95%98%EB%8A%94+%EC%B9%B4%EB%93%9C%EA%B2%8C%EC%9E%84+%EB%86%80%EC%9D%B4" target="_blank">
-                    <div class="item-list-btn">
-                        <span>🃏 [친구소통] 쉬는 시간에 친구들과 같이하는 최고 인기 카드 보드게임 놀이</span> <span class="badge" style="background:#2563EB;">인기최고</span>
-                    </div>
-                </a>
+            <div style="background:#F0FDF4; border-radius:25px; padding:15px; border:2px solid #BBF7D0;">
+                <h4 style="margin:0 0 5px 0; font-size:24px; color:#166534;">🏆 쫀득몰 마켓 실시간 누적 성장 스코어</h4>
+                <p style="text-align:center; font-size:24px; font-weight:bold; color:#166534; margin:10px 0 0 0;">✨ 나의 토탈 종합 발전 포인트: <span id="myScore" style="color:#FF4081; font-size:32px;">0</span>점 ✨</p>
             </div>
         </div>
 
@@ -243,11 +253,12 @@
         </div>
 
         <div class="sub-box">
-            <h3>💬 쫀득몰 비밀 대화방</h3>
+            <h3>💬 쫀득몰 비밀 대화방 & 스터디 실시간 인증센터</h3>
             <div class="chat-area" id="chatArea">
-                <div class="chat-msg">📢 시스템: 친구 인증을 완료하시면 가상 캐릭터 프로필과 함께 대화방에 참여할 수 있습니다!</div>
-                <div class="chat-msg"><b>👑 김채연 회장님 [🧸 하츄핑]</b>: 할아버지! 내 아바타 하츄핑으로 고르니까 대화방에 진짜 하츄핑 마크가 생겨! 최고 최고! 😍</div>
-                <div class="chat-msg"><b>단짝친구 [😈 쿠로미]</b>: 난 쿠로미가 좋아! 우리 관심방에서 성장 포인트 대결하자! ⚡</div>
+                <div class="chat-msg">📢 시스템: 친구 인증 완료 후 관심방에서 스터디 과제를 달성하면 이곳에 자동으로 인증 도장이 찍힙니다!</div>
+                <div class="chat-msg"><b>👑 김채연 회장님 [🧸 하츄핑]</b>: 얘들아! 나 오늘 수학 정복방 미션으로 대분수 푸는 법 설명방에 올렸어! 📐😎</div>
+                <div class="chat-msg"><b>단짝친구 [😈 쿠로미]</b>: 채연아 설명 진짜 귀에 쏙쏙 들어온다! 난 독서방 미션 완료하고 10점 땄지롱! 📚⚡</div>
+                <div class="chat-msg"><b>학교친구 [☁️ 시나모롤]</b>: 우와! 스터디 카드 누를 때마다 목표가 바로 보여서 공부 습관 잡기 너무 좋아! 할아버지 최고! 👍</div>
             </div>
             <div style="display:flex; gap:10px;">
                 <input type="text" id="chatInput" class="login-input" style="width:75%; margin:0;" placeholder="메시지를 입력하세요...">
@@ -257,10 +268,10 @@
 
         <div class="sub-box">
             <h3 style="color: #9C27B0;">🚀 쫀득몰 마켓 성장 일지</h3>
-            <div class="history-item"><b>📌 v1.0 - v3.5</b>: 가상 회사 설립 및 3D 장난감 공식 스토어 연동 개통</div>
             <div class="history-item"><b>📌 v6.5</b>: 인기 상품 상자 클릭 시 자물쇠(🔓) 오픈 및 하부 유튜브방 연동 기술 적용</div>
-            <div class="history-item"><b>🚀 v7.0 (오늘 대도약!)</b>: 어린이들의 올바른 자아실현 및 재미를 결합한 [✨ 어린이 관심방] 대오픈! 가상 애니메이션 캐릭터 프로필 기능 및 자기계발 성장 나무 스코어 보드 연동 성공!</div>
-            <p style="font-size:18px; color:#777; font-weight:bold; text-align:center; margin-top:15px;">✨ 우리 마켓은 앞으로도 친구들의 멋진 미래 성장을 위해 매달 진화합니다! ✨</p>
+            <div class="history-item"><b>📌 v7.0</b>: 어린이 관심방 신설 및 애니메이션 가상 부캐릭터 프로필 지정 패치 완료</div>
+            <div class="history-item"><b>🚀 v7.5 (오늘 대공사!)</b>: 4학년 맞춤형 4대 스터디 목록(수학·독서·자기계발·과학탐구) 연동 대시보드 완공! 완료 시 실시간 종합 스코어 상승 및 대화방 자동 인증 봇 연동 완료!</div>
+            <p style="font-size:18px; color:#777; font-weight:bold; text-align:center; margin-top:15px;">✨ 우리 마켓은 어린이들의 즐거운 성장을 위해 계속 진화합니다! ✨</p>
         </div>
     </div>
 
@@ -291,7 +302,7 @@
             `;
             
             const chatArea = document.getElementById('chatArea');
-            chatArea.innerHTML += `<div class="chat-msg" style="color:blue; font-weight:bold;">✨ ${myName}님이 비밀방에 입장하셨습니다! 캐릭터를 골라보세요!</div>`;
+            chatArea.innerHTML += `<div class="chat-msg" style="color:blue; font-weight:bold;">✨ ${myName}님이 비밀방에 입장하셨습니다! 스터디를 시작해보세요!</div>`;
             chatArea.scrollTop = chatArea.scrollHeight;
         }
 
@@ -307,13 +318,11 @@
                 return;
             }
             
-            // 이름 뒤에 내가 고른 가상 아바타 캐릭터가 자동으로 붙어나오는 마법!
             chatArea.innerHTML += `<div class="chat-msg"><b>${myName} [${myAvatar}]</b>: ${text}</div>`;
             input.value = "";
             chatArea.scrollTop = chatArea.scrollHeight;
         }
 
-        // 가상 아바타 캐릭터 설정 기능
         function setAvatar(avatarName, btn) {
             if(!isLoggedIn) {
                 alert("🔒 가상 아바타를 고르기 전에 맨 꼭대기에서 [친구 인증 로그인]을 먼저 완료해주세요! ❤️");
@@ -321,31 +330,89 @@
             }
             myAvatar = avatarName;
             
-            // 모든 버튼 색깔을 원래대로 초기화하고 선택한 것만 진하게 바꿈
             const btns = document.querySelectorAll('.avatar-select-btn');
             btns.forEach(b => b.classList.remove('avatar-selected'));
             btn.classList.add('avatar-selected');
             
-            alert(`🎭 짜잔! 나의 가상 부캐릭터가 [${avatarName}]로 완벽하게 변신했습니다! 이제 대화방에 글을 써보세요!`);
+            alert(`🎭 짜잔! 나의 가상 부캐릭터가 [${avatarName}]로 완벽하게 변신했습니다!`);
         }
 
-        // 자기계발 점수 올리기 장치
-        function scoreUp(id) {
-            const chk = document.getElementById(id);
-            if(chk.checked) {
-                score += 10;
-                alert("🎉 우와! 스스로 목표를 달성했군요! 성장 포인트 +10점 획득! 대단해요!");
-            } else {
-                score -= 10;
+        // ★ [신규 엔진] 스터디 목록 전환 시스템 ★
+        function switchStudy(type) {
+            const container = document.getElementById('studyContentBox');
+            
+            // 모든 탭 버튼 비활성화
+            document.getElementById('btnMath').classList.remove('study-tab-active');
+            document.getElementById('btnRead').classList.remove('study-tab-active');
+            document.getElementById('btnTree').classList.remove('study-tab-active');
+            document.getElementById('btnQuiz').classList.remove('study-tab-active');
+
+            if(type === 'math') {
+                document.getElementById('btnMath').classList.add('study-tab-active');
+                container.innerHTML = `
+                    <h5 style="margin:0 0 10px 0; font-size:22px; color:#7B1FA2;">📐 [수학 정복] 분수와 혼합계산 칠판 설명 미션</h5>
+                    <p style="margin:0 0 12px 0; font-size:19px; color:#444; line-height:1.4;">
+                        <b>🎯 스터디 핵심 목표:</b> 4학년부터 어려워지는 분수의 개념과 각도, 다각형을 암기하지 않고 내 것으로 만들기!<br>
+                        <b>📝 오늘의 활동 과제:</b> 오늘 정성 들여 푼 수학 문제 하나를 골라, 친구들에게 왜 그렇게 풀었는지 선생님처럼 풀이 과정을 설명하는 영상이나 메모 인증하기.
+                    </p>
+                    <button class="login-btn" style="margin:0; background:#9C27B0; box-shadow:0 4px 0 #7B1FA2; font-size:18px; padding:6px 15px;" onclick="verifyStudy('📐 수학 설명방 미션 완료!')">🎯 과제 완료 인증하고 성장 점수 받기</button>
+                `;
+            } else if(type === 'read') {
+                document.getElementById('btnRead').classList.add('study-tab-active');
+                container.innerHTML = `
+                    <h5 style="margin:0 0 10px 0; font-size:22px; color:#0D47A1;">📚 [지식 쑥쑥] 문해력 킹 독서·토론 일지방</h5>
+                    <p style="margin:0 0 12px 0; font-size:19px; color:#444; line-height:1.4;">
+                        <b>🎯 스터디 핵심 목표:</b> 초등 고학년 필수 교양 독서를 통해 어휘력을 넓히고 사회·과학 지문 독해 속도 마스터하기!<br>
+                        <b>📝 오늘의 활동 과제:</b> 위인전이나 과학 잡지 등을 30분간 읽고, "내가 만약 주인공이었다면 어떻게 했을지" 혹은 가장 감명 깊은 한 줄을 자유롭게 적어 공유하기.
+                    </p>
+                    <button class="login-btn" style="margin:0; background:#1976D2; box-shadow:0 4px 0 #0D47A1; font-size:18px; padding:6px 15px;" onclick="verifyStudy('📚 지식 쑥쑥 독서 미션 완료!')">🎯 과제 완료 인증하고 성장 점수 받기</button>
+                `;
+            } else if(type === 'tree') {
+                document.getElementById('btnTree').classList.add('study-tab-active');
+                container.innerHTML = `
+                    <h5 style="margin:0 0 10px 0; font-size:22px; color:#1B5E20;">🌱 [꿈 나무] 자기주도 일과 계획 다이어리방</h5>
+                    <p style="margin:0 0 12px 0; font-size:19px; color:#444; line-height:1.4;">
+                        <b>🎯 스터디 핵심 목표:</b> 남이 시켜서 하는 공부는 그만! 스스로 하루 일과를 계획하고 실행하는 멋진 자기 통제 버릇 들이기.<br>
+                        <b>📝 오늘의 활동 과제:</b> 아침에 일어나서 정한 '오늘의 약속(영어단어 5개 외우기, 줄넘기 100개 등)'을 완벽하게 수행하고 체크 표시 남기기.
+                    </p>
+                    <button class="login-btn" style="margin:0; background:#388E3C; box-shadow:0 4px 0 #1B5E20; font-size:18px; padding:6px 15px;" onclick="verifyStudy('🌱 자기계발 꿈나무 미션 완료!')">🎯 과제 완료 인증하고 성장 점수 받기</button>
+                `;
+            } else if(type === 'quiz') {
+                document.getElementById('btnQuiz').classList.add('study-tab-active');
+                container.innerHTML = `
+                    <h5 style="margin:0 0 10px 0; font-size:22px; color:#E65100;">🧪 [호기심 천국] 일상 속 과학·문화 탐구방</h5>
+                    <p style="margin:0 0 12px 0; font-size:19px; color:#444; line-height:1.4;">
+                        <b>🎯 스터디 핵심 목표:</b> 교과서 밖 넓은 세상의 현상에 흥미를 갖고 관찰력과 능동적인 지식 탐구 자세 형성하기.<br>
+                        <b>📝 오늘의 활동 과제:</b> 주변 사물이나 자연 현상(슬라임이 변하는 이유, 날씨 등) 혹은 재미있는 보드게임 규칙 등 유익한 정보를 수집해 친구들에게 공유하기.
+                    </p>
+                    <button class="login-btn" style="margin:0; background:#F57C00; box-shadow:0 4px 0 #E65100; font-size:18px; padding:6px 15px;" onclick="verifyStudy('🧪 호기심 과학 탐구 미션 완료!')">🎯 과제 완료 인증하고 성장 점수 받기</button>
+                `;
             }
+        }
+
+        // ★ [신규 엔진] 스터디 포인트 획득 및 대화방 자동 트래킹 기능 ★
+        function verifyStudy(missionText) {
+            if(!isLoggedIn) {
+                alert("🔒 미션을 인증하기 전에 먼저 맨 꼭대기에서 [친구 인증 로그인]을 완료해주세요! ❤️");
+                return;
+            }
+            
+            score += 10;
             document.getElementById('myScore').innerText = score;
+            
+            alert(`🎉 우와 대단해요! 스스로 목표를 달성했습니다!\n성장 발전 포인트 +10점 대기록 달성! (현재 총 ${score}점)`);
+            
+            // 대화방에 실시간으로 스터디 결과가 자동으로 속보처럼 뿌려지는 연동 기술!
+            const chatArea = document.getElementById('chatArea');
+            chatArea.innerHTML += `<div class="chat-msg" style="border-left: 5px solid #4CAF50; background:#F0FDF4;"><b style="color:#166534;">🤖 스터디인증 봇</b>: ✨ <b>${myName} [${myAvatar}]</b>님이 오늘자 <b>${missionText}</b> 미션을 완벽히 완료하여 성장 점수 10점을 획득했습니다! 👏👏</div>`;
+            chatArea.scrollTop = chatArea.scrollHeight;
         }
 
         // 인기 상품 상자 제어
         function toggleTreasureChest() {
             const box = document.getElementById('treasureChestBox');
             const icon = document.getElementById('chestIcon');
-            document.getElementById('interestRoomBox').classList.remove('folder-open'); // 관심방은 닫기
+            document.getElementById('interestRoomBox').classList.remove('folder-open');
             document.getElementById('interestIcon').innerText = "✨";
 
             if(box.classList.contains('folder-open')) {
@@ -362,7 +429,7 @@
         function toggleInterestRoom() {
             const box = document.getElementById('interestRoomBox');
             const icon = document.getElementById('interestIcon');
-            document.getElementById('treasureChestBox').classList.remove('folder-open'); // 보물상자는 닫기
+            document.getElementById('treasureChestBox').classList.remove('folder-open');
             document.getElementById('chestIcon').innerText = "📦";
 
             if(box.classList.contains('folder-open')) {
@@ -371,7 +438,7 @@
             } else {
                 box.classList.add('folder-open');
                 icon.innerText = "🌟";
-                alert("🌟 우와! 친구들과 소통하고 꿈을 키우는 대형 [어린이 관심방]이 전면 개방되었습니다!");
+                alert("🌟 대오픈! 친구들과 소통하고 4학년 목표를 깨부수는 대형 [어린이 스터디 관심방]이 열렸습니다!");
             }
         }
 
