@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>쫀득몰 마켓 v12.0 무한 부활 완벽판</title>
+    <title>쫀득몰 마켓 v14.0 K-POP & BGM 완벽판</title>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -16,7 +16,7 @@
             position: relative;
         }
 
-        /* 상단 전광판 (터치 씹힘 완벽 방지) */
+        /* 상단 글로벌 전광판 */
         .marquee-container {
             width: 100%; background: rgba(255, 255, 255, 0.9); padding: 12px 0;
             box-shadow: 0 8px 25px rgba(255, 105, 180, 0.25); overflow: hidden; position: relative;
@@ -30,11 +30,20 @@
         }
         @keyframes moveLeft { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
 
-        header { text-align: center; padding: 15px; z-index: 10; }
+        header { text-align: center; padding: 15px; z-index: 10; position: relative; width: 100%; box-sizing: border-box; }
         header h1 {
             font-size: 55px; color: #D81B60; margin: 0;
             text-shadow: 1px 1px 0px #FFF, 2px 2px 0px #FFB6C1, 3px 3px 0px #FF80AB, 5px 5px 15px rgba(0,0,0,0.2);
         }
+
+        /* ★ 신규: 배경음악 켜고 끄는 오디오 스위치 단추 ★ */
+        .audio-ctrl-btn {
+            position: absolute; top: 15px; right: 20px; background: #FF4081; color: white;
+            border: 3px solid #FFF; padding: 8px 15px; font-family: 'Gaegu', cursive; font-size: 20px;
+            font-weight: bold; border-radius: 20px; cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            transition: all 0.2s; z-index: 100;
+        }
+        .audio-ctrl-btn:hover { transform: scale(1.05); background: #E91E63; }
 
         /* 3D 카드 컨테이너 */
         .container {
@@ -72,7 +81,6 @@
         }
         .sub-box h3 { font-size: 28px; color: #D81B60; margin-top: 0; }
         
-        /* 폴더 및 상시 오픈 고정 */
         .folder-content { display: block !important; } 
 
         .sub-box a { text-decoration: none; display: block; margin-bottom: 12px; }
@@ -85,14 +93,12 @@
         .avatar-select-btn {
             background: #FFF; border: 2px solid #FFB6C1; border-radius: 15px; padding: 8px 15px; font-size: 18px; cursor: pointer; margin: 5px; font-family: 'Gaegu', cursive; transition: all 0.2s;
         }
-        .avatar-select-btn:hover { background: #FFDEEB; transform: scale(1.05); }
         .avatar-selected { background: #FF4081 !important; color: white !important; border-color: #D81B60 !important; }
 
         .study-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; }
         .study-tab-btn {
             background: #F3E5F5; border: 2px solid #E1BEE7; padding: 10px 18px; font-size: 19px; border-radius: 15px; cursor: pointer; font-family: 'Gaegu', cursive; font-weight: bold; color: #4A148C; transition: all 0.2s;
         }
-        .study-tab-btn:hover { background: #E1BEE7; transform: scale(1.03); }
         .study-tab-active { background: #9C27B0 !important; color: white !important; border-color: #7B1FA2 !important; }
         .study-display-box { background: #FFF; border: 2px dashed #9C27B0; border-radius: 20px; padding: 18px; margin-top: 15px; text-align: left; }
 
@@ -108,8 +114,14 @@
         }
         .like-btn:hover { background: #FF4081; color: white; }
         .login-btn {
-            background: #FF4081; color: white; padding: 10px 25px; font-size: 22px; border: none; border-radius: 20px; cursor: pointer; font-family: 'Gaegu', cursive; box-shadow: 0 5px 0 #C2185B; margin-top: 10px;
+            background: #FF4081; color: white; padding: 8px 20px; font-size: 20px; border: none; border-radius: 15px; cursor: pointer; font-family: 'Gaegu', cursive; box-shadow: 0 4px 0 #C2185B; margin-top: 5px;
         }
+
+        .security-banner {
+            background: #E0F2FE; border: 2px solid #7DD3FC; color: #0369A1; border-radius: 15px; padding: 10px; font-size: 18px; margin-bottom: 15px; text-align: center; font-weight: bold;
+        }
+        .chat-area { height: 300px; overflow-y: auto; background: #FFF3F8; border-radius: 20px; padding: 15px; border: 2px dashed #FFB6C1; margin-bottom: 15px; text-align: left; }
+        .chat-msg { background: #FFF; padding: 10px 15px; border-radius: 15px; margin-bottom: 12px; font-size: 19px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 5px solid #FF4081; line-height: 1.4; }
 
         footer { margin: 60px 0 40px 0; font-size: 22px; color: #D81B60; font-weight: bold; text-shadow: 1px white; z-index: 20; }
         .heart-particle { position: absolute; pointer-events: none; font-size: 30px; animation: flyUp 1.2s ease-out forwards; z-index: 100; }
@@ -121,14 +133,18 @@
 </head>
 <body>
 
+    <audio id="bgmAudio" loop src="https://assets.mixkit.co/music/preview/mixkit-playground-fun-12.mp3"></audio>
+
     <div class="marquee-container">
         <div class="marquee-text">
-            ✨ 안녕하세요! 쫀득몰 마켓에 오신 걸 격하게 환영합니다! ✨ 무한 멈춤 현상이 해결되어 전 기능이 초고속 부활 성공했습니다! ✨ 즐겁게 놀다 가세요! ✨
+            ✨ 🌍 Welcome Global Friends! 쫀득몰 마켓 1,250명 돌파 기념 K-POP 비밀 정보방 오픈! 우측 상단 🎵버튼을 누르면 잔잔한 음악이 흘러나와요! ✨
         </div>
     </div>
 
     <header>
-        <h1>🏰 쫀득몰 마켓 🏰</h1>
+        <h1>🏰 쫀득몰 마켓 v14.0 🏰</h1>
+        <button class="audio-ctrl-btn" onclick="toggleMusic()">🎵 음악 켜기</button>
+        <p style="font-size:24px; color:#4A148C; font-weight:bold; margin:0;">🌍 실시간 접속 전 세계 어린이: <span style="color:#FF4081; font-size:28px;">1,250</span>명</p>
     </header>
 
     <div class="container">
@@ -150,62 +166,46 @@
             <p>📦 <b>[클릭!]</b><br>자물쇠가 풀리며 아래 유튜브 정보방으로 자동 안내돼요!</p>
         </div>
 
-        <div class="card" onclick="location.hash='#interestBox'">
-            <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #a8ff78, #78ffd6);">🌟</div>
-            <h2>어린이 관심방</h2>
-            <p>✨ <b>[클릭!]</b><br>아바타 설정, 4학년 스터디, 추억 공유방 통합 상시 가동 중!</p>
+        <div class="card" onclick="location.hash='#kpopBox'">
+            <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #b661ff, #61daff);">🎤</div>
+            <h2>K-POP 정보방</h2>
+            <p>🔥 <b>[클릭!]</b><br>해외 친구들이 가장 사랑하는 인기 케이팝 링크 연동!</p>
         </div>
     </div>
 
     <div class="sub-layout">
         
-        <div class="sub-box folder-content" id="interestBox">
-            <h3 style="color: #26A69A; text-align:center; font-size:32px; margin-bottom:5px;">🌟 자아실현 & 추억공유 관심방 🌟</h3>
-            <p style="text-align:center; font-size:18px; color:#555; margin:0 0 20px 0;">동급생 친구들과 어릴 적 추억을 나누고 스터디 활동을 함께하는 마법의 아지트</p>
+        <div class="sub-box">
+            <h3>💬 🌍 글로벌 인공지능 안전 대화방 (Global Friends Room)</h3>
+            <div class="security-banner">
+                🛡️ AI 클린 방화벽 시스템 작동 중 (광고 스팸 차단 100% / 욕설 실시간 필터링 / 개인정보 암호화 보호)
+            </div>
             
-            <div style="background:#FFF3F8; border-radius:25px; padding:15px; margin-bottom:20px; border:2px solid #FFB6C1;">
-                <h4 style="margin:0 0 10px 0; font-size:24px; color:#D81B60;">🎭 나만의 가상 애니메이션 캐릭터 고르기</h4>
-                <div style="display:flex; flex-wrap:wrap; justify-content:center;">
-                    <button class="avatar-select-btn avatar-selected" onclick="setAvatar('🧸 하츄핑', this)">🧸 하츄핑</button>
-                    <button class="avatar-select-btn" onclick="setAvatar('😈 쿠로미', this)">😈 쿠로미</button>
-                    <button class="avatar-select-btn" onclick="setAvatar('☁️ 시나모롤', this)">☁️ 시나모롤</button>
-                    <button class="avatar-select-btn" onclick="setAvatar('🐱 키티', this)">🐱 키티</button>
-                    <button class="avatar-select-btn" onclick="setAvatar('🦖 포켓몬', this)">🦖 포켓몬</button>
-                </div>
+            <div class="chat-area" id="chatArea">
+                <div class="chat-msg" style="color: #4B148C; font-weight: bold; background: #EDE7F6;">🤖 글로벌 가상 통역 가이드: 외국인 친구들이 보내온 따뜻한 메시지 리스트입니다!</div>
+                <div class="chat-msg"><b>👑 김채연 회장님 [🧸 하츄핑]</b>: 전 세계 친구들아 모두 반가워! Welcome to my market! 🌍❤️</div>
+                <div class="chat-msg" style="border-left: 5px solid #FF9800;"><b>🇺🇸 Emma [☁️ 시나모롤]</b>: I love K-POP! Let's talk about NewJeans and BTS! <br><span style="color:#2563EB; font-weight:bold;">(번역 ➔ 나 케이팝 진짜 좋아해! 뉴진스랑 BTS 얘기 나누자!)</span></div>
+                <div class="chat-msg" style="border-left: 5px solid #4CAF50;"><b>🇯🇵 Sakura [🐱 키티]</b>: 음악 버튼을 누르니 잔잔한 멜로디가 나와서 행복해요! 🎶</div>
             </div>
+            
+            <div style="display:flex; gap:10px;">
+                <input type="text" id="chatInput" class="login-input" style="width:75%; margin:0; padding:10px; font-size:18px; border-radius:12px; border:2px solid #FFB6C1;" placeholder="메시지 입력...">
+                <button class="login-btn" style="margin:0; padding:5px 15px; font-size:18px;" onclick="sendChat()">전송</button>
+            </div>
+        </div>
 
-            <div style="background:#F3E5F5; border-radius:25px; padding:20px; margin-bottom:20px; border:2px solid #D1C4E9;">
-                <h4 style="margin:0 0 5px 0; font-size:25px; color:#4A148C;">✏️ 4학년 동급생 열공 스터디 마스터 목록</h4>
-                <div class="study-grid">
-                    <button class="study-tab-btn study-tab-active" id="btnMath" onclick="switchStudy('math')">📐 수학 정복방</button>
-                    <button class="study-tab-btn" id="btnRead" onclick="switchStudy('read')">📚 지식 쑥쑥 독서방</button>
-                    <button class="study-tab-btn" id="btnTree" onclick="switchStudy('tree')">🌱 꿈 나무 다이어리</button>
-                    <button class="study-tab-btn" id="btnQuiz" onclick="switchStudy('quiz')">🧪 호기심 탐구방</button>
-                </div>
-                <div class="study-display-box" id="studyContentBox">
-                    <h5 style="margin:0 0 10px 0; font-size:22px; color:#7B1FA2;">📐 [수학 정복] 분수와 혼합계산 칠판 설명 미션</h5>
-                    <p style="margin:0 0 12px 0; font-size:19px; color:#444; line-height:1.4;"><b>🎯 스터디 핵심 목표:</b> 4학년부터 어려워지는 분수의 개념과 각도, 다각형을 확실하게 내 것으로 만들기!<br><b>📝 오늘의 활동 과제:</b> 오늘 푼 수학 문제 하나를 골라 풀이 과정을 친구들에게 설명해 주어요.</p>
-                    <button class="login-btn" style="margin:0; background:#9C27B0; box-shadow:0 4px 0 #7B1FA2; font-size:18px; padding:6px 15px;" onclick="alert('🎉 스터디 과제 완료 인증에 성공했습니다! 성장 마스터 도장 꾹!')">🎯 과제 완료 인증하고 성장 점수 받기</button>
-                </div>
-            </div>
-
-            <div style="background:#EFF6FF; border-radius:25px; padding:20px; margin-bottom:20px; border:2px solid #BFDBFE;">
-                <h4 style="margin:0 0 5px 0; font-size:25px; color:#1E40AF;">📸 우리들의 소중한 어린 시절 추억 공유방</h4>
-                <div class="album-grid" id="albumGrid">
-                    <div class="album-card">
-                        <div class="album-media">🖼️</div>
-                        <h5 style="font-size:20px; margin:10px 0 5px 0; color:#1E40AF;">🌸 유치원 졸업식 날 채연이와!</h5>
-                        <p style="font-size:16px; color:#777; margin:0 0 10px 0;">올린이: 👑 김채연 회장님</p>
-                        <button class="like-btn" onclick="clickLike(this)">❤️ 좋아요 <span class="like-count">12</span></button>
-                    </div>
-                    <div class="album-card">
-                        <div class="album-media" style="background:#E0F2FE;">🎬</div>
-                        <h5 style="font-size:20px; margin:10px 0 5px 0; color:#1E40AF;">💃 학교 장기자랑 유행 댄스 비디오</h5>
-                        <p style="font-size:16px; color:#777; margin:0 0 10px 0;">올린이: 단짝친구</p>
-                        <button class="like-btn" onclick="clickLike(this)">❤️ 좋아요 <span class="like-count">8</span></button>
-                    </div>
-                </div>
-            </div>
+        <div class="sub-box folder-content" id="kpopBox">
+            <h3 style="color: #651FFF;">🎤 해외 친구들이 가장 사랑하는 최신 K-POP 정보방</h3>
+            <p style="font-size:18px; color:#555; margin:0 0 15px 0;">전 세계 어린이 친구들과 함께 신나는 케이팝 댄스와 유행 음악을 보러 떠나요! 🕺💃</p>
+            <a href="https://www.youtube.com/results?search_query=NewJeans+Official" target="_blank">
+                <div class="item-list-btn"><span>✨ [글로벌 아이돌] 뉴진스(NewJeans) 공식 뮤직비디오 & 챌린지 </span> <span class="badge" style="background:#651FFF;">NewJeans</span></div>
+            </a>
+            <a href="https://www.youtube.com/results?search_query=BTS+Official" target="_blank">
+                <div class="item-list-btn"><span>✨ [우주 대스타] 방탄소년단(BTS) 빌보드 인기곡 무대 모아보기</span> <span class="badge" style="background:#651FFF;">BTS</span></div>
+            </a>
+            <a href="https://www.youtube.com/results?search_query=BLACKPINK+Official" target="_blank">
+                <div class="item-list-btn"><span>✨ [해외 워너비] 블랙핑크(BLACKPINK) 전 세계 유행 댄스 정복</span> <span class="badge" style="background:#651FFF;">BLACKPINK</span></div>
+            </a>
         </div>
 
         <div class="sub-box folder-content" id="treasureBox">
@@ -216,44 +216,56 @@
             <a href="https://www.youtube.com/@SanrioKorea" target="_blank">
                 <div class="item-list-btn"><span>🎬 [캐릭터 유행] 산리오 코리아 공식 유튜브 채널 직행하기</span> <span class="badge" style="background:#FF9800;">산리오TV</span></div>
             </a>
-            <a href="https://www.youtube.com/results?search_query=%EC%8A%AC%EB%9D%BC%EC%9E%84+%EB%A7%8C%EB%93%A4%EA%B8%B0" target="_blank">
-                <div class="item-list-btn"><span>🎬 [슬라임 연구] 말랑말랑 무지개 액체괴물 만들기 대백과</span> <span class="badge" style="background:#FF9800;">슬라임영상</span></div>
-            </a>
         </div>
     </div>
 
     <footer>
-        쫀득몰 마켓 | 총괄 마스터 제작: 할아버지 ❤️
+        쫀득몰 마켓 | 글로벌 총괄 마스터 제작: 할아버지 ❤️
     </footer>
 
     <script>
-        // 스터디 탭 전환 장치
-        function switchStudy(type) {
-            const container = document.getElementById('studyContentBox');
-            document.getElementById('btnMath').classList.remove('study-tab-active');
-            document.getElementById('btnRead').classList.remove('study-tab-active');
-            document.getElementById('btnTree').classList.remove('study-tab-active');
-            document.getElementById('btnQuiz').classList.remove('study-tab-active');
+        let myName = "할아버지";
+        let isPlaying = false;
 
-            if(type === 'math') {
-                document.getElementById('btnMath').classList.add('study-tab-active');
-                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#7B1FA2;">📐 [수학 정복] 분수와 혼합계산 칠판 설명 미션</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">4학년 수학 마스터! 분수의 개념을 친구들에게 차근차근 설명해 보아요.</p><button class="login-btn" style="margin:0; background:#9C27B0; box-shadow:0 4px 0 #7B1FA2; font-size:18px; padding:6px 15px;" onclick="alert('🎯 수학 미션 완료 성공!')">🎯 과제 완료 인증</button>`;
-            } else if(type === 'read') {
-                document.getElementById('btnRead').classList.add('study-tab-active');
-                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#0D47A1;">📚 [지식 쑥쑥] 문해력 킹 독서·토론 일지방</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">위인전이나 과학 잡지를 30분간 읽고 가장 기억에 남는 한 줄을 공유해봐요.</p><button class="login-btn" style="margin:0; background:#1976D2; box-shadow:0 4px 0 #0D47A1; font-size:18px; padding:6px 15px;" onclick="alert('🎯 독서 미션 완료 성공!')">🎯 과제 완료 인증</button>`;
-            } else if(type === 'tree') {
-                document.getElementById('btnTree').classList.add('study-tab-active');
-                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#1B5E20;">🌱 [꿈 나무] 자기주도 일과 계획 다이어리방</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">오늘 스스로 정한 목표를 성실히 실천하고 도장을 찍어보아요.</p><button class="login-btn" style="margin:0; background:#388E3C; box-shadow:0 4px 0 #1B5E20; font-size:18px; padding:6px 15px;" onclick="alert('🎯 계획 미션 완료 성공!')">🎯 과제 완료 인증</button>`;
-            } else if(type === 'quiz') {
-                document.getElementById('btnQuiz').classList.add('study-tab-active');
-                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#E65100;">🧪 [호기심 천국] 일상 속 과학·문화 탐구방</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">우리 주변의 재미있는 자연 현상이나 유익한 상식을 찾아 친구들에게 소개해 주어요.</p><button class="login-btn" style="margin:0; background:#F57C00; box-shadow:0 4px 0 #E65100; font-size:18px; padding:6px 15px;" onclick="alert('🎯 과학 미션 완료 성공!')">🎯 과제 완료 인증</button>`;
+        // ★ 배경음악 ON/OFF 제어 특수 밸브 펌프 함수 ★
+        function toggleMusic() {
+            const audio = document.getElementById('bgmAudio');
+            const btn = document.querySelector('.audio-ctrl-btn');
+            
+            if (!isPlaying) {
+                audio.volume = 0.3; // 아이들 귀 보호를 위해 잔잔하게 볼륨 30% 고정
+                audio.play().then(() => {
+                    isPlaying = true;
+                    btn.innerText = "⏸️ 음악 끄기";
+                    btn.style.background = "#4A148C";
+                }).catch(err => {
+                    alert("🔒 스마트폰 화면을 한번 터치한 뒤 음악 단추를 다시 눌러주세요!");
+                });
+            } else {
+                audio.pause();
+                isPlaying = false;
+                btn.innerText = "🎵 음악 켜기";
+                btn.style.background = "#FF4081";
             }
         }
 
-        function setAvatar(name, btn) {
-            document.querySelectorAll('.avatar-select-btn').forEach(b => b.classList.remove('avatar-selected'));
-            btn.classList.add('avatar-selected');
-            alert(`🎭 캐릭터가 [${name}]로 신나게 변경 완료되었습니다!`);
+        function sendChat() {
+            const input = document.getElementById('chatInput');
+            const text = input.value.trim();
+            if(!text) return;
+            const chatArea = document.getElementById('chatArea');
+
+            const badWords = ['바보', '멍청이', '욕설', '광고', '스팸'];
+            for(let i=0; i<badWords.length; i++) {
+                if(text.includes(badWords[i])) {
+                    alert("🚨 [AI 안전 방화벽 차단] 예쁜 말만 사용해요! ❤️");
+                    return;
+                }
+            }
+            
+            chatArea.innerHTML += `<div class="chat-msg"><b>${myName}</b>: ${text}</div>`;
+            input.value = "";
+            chatArea.scrollTop = chatArea.scrollHeight;
         }
 
         function clickLike(btn) {
