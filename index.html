@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>쫀득몰 마켓 v6.5 통합본</title>
+    <title>쫀득몰 마켓 v7.0 완벽판</title>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -16,7 +16,7 @@
             position: relative;
         }
 
-        /* 상단 전광판 (오른쪽 -> 왼쪽 흐름, 터치 방해 금지) */
+        /* 상단 전광판 (Right -> Left 흐름) */
         .marquee-container {
             width: 100%; background: rgba(255, 255, 255, 0.9); padding: 18px 0;
             box-shadow: 0 8px 25px rgba(255, 105, 180, 0.25); overflow: hidden; position: relative;
@@ -57,29 +57,28 @@
         }
         .login-btn:active { transform: translateY(4px); box-shadow: 0 1px 0 #C2185B; }
 
-        /* 3D 카드 컨테이너 (총 3개 카드로 황금비율 구성) */
+        /* 3D 카드 컨테이너 (4개 카드 구성) */
         .container {
-            display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 20px; max-width: 1100px; z-index: 30; position: relative;
+            display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 20px; max-width: 1200px; z-index: 30; position: relative;
         }
         .card {
-            background: #FFF; border-radius: 40px; width: 290px; padding: 30px 20px; text-align: center;
+            background: #FFF; border-radius: 40px; width: 250px; padding: 25px 15px; text-align: center;
             border: 4px solid #FFF; box-shadow: 0 16px 0px #F48FB1, 0 25px 30px rgba(0,0,0,0.15);
             position: relative; top: 0; transition: all 0.15s ease-in-out; cursor: pointer;
             -webkit-user-select: none; user-select: none;
         }
         .card:hover { top: -6px; box-shadow: 0 22px 0px #F48FB1, 0 30px 35px rgba(255, 105, 180, 0.3); }
         .card:active { top: 12px; box-shadow: 0 4px 0px #F48FB1, 0 8px 10px rgba(0,0,0,0.15); }
-        .card h2 { font-size: 34px; color: #C2185B; margin: 15px 0 10px 0; }
-        .card p { font-size: 21px; color: #666; line-height: 1.4; margin-bottom: 10px; }
+        .card h2 { font-size: 30px; color: #C2185B; margin: 15px 0 10px 0; }
+        .card p { font-size: 19px; color: #666; line-height: 1.4; margin-bottom: 10px; }
 
         /* 볼록한 아이콘 구슬 */
         .slime-zone {
-            width: 130px; height: 130px; margin: 0 auto; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; font-size: 65px; border: 4px solid #FFF;
+            width: 110px; height: 110px; margin: 0 auto; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-size: 55px; border: 4px solid #FFF;
             box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1), inset 10px 10px 20px rgba(255,255,255,0.8), 0 8px 15px rgba(0,0,0,0.15);
         }
         
-        /* 무지개 회전 애니메이션 */
         .spinning {
             animation: spinSlime 1.5s linear infinite;
             background: conic-gradient(#ff5f6d, #ffc371, #ffec61, #61ffaf, #61daff, #b661ff, #ff5f6d) !important;
@@ -99,7 +98,7 @@
         .chat-area { height: 180px; overflow-y: auto; background: #FFF3F8; border-radius: 20px; padding: 15px; border: 2px dashed #FFB6C1; margin-bottom: 15px; text-align: left; }
         .chat-msg { background: #FFF; padding: 8px 15px; border-radius: 15px; margin-bottom: 10px; font-size: 19px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 5px solid #FF4081; }
 
-        /* 폴더가 부드럽게 스르륵 열리는 효과 */
+        /* 애니메이션 폴더 기믹 */
         .folder-content { display: none; transform: scaleY(0); transform-origin: top; transition: all 0.3s ease-in-out; }
         .folder-open { display: block; transform: scaleY(1); }
 
@@ -109,6 +108,16 @@
         }
         .item-list-btn:hover { background: #FFF0F5; border-color: #FFB6C1; transform: scale(1.01); }
         .badge { background: #FF4081; color: white; padding: 4px 12px; border-radius: 15px; font-size: 16px; font-weight: bold; }
+
+        /* 캐릭터 선택 버튼 스타일 */
+        .avatar-select-btn {
+            background: #FFF; border: 2px solid #FFB6C1; border-radius: 15px; padding: 8px 15px; font-size: 18px; cursor: pointer; margin: 5px; font-family: 'Gaegu', cursive; transition: all 0.2s;
+        }
+        .avatar-select-btn:hover { background: #FFDEEB; transform: scale(1.05); }
+        .avatar-selected { background: #FF4081 !important; color: white !important; border-color: #D81B60 !important; }
+
+        /* 자기계발 체크리스트 */
+        .todo-item { display: flex; align-items: center; gap: 10px; background: white; padding: 10px 15px; border-radius: 15px; margin-bottom: 8px; border: 1px solid #FFE4ED; font-size: 19px; }
 
         /* 성장 일지 */
         .history-item { background: rgba(255,255,255,0.7); border-radius: 15px; padding: 12px; margin-bottom: 10px; border-left: 5px solid #9C27B0; font-size: 19px; }
@@ -127,7 +136,7 @@
 
     <div class="marquee-container">
         <div class="marquee-text">
-            ✨ 안녕! 쫀득몰 마켓에 온 걸 환영해! ✨ 인기 상품 리스트를 클릭하면 자물쇠가 열리며 유튜브 정보방이 연동돼요! ✨ 우리 같이 신나게 놀자! ✨
+            ✨ 안녕! 쫀득몰 마켓에 온 걸 환영해! ✨ 새로 개통된 어린이 관심방에서 나만의 가상 캐릭터를 설정해봐! ✨ 우리 같이 멋지게 성장하자! ✨
         </div>
     </div>
 
@@ -160,27 +169,72 @@
         <div class="card" onclick="toggleTreasureChest()">
             <div id="chestIcon" class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #ffec61, #ffc371);">📦</div>
             <h2>인기 상품 리스트</h2>
-            <p>📦 <b>[클릭!]</b><br>닫힌 상자를 열면 유튜브 정보방이 바로 연동되어 열립니다!</p>
+            <p>📦 <b>[클릭!]</b><br>상자가 열리면 자물쇠가 풀리며 유튜브 정보방이 연동돼요!</p>
+        </div>
+
+        <div class="card" onclick="toggleInterestRoom()">
+            <div id="interestIcon" class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #a8ff78, #78ffd6);">✨</div>
+            <h2>어린이 관심방</h2>
+            <p>✨ <b>[클릭!]</b><br>가상 캐릭터 설정, 나의 꿈 가꾸기, 유행 공유방 대오픈!</p>
         </div>
     </div>
 
     <div class="sub-layout">
         
+        <div class="sub-box folder-content" id="interestRoomBox">
+            <h3 style="color: #26A69A; text-align:center; font-size:32px;">🌟 자아실현 & 소통 어린이 관심방 🌟</h3>
+            
+            <div style="background:#FFF3F8; border-radius:25px; padding:15px; margin-bottom:20px; border:2px solid #FFB6C1;">
+                <h4 style="margin:0 0 10px 0; font-size:24px; color:#D81B60;">🎭 나만의 가상 애니메이션 캐릭터 고르기</h4>
+                <p style="margin:0 0 10px 0; font-size:18px; color:#666;">원하는 캐릭터를 누르면 대화방에서 나의 아바타로 설정됩니다!</p>
+                <div style="display:flex; flex-wrap:wrap; justify-content:center;">
+                    <button class="avatar-select-btn" onclick="setAvatar('🧸 하츄핑', this)">🧸 하츄핑</button>
+                    <button class="avatar-select-btn" onclick="setAvatar('😈 쿠로미', this)">😈 쿠로미</button>
+                    <button class="avatar-select-btn" onclick="setAvatar('☁️ 시나모롤', this)">☁️ 시나모롤</button>
+                    <button class="avatar-select-btn" onclick="setAvatar('🐱 키티', this)">🐱 키티</button>
+                    <button class="avatar-select-btn" onclick="setAvatar('🦖 포켓몬', this)">🦖 포켓몬</button>
+                </div>
+            </div>
+
+            <div style="background:#F0FDF4; border-radius:25px; padding:15px; margin-bottom:20px; border:2px solid #BBF7D0;">
+                <h4 style="margin:0 0 10px 0; font-size:24px; color:#166534;">🌱 반짝반짝 나의 꿈 나무 키우기 (자기계발)</h4>
+                <div class="todo-item">
+                    <input type="checkbox" id="todo1" style="transform: scale(1.5);" onclick="scoreUp('todo1')">
+                    <label for="todo1">🥇 오늘 국가대표급 줄넘기 연습 성공하기!</label>
+                </div>
+                <div class="todo-item">
+                    <input type="checkbox" id="todo2" style="transform: scale(1.5);" onclick="scoreUp('todo2')">
+                    <label for="todo2">📚 마음의 양식 채우기! 재미있는 책 30분 읽기</label>
+                </div>
+                <div class="todo-item">
+                    <input type="checkbox" id="todo3" style="transform: scale(1.5);" onclick="scoreUp('todo3')">
+                    <label for="todo3">🧪 쫀득몰 마켓 출석하고 할아버지에게 감사 인사하기</label>
+                </div>
+                <p style="text-align:right; font-size:20px; font-weight:bold; color:#166534; margin:5px 0 0 0;">✨ 나의 성장 발전 포인트: <span id="myScore" style="color:#FF4081;">0</span>점 ✨</p>
+            </div>
+
+            <div style="background:#EFF6FF; border-radius:25px; padding:15px; border:2px solid #BFDBFE;">
+                <h4 style="margin:0 0 10px 0; font-size:24px; color:#1E40AF;">🎵 요즘 학교에서 완전 유행하는 챌린지 소통방</h4>
+                <a href="https://www.youtube.com/results?search_query=%EC%9A%94%EC%A6%98+%EC%9C%A0%ED%96%89%ED%95%98%EB%8A%94+%EC%B9%B4%EB%93%9C%EA%B2%8C%EC%9E%84+%EB%86%80%EC%9D%B4" target="_blank">
+                    <div class="item-list-btn">
+                        <span>🃏 [친구소통] 쉬는 시간에 친구들과 같이하는 최고 인기 카드 보드게임 놀이</span> <span class="badge" style="background:#2563EB;">인기최고</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+
         <div class="sub-box folder-content" id="treasureChestBox">
             <h3 style="color: #FF9800;">🔓 자물쇠 해제! 쫀득몰 비밀 유튜브 정보방</h3>
-            
             <a href="https://www.youtube.com/@TeeniepingTV" target="_blank">
                 <div class="item-list-btn">
                     <span>🎬 [인기 장난감] 캐치! 티니핑 공식 유튜브 비디오 보러가기</span> <span class="badge" style="background:#FF9800;">티니핑TV</span>
                 </div>
             </a>
-            
             <a href="https://www.youtube.com/@SanrioKorea" target="_blank">
                 <div class="item-list-btn">
                     <span>🎬 [캐릭터 유행] 산리오 코리아 공식 유튜브 채널 직행하기</span> <span class="badge" style="background:#FF9800;">산리오TV</span>
                 </div>
             </a>
-            
             <a href="https://www.youtube.com/results?search_query=%EC%8A%AC%EB%9D%BC%EC%9E%84+%EB%A7%8C%EB%93%A4%EA%B8%B0" target="_blank">
                 <div class="item-list-btn">
                     <span>🎬 [슬라임 연구] 말랑말랑 무지개 액체괴물 만들기 대백과</span> <span class="badge" style="background:#FF9800;">슬라임영상</span>
@@ -191,9 +245,9 @@
         <div class="sub-box">
             <h3>💬 쫀득몰 비밀 대화방</h3>
             <div class="chat-area" id="chatArea">
-                <div class="chat-msg">📢 시스템: 친구 인증을 완료하시면 대화방에 정식 참여할 수 있습니다!</div>
-                <div class="chat-msg"><b>김채연 회장님</b>: 대박! 인기상품 누르니까 자물쇠가 열리면서 유튜브 정보방이 한방에 열려! 🔓🤩</div>
-                <div class="chat-msg"><b>단짝친구</b>: 화면이 훨씬 깔끔해져서 구경하기 편하다, 할아버지 최고! 👍</div>
+                <div class="chat-msg">📢 시스템: 친구 인증을 완료하시면 가상 캐릭터 프로필과 함께 대화방에 참여할 수 있습니다!</div>
+                <div class="chat-msg"><b>👑 김채연 회장님 [🧸 하츄핑]</b>: 할아버지! 내 아바타 하츄핑으로 고르니까 대화방에 진짜 하츄핑 마크가 생겨! 최고 최고! 😍</div>
+                <div class="chat-msg"><b>단짝친구 [😈 쿠로미]</b>: 난 쿠로미가 좋아! 우리 관심방에서 성장 포인트 대결하자! ⚡</div>
             </div>
             <div style="display:flex; gap:10px;">
                 <input type="text" id="chatInput" class="login-input" style="width:75%; margin:0;" placeholder="메시지를 입력하세요...">
@@ -203,11 +257,10 @@
 
         <div class="sub-box">
             <h3 style="color: #9C27B0;">🚀 쫀득몰 마켓 성장 일지</h3>
-            <div class="history-item"><b>📌 v1.0</b>: 가상 회사 설립 및 명함 제작</div>
-            <div class="history-item"><b>📌 v2.5</b>: 깃허브 전세계 진짜 홈페이지 개통</div>
-            <div class="history-item"><b>📌 v5.8</b>: 친구 인증 대화방 및 꾹 누르면 반응하는 무지개 슬라임 신기술 장착</div>
-            <div class="history-item"><b>🚀 v6.5 (오늘 대혁신!)</b>: 복잡한 메뉴 전면 통합! 인기상품 상자 터치 시 자물쇠(🔓)가 해제되며 하부 유튜브 정보방이 실시간 연동되어 스르륵 열리는 스마트 폴더 기믹 완공!</div>
-            <p style="font-size:18px; color:#777; font-weight:bold; text-align:center; margin-top:15px;">✨ 우리 마켓은 앞으로도 친구들을 위해 새로운 모습으로 계속 발전합니다! ✨</p>
+            <div class="history-item"><b>📌 v1.0 - v3.5</b>: 가상 회사 설립 및 3D 장난감 공식 스토어 연동 개통</div>
+            <div class="history-item"><b>📌 v6.5</b>: 인기 상품 상자 클릭 시 자물쇠(🔓) 오픈 및 하부 유튜브방 연동 기술 적용</div>
+            <div class="history-item"><b>🚀 v7.0 (오늘 대도약!)</b>: 어린이들의 올바른 자아실현 및 재미를 결합한 [✨ 어린이 관심방] 대오픈! 가상 애니메이션 캐릭터 프로필 기능 및 자기계발 성장 나무 스코어 보드 연동 성공!</div>
+            <p style="font-size:18px; color:#777; font-weight:bold; text-align:center; margin-top:15px;">✨ 우리 마켓은 앞으로도 친구들의 멋진 미래 성장을 위해 매달 진화합니다! ✨</p>
         </div>
     </div>
 
@@ -217,7 +270,9 @@
 
     <script>
         let myName = "손님";
+        let myAvatar = "👤 일반친구";
         let isLoggedIn = false;
+        let score = 0;
 
         function doLogin() {
             const name = document.getElementById('username').value.trim();
@@ -236,7 +291,7 @@
             `;
             
             const chatArea = document.getElementById('chatArea');
-            chatArea.innerHTML += `<div class="chat-msg" style="color:blue; font-weight:bold;">✨ ${myName}님이 비밀방에 입장하셨습니다!</div>`;
+            chatArea.innerHTML += `<div class="chat-msg" style="color:blue; font-weight:bold;">✨ ${myName}님이 비밀방에 입장하셨습니다! 캐릭터를 골라보세요!</div>`;
             chatArea.scrollTop = chatArea.scrollHeight;
         }
 
@@ -252,24 +307,71 @@
                 return;
             }
             
-            chatArea.innerHTML += `<div class="chat-msg"><b>${myName}</b>: ${text}</div>`;
+            // 이름 뒤에 내가 고른 가상 아바타 캐릭터가 자동으로 붙어나오는 마법!
+            chatArea.innerHTML += `<div class="chat-msg"><b>${myName} [${myAvatar}]</b>: ${text}</div>`;
             input.value = "";
             chatArea.scrollTop = chatArea.scrollHeight;
         }
 
-        // ★ 자물쇠 연동 및 유튜브 정보방 스르륵 열기 마법 기능 ★
+        // 가상 아바타 캐릭터 설정 기능
+        function setAvatar(avatarName, btn) {
+            if(!isLoggedIn) {
+                alert("🔒 가상 아바타를 고르기 전에 맨 꼭대기에서 [친구 인증 로그인]을 먼저 완료해주세요! ❤️");
+                return;
+            }
+            myAvatar = avatarName;
+            
+            // 모든 버튼 색깔을 원래대로 초기화하고 선택한 것만 진하게 바꿈
+            const btns = document.querySelectorAll('.avatar-select-btn');
+            btns.forEach(b => b.classList.remove('avatar-selected'));
+            btn.classList.add('avatar-selected');
+            
+            alert(`🎭 짜잔! 나의 가상 부캐릭터가 [${avatarName}]로 완벽하게 변신했습니다! 이제 대화방에 글을 써보세요!`);
+        }
+
+        // 자기계발 점수 올리기 장치
+        function scoreUp(id) {
+            const chk = document.getElementById(id);
+            if(chk.checked) {
+                score += 10;
+                alert("🎉 우와! 스스로 목표를 달성했군요! 성장 포인트 +10점 획득! 대단해요!");
+            } else {
+                score -= 10;
+            }
+            document.getElementById('myScore').innerText = score;
+        }
+
+        // 인기 상품 상자 제어
         function toggleTreasureChest() {
             const box = document.getElementById('treasureChestBox');
             const icon = document.getElementById('chestIcon');
-            
+            document.getElementById('interestRoomBox').classList.remove('folder-open'); // 관심방은 닫기
+            document.getElementById('interestIcon').innerText = "✨";
+
             if(box.classList.contains('folder-open')) {
                 box.classList.remove('folder-open');
-                icon.innerText = "📦"; // 다시 닫힌 상자
-                alert("🔒 자물쇠를 다시 잠그고 정보방을 닫았습니다.");
+                icon.innerText = "📦";
             } else {
                 box.classList.add('folder-open');
-                icon.innerText = "🔓"; // ★ 자물쇠 해제! ★
-                alert("🔓 뾰로롱~ 자물쇠 해제! 쫀득몰 비밀 유튜브 정보방이 실시간 연동되었습니다! 아래에서 확인해 보세요!");
+                icon.innerText = "🔓";
+                alert("🔓 자물쇠 해제! 쫀득몰 비밀 유튜브 정보방이 실시간 연동되었습니다!");
+            }
+        }
+
+        // 어린이 관심방 상자 제어
+        function toggleInterestRoom() {
+            const box = document.getElementById('interestRoomBox');
+            const icon = document.getElementById('interestIcon');
+            document.getElementById('treasureChestBox').classList.remove('folder-open'); // 보물상자는 닫기
+            document.getElementById('chestIcon').innerText = "📦";
+
+            if(box.classList.contains('folder-open')) {
+                box.classList.remove('folder-open');
+                icon.innerText = "✨";
+            } else {
+                box.classList.add('folder-open');
+                icon.innerText = "🌟";
+                alert("🌟 우와! 친구들과 소통하고 꿈을 키우는 대형 [어린이 관심방]이 전면 개방되었습니다!");
             }
         }
 
@@ -277,16 +379,8 @@
         const slimeCard = document.getElementById('slimeCard');
         const slimeCircle = document.getElementById('slimeCircle');
 
-        function startPress(e) {
-            e.preventDefault();
-            slimeCircle.classList.add('spinning');
-            slimeCircle.innerText = "🌈";
-        }
-
-        function endPress(e) {
-            slimeCircle.classList.remove('spinning');
-            slimeCircle.innerText = "🧪";
-        }
+        function startPress(e) { e.preventDefault(); slimeCircle.classList.add('spinning'); slimeCircle.innerText = "🌈"; }
+        function endPress(e) { slimeCircle.classList.remove('spinning'); slimeCircle.innerText = "🧪"; }
 
         slimeCard.addEventListener('mousedown', startPress);
         slimeCard.addEventListener('mouseup', endPress);
@@ -298,13 +392,8 @@
         // 하트 폭죽
         function runFriendsEffect(e) {
             const hearts = ['❤️', '💖', '💗', '💕', '💝', '✨'];
-            let clientX = e.clientX;
-            let clientY = e.clientY;
-
-            if(e.touches && e.touches[0]) {
-                clientX = e.touches[0].clientX;
-                clientY = e.touches[0].clientY;
-            }
+            let clientX = e.clientX; let clientY = e.clientY;
+            if(e.touches && e.touches[0]) { clientX = e.touches[0].clientX; clientY = e.touches[0].clientY; }
 
             for (let i = 0; i < 30; i++) {
                 const heart = document.createElement('div');
@@ -313,14 +402,10 @@
                 heart.style.left = (clientX || window.innerWidth/2) + window.scrollX + 'px';
                 heart.style.top = (clientY || window.innerHeight/2) + window.scrollY + 'px';
                 
-                const angle = Math.random() * Math.PI * 2;
-                const distance = Math.random() * 150 + 50;
-                const mx = Math.cos(angle) * distance;
-                const my = Math.sin(angle) * distance - 50;
+                const angle = Math.random() * Math.PI * 2; const distance = Math.random() * 150 + 50;
+                const mx = Math.cos(angle) * distance; const my = Math.sin(angle) * distance - 50;
                 
-                heart.style.setProperty('--mx', `${mx}px`);
-                heart.style.setProperty('--my', `${my}px`);
-                
+                heart.style.setProperty('--mx', `${mx}px`); heart.style.setProperty('--my', `${my}px`);
                 document.body.appendChild(heart);
                 setTimeout(() => { heart.remove(); }, 1200);
             }
