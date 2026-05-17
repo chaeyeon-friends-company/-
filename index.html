@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>쫀득몰 마켓 v5.0</title>
+    <title>쫀득몰 마켓 v5.5</title>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -16,7 +16,7 @@
             position: relative;
         }
 
-        /* 흐르는 전광판 */
+        /* ★ 상단 전광판: 우측에서 좌측으로 흐르도록 애니메이션 전면 수정 ★ */
         .marquee-container {
             width: 100%; background: rgba(255, 255, 255, 0.9); padding: 18px 0;
             box-shadow: 0 8px 25px rgba(255, 105, 180, 0.25); overflow: hidden; position: relative;
@@ -26,11 +26,11 @@
             display: inline-block; white-space: nowrap; font-size: 34px; font-weight: bold;
             background: linear-gradient(to right, #ff5f6d, #ffc371, #ffec61, #61ffaf, #61daff, #b661ff);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: moveRight 12s linear infinite;
+            animation: moveLeft 14s linear infinite; /* 왼쪽으로 흐르는 마법 */
         }
-        @keyframes moveRight {
-            0% { transform: translateX(-100%); }
-            100% { transform: translateX(100%); }
+        @keyframes moveLeft {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
         }
 
         header { text-align: center; padding: 25px; z-index: 10; }
@@ -113,7 +113,7 @@
         /* 성장 일지 */
         .history-item { background: rgba(255,255,255,0.7); border-radius: 15px; padding: 12px; margin-bottom: 10px; border-left: 5px solid #9C27B0; font-size: 19px; }
 
-        footer { margin: 60px 0 40px 0; font-size: 22px; color: #D81B60; font-weight: bold; text-shadow: 1px 1px white; z-index: 10; }
+        footer { margin: 60px 0 40px 0; font-size: 22px; color: #D81B60; font-weight: bold; text-shadow: 1px white; z-index: 10; }
 
         /* 하트 폭죽 */
         .heart-particle { position: absolute; pointer-events: none; font-size: 30px; animation: flyUp 1.2s ease-out forwards; z-index: 100; }
@@ -167,20 +167,23 @@
     <div class="sub-layout">
         
         <div class="sub-box" id="treasureChest">
-            <h3 style="color: #FF9800;">🔓 개방된 보물상자 비밀 위시리스트</h3>
-            <a href="https://brand.naver.com/samg_entertainment" target="_blank">
+            <h3 style="color: #FF9800;">🔓 개방된 보물상자 비밀 유튜브 링크</h3>
+            
+            <a href="https://www.youtube.com/@TeeniepingTV" target="_blank">
                 <div class="item-list-btn">
-                    <span>캐치! 티니핑 피규어 세트 구경가기</span> <span class="badge" style="background:#FF9800;">인기폭발</span>
+                    <span>🎬 캐치! 티니핑 공식 유튜브 영상 보러가기</span> <span class="badge" style="background:#FF9800;">티니핑TV</span>
                 </div>
             </a>
-            <a href="https://smartstore.naver.com/sanriokr" target="_blank">
+            
+            <a href="https://www.youtube.com/@SanrioKorea" target="_blank">
                 <div class="item-list-btn">
-                    <span>산리오 쿠로미 다이어리 키트 구경가기</span> <span class="badge" style="background:#FF9800;">추천</span>
+                    <span>🎬 산리오 공식 유튜브 영상 보러가기</span> <span class="badge" style="background:#FF9800;">산리오 TV</span>
                 </div>
             </a>
-            <a href="https://search.naver.com/search.naver?query=%EC%8A%AC%EB%9D%BC%EC%9E%84+%ED%8C%8C%EC%B8%A0" target="_blank">
+            
+            <a href="https://www.youtube.com/results?search_query=%EC%8A%AC%EB%9D%BC%EC%9E%84+%EB%A7%8C%EB%93%A4%EA%B8%B0" target="_blank">
                 <div class="item-list-btn">
-                    <span>말랑말랑 투명 무지개 파츠 구경가기</span> <span class="badge" style="background:#FF9800;">NEW</span>
+                    <span>🎬 말랑말랑 무지개 슬라임 만들기 비디오 모음</span> <span class="badge" style="background:#FF9800;">슬라임영상</span>
                 </div>
             </a>
         </div>
@@ -190,7 +193,7 @@
             <div class="chat-area" id="chatArea">
                 <div class="chat-msg">📢 시스템: 친구 인증을 완료하시면 대화방에 정식 참여할 수 있습니다!</div>
                 <div class="chat-msg"><b>김채연 회장님</b>: 할아버지가 만들어준 우리 쫀득몰 마켓 최고야! 👍</div>
-                <div class="chat-msg"><b>단짝친구</b>: 우와 간판 이름 바뀌니까 훨씬 더 귀엽다!!</div>
+                <div class="chat-msg"><b>단짝친구</b>: 우와 비밀방 생겼다!! 문구 방향도 똑바로 가니까 읽기 편해!</div>
             </div>
             <div style="display:flex; gap:10px;">
                 <input type="text" id="chatInput" class="login-input" style="width:75%; margin:0;" placeholder="메시지를 입력하세요...">
@@ -203,7 +206,7 @@
             <div class="history-item"><b>📌 v1.0 (3월)</b>: 할아버지와 채연 회장님의 가상 회사 설립 및 명함 제작</div>
             <div class="history-item"><b>📌 v2.5 (4월)</b>: 깃허브(GitHub) 웹서버에 진짜 홈페이지 개통!</div>
             <div class="history-item"><b>📌 v3.5 (5월 초)</b>: 장난감 공식 스토어 연결 및 3D 입체 디자인 적용</div>
-            <div class="history-item"><b>🚀 v5.0 (오늘 - 대혁신!)</b>: 브랜드명을 '쫀득몰 마켓'으로 리브랜딩, 친구 인증 로그인, 비밀 대화방 개통, 보물상자 기믹 및 꾹 누르면 작동하는 무지개 슬라임 신기술 장착!</div>
+            <div class="history-item"><b>🚀 v5.5 (오늘 - 대혁신!)</b>: 브랜드명 '쫀득몰 마켓' 변경, 상단 문구 가독성 최적화, 친구 인증 비밀 대화방 완공, 보물상자 전용 유튜브 링크 시스템 탑재!</div>
             <p style="font-size:18px; color:#777; font-weight:bold; text-align:center; margin-top:15px;">✨ 우리 마켓은 앞으로도 친구들을 위해 새로운 모습으로 계속 발전합니다! ✨</p>
         </div>
     </div>
@@ -266,7 +269,7 @@
             } else {
                 chest.classList.add('open-chest');
                 icon.innerText = "🔓";
-                alert("🔓 뚜루룹~ 뿅! 보물상자가 활짝 열렸습니다! 아래에서 비밀 리스트를 확인하세요!");
+                alert("🔓 뚜루룹~ 뿅! 보물상자가 활짝 열렸습니다! 아래에서 비밀 유튜브 리스트를 확인하세요!");
             }
         }
 
