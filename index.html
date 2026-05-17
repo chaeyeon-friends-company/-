@@ -37,36 +37,29 @@
         header { text-align: center; padding: 35px; }
         header h1 {
             font-size: 65px; color: #D81B60; margin: 0;
-            /* 여러 겹의 그림자로 글자를 앞으로 튀어나오게 만듭니다 */
             text-shadow: 1px 1px 0px #FFF, 2px 2px 0px #FFB6C1, 3px 3px 0px #FF80AB, 5px 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* 4. ★진짜 3D 장난감 블록 모양 카드 스타일★ */
+        /* 4. 3D 장난감 블록 모양 카드 스타일 */
         .container {
             display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; padding: 20px; max-width: 1100px;
         }
         .card {
             background: #FFF; border-radius: 40px; width: 290px; padding: 30px 20px; text-align: center;
             border: 4px solid #FFF;
-            /* 두꺼운 하단 3D 침대를 만들어 테두리가 튀어나와 보이게 합니다 */
             box-shadow: 0 16px 0px #F48FB1, 0 25px 30px rgba(0,0,0,0.15);
             position: relative; top: 0;
             transition: all 0.15s ease-in-out;
             cursor: pointer;
         }
-        
-        /* 마우스를 올렸을 때 살짝 더 떠오르는 효과 */
         .card:hover {
             top: -6px;
             box-shadow: 0 22px 0px #F48FB1, 0 30px 35px rgba(255, 105, 180, 0.3);
         }
-        
-        /* ★클릭하면 진짜 버튼처럼 밑으로 푹 들어가는 진짜 3D 활성화 손맛★ */
         .card:active {
             top: 12px;
             box-shadow: 0 4px 0px #F48FB1, 0 8px 10px rgba(0,0,0,0.15);
         }
-
         .card h2 { font-size: 34px; color: #C2185B; margin: 15px 0 10px 0; }
         .card p { font-size: 21px; color: #666; line-height: 1.4; margin-bottom: 10px; }
 
@@ -75,11 +68,8 @@
             width: 130px; height: 130px; margin: 0 auto; border-radius: 50%;
             display: flex; align-items: center; justify-content: center; font-size: 65px;
             border: 4px solid #FFF;
-            /* 안쪽과 바깥쪽 그림자로 젤리처럼 불룩한 입체감을 줍니다 */
             box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1), inset 10px 10px 20px rgba(255,255,255,0.8), 0 8px 15px rgba(0,0,0,0.15);
         }
-
-        /* 슬라임 연구소 전용 무지개 소용돌이 회전 마법 */
         .spinning {
             animation: spinSlime 2.5s linear infinite;
             background: conic-gradient(#ff5f6d, #ffc371, #ffec61, #61ffaf, #61daff, #b661ff, #ff5f6d) !important;
@@ -88,7 +78,7 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* 6. 하단 부가 목록 창도 입체 상자로 변경 */
+        /* 6. 하단 부가 목록 창 (누를 수 있게 마우스 모양 변경 효과 추가) */
         .sub-layout {
             display: flex; flex-wrap: wrap; gap: 35px; margin-top: 50px; width: 90%; max-width: 1000px; justify-content: center;
         }
@@ -98,11 +88,21 @@
             box-shadow: 0 12px 0px #E0BBE4, 0 20px 25px rgba(0,0,0,0.08);
         }
         .sub-box h3 { font-size: 28px; color: #D81B60; margin-top: 0; }
-        .item-list { list-style: none; padding: 0; margin: 0; }
-        .item-list li {
-            background: #FFF; padding: 14px 20px; border-radius: 20px; margin-bottom: 12px;
+        
+        /* 목록 링크를 꾸며주는 마법 */
+        .sub-box a {
+            text-decoration: none; display: block; margin-bottom: 12px;
+        }
+        .item-list-btn {
+            background: #FFF; padding: 14px 20px; border-radius: 20px;
             font-size: 20px; color: #444; display: flex; justify-content: space-between; align-items: center;
             border: 2px solid #FFDEEB; box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+        /* 목록에 마우스를 대면 핑크빛으로 변하며 살짝 반응하는 효과 */
+        .item-list-btn:hover {
+            background: #FFF0F5; border-color: #FFB6C1; transform: scale(1.02);
         }
         .badge { background: #FF4081; color: white; padding: 4px 12px; border-radius: 15px; font-size: 16px; font-weight: bold; }
 
@@ -144,18 +144,34 @@
     <div class="sub-layout">
         <div class="sub-box">
             <h3>🧸 어린이 위시리스트 (인기상품)</h3>
-            <ul class="item-list">
-                <li>캐치! 티니핑 피규어 세트 <span class="badge">인기폭발</span></li>
-                <li>산리오 쿠로미 다이어리 키트 <span class="badge">추천</span></li>
-                <li>말랑말랑 투명 무지개 파츠 <span class="badge">NEW</span></li>
-            </ul>
+            
+            <a href="https://brand.naver.com/samg_entertainment" target="_blank">
+                <div class="item-list-btn">
+                    <span>캐치! 티니핑 피규어 세트 구경가기</span> <span class="badge">인기폭발</span>
+                </div>
+            </a>
+            
+            <a href="https://smartstore.naver.com/sanriokr" target="_blank">
+                <div class="item-list-btn">
+                    <span>산리오 쿠로미 다이어리 키트 구경가기</span> <span class="badge">추천</span>
+                </div>
+            </a>
+            
+            <a href="https://search.naver.com/search.naver?query=%EC%8A%AC%EB%9D%BC%EC%9E%84+%ED%8C%8C%EC%B8%A0" target="_blank">
+                <div class="item-list-btn">
+                    <span>말랑말랑 투명 무지개 파츠 구경가기</span> <span class="badge">NEW</span>
+                </div>
+            </a>
         </div>
+        
         <div class="sub-box">
             <h3>💬 슬라임 연구소 소식통</h3>
-            <ul class="item-list">
-                <li>채연 회장님 홈페이지 오픈! 🎉</li>
-                <li>오늘의 연구: 반짝이 구름 슬라임 개발 중 ☁️</li>
-            </ul>
+            <div class="item-list-btn" style="cursor: default; margin-bottom: 12px;">
+                <span>채연 회장님 홈페이지 오픈! 🎉</span>
+            </div>
+            <div class="item-list-btn" style="cursor: default;">
+                <span>오늘의 연구: 반짝이 구름 슬라임 개발 중 ☁️</span>
+            </div>
         </div>
     </div>
 
