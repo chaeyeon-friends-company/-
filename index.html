@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>쫀득몰 마켓 v15.0 글로벌 부활 최종 마스터판</title>
+    <title>쫀득몰 마켓 v15.5 글로벌 초고속 완벽판</title>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -86,7 +86,7 @@
         .item-list-btn:hover { background: #FFF0F5; border-color: #FFB6C1; transform: scale(1.01); }
         .badge { background: #FF4081; color: white; padding: 4px 12px; border-radius: 15px; font-size: 16px; font-weight: bold; }
 
-        /* 대화방 & 방화벽 디자인 */
+        /* 대화방 디자인 */
         .security-banner {
             background: #E0F2FE; border: 2px solid #7DD3FC; color: #0369A1; border-radius: 15px; padding: 10px; font-size: 18px; margin-bottom: 15px; text-align: center; font-weight: bold;
         }
@@ -112,7 +112,7 @@
         .study-tab-active { background: #9C27B0 !important; color: white !important; border-color: #7B1FA2 !important; }
         .study-display-box { background: #FFF; border: 2px dashed #9C27B0; border-radius: 20px; padding: 18px; margin-top: 15px; text-align: left; }
 
-        /* 사진첩 미디어 인프라 */
+        /* 사진첩 인프라 */
         .media-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 15px; }
         .media-card {
             background: #FFF; border: 3px solid #FFDEEB; border-radius: 25px; width: 240px; padding: 12px; box-shadow: 0 6px 12px rgba(0,0,0,0.05); text-align: center;
@@ -135,16 +135,16 @@
 </head>
 <body>
 
-    <audio id="bgmAudio" loop src="https://assets.mixkit.co/music/preview/mixkit-playground-fun-12.mp3"></audio>
+    <audio id="bgmAudio" loop src="https://actions.google.com/sounds/v1/ambiences/morning_birds.ogg"></audio>
 
     <div class="marquee-container">
         <div class="marquee-text">
-            ✨ 🌍 Welcome Global Friends! 쫀득몰 마켓 1,250명 돌파! 글로벌 안전 대화방 및 4학년 스터디방 전면 복구 완료! 🎵버튼을 누르면 음악이 나옵니다! ✨
+            ✨ 🌍 Welcome Global Friends! 쫀득몰 마켓 1,250명 돌파! 전 세계 어디서나 번개처럼 초고속으로 열리는 글로벌 가속망 가동 완료! ✨
         </div>
     </div>
 
     <header>
-        <h1>🏰 쫀득몰 마켓 v15.0 🏰</h1>
+        <h1>🏰 쫀득몰 마켓 v15.5 🏰</h1>
         <button class="audio-ctrl-btn" onclick="toggleMusic()">🎵 음악 켜기</button>
         <p style="font-size:24px; color:#4A148C; font-weight:bold; margin:0;">🌍 실시간 접속 전 세계 어린이: <span style="color:#FF4081; font-size:28px;">1,250</span>명</p>
     </header>
@@ -191,13 +191,13 @@
             </div>
             
             <div style="display:flex; gap:10px;">
-                <input type="text" id="chatInput" class="login-input" style="font-family: 'Gaegu', cursive;" placeholder="글로벌 친구들과 나눌 다정한 대화를 입력해 보셔요...">
+                <input type="text" id="chatInput" class="login-input" placeholder="글로벌 친구들과 나눌 다정한 대화를 입력해 보셔요...">
                 <button class="login-btn" style="margin:0; padding:5px 15px; font-size:18px;" onclick="sendChat()">전송</button>
             </div>
         </div>
 
         <div class="sub-box" id="interestBox">
-            <h3 style="color: #26A69A; text-align:center; font-size:32px; margin-bottom:5px;">🌟 자아실현 & 4학년 스터디 관심방 🌟</h3>
+            <h3>🌟 자아실현 & 4학년 스터디 관심방 🌟</h3>
             
             <div style="background:#FFF3F8; border-radius:25px; padding:15px; margin-bottom:20px; border:2px solid #FFB6C1;">
                 <h4 style="margin:0 0 10px 0; font-size:24px; color:#D81B60;">🎭 나만의 가상 애니메이션 캐릭터 고르기</h4>
@@ -225,7 +225,7 @@
         </div>
 
         <div class="sub-box" id="mediaGalleryBox">
-            <h3 style="color: #FF1744; text-align:center; font-size:32px; margin-bottom:5px;">🎥 글로벌 친구들의 동영상 & 추억 사진첩 📸</h3>
+            <h3>🎥 글로벌 친구들의 동영상 & 추억 사진첩 📸</h3>
             
             <div class="media-grid">
                 <div class="media-card">
@@ -247,7 +247,7 @@
         </div>
 
         <div class="sub-box" id="kpopBox">
-            <h3 style="color: #651FFF;">🎤 해외 친구들이 가장 사랑하는 최신 K-POP 정보방</h3>
+            <h3>🎤 해외 친구들이 가장 사랑하는 최신 K-POP 정보방</h3>
             <a href="https://www.youtube.com/results?search_query=NewJeans+Official" target="_blank">
                 <div class="item-list-btn"><span>✨ [글로벌 아이돌] 뉴진스(NewJeans) 공식 뮤직비디오 & 챌린지 </span> <span class="badge" style="background:#651FFF;">NewJeans</span></div>
             </a>
@@ -257,7 +257,7 @@
         </div>
 
         <div class="sub-box" id="treasureBox">
-            <h3 style="color: #FF9800;">🔓 자물쇠 해제! 쫀득몰 비밀 유튜브 정보방</h3>
+            <h3>🔓 자물쇠 해제! 쫀득몰 비밀 유튜브 정보방</h3>
             <a href="https://www.youtube.com/@TeeniepingTV" target="_blank">
                 <div class="item-list-btn"><span>🎬 [인기 장난감] 캐치! 티니핑 공식 유튜브 비디오 보러가기</span> <span class="badge" style="background:#FF9800;">티니핑TV</span></div>
             </a>
@@ -272,12 +272,11 @@
         let myName = "할아버지";
         let isPlaying = false;
 
-        // 배경음악 ON/OFF 제어 밸브
         function toggleMusic() {
             const audio = document.getElementById('bgmAudio');
             const btn = document.querySelector('.audio-ctrl-btn');
             if (!isPlaying) {
-                audio.volume = 0.3;
+                audio.volume = 0.4;
                 audio.play().then(() => {
                     isPlaying = true;
                     btn.innerText = "⏸️ 음악 끄기";
@@ -293,7 +292,6 @@
             }
         }
 
-        // 글로벌 대화방 전송 장치
         function sendChat() {
             const input = document.getElementById('chatInput');
             const text = input.value.trim();
@@ -304,7 +302,6 @@
             chatArea.scrollTop = chatArea.scrollHeight;
         }
 
-        // 스터디방 전환 시스템
         function switchStudy(type) {
             const container = document.getElementById('studyContentBox');
             document.getElementById('btnMath').classList.remove('study-tab-active');
@@ -334,14 +331,12 @@
             countSpan.innerText = parseInt(countSpan.innerText) + 1;
         }
 
-        // 슬라임 꾹 누르기 기믹
         const slimeCard = document.getElementById('slimeCard'); const slimeCircle = document.getElementById('slimeCircle');
         function startPress(e) { e.preventDefault(); slimeCircle.classList.add('spinning'); slimeCircle.innerText = "🌈"; }
         function endPress(e) { slimeCircle.classList.remove('spinning'); slimeCircle.innerText = "🧪"; }
         slimeCard.addEventListener('mousedown', startPress); slimeCard.addEventListener('mouseup', endPress); slimeCard.addEventListener('mouseleave', endPress);
         slimeCard.addEventListener('touchstart', startPress, {passive: false}); slimeCard.addEventListener('touchend', endPress); slimeCard.addEventListener('touchcancel', endPress);
 
-        // 하트 폭죽 효과
         function runFriendsEffect(e) {
             const hearts = ['❤️', '💖', '💗', '💕', '💝', '✨']; let clientX = e.clientX; let clientY = e.clientY;
             if(e.touches && e.touches[0]) { clientX = e.touches[0].clientX; clientY = e.touches[0].clientY; }
