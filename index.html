@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>쫀득몰 마켓 v18.0 완벽한 진행과 결과판</title>
+    <title>쫀득몰 마켓 v20.0 글로벌 소통 마스터 최종본</title>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -37,55 +37,54 @@
         }
 
         /* 3D 카드 상단 메뉴 */
-        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 10px; max-width: 1200px; }
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 15px; padding: 10px; max-width: 1200px; }
         .card {
-            background: #FFF; border-radius: 35px; width: 220px; padding: 15px; text-align: center;
-            border: 4px solid #FFF; box-shadow: 0 12px 0px #F48FB1, 0 15px 20px rgba(0,0,0,0.1);
+            background: #FFF; border-radius: 35px; width: 180px; padding: 15px; text-align: center;
+            border: 4px solid #FFF; box-shadow: 0 10px 0px #F48FB1, 0 15px 20px rgba(0,0,0,0.08);
             cursor: pointer; transition: all 0.15s ease-in-out;
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 18px 0px #F48FB1, 0 20px 25px rgba(255, 105, 180, 0.25); }
-        .card h2 { font-size: 26px; color: #C2185B; margin: 8px 0 5px 0; }
-        .card p { font-size: 17px; color: #666; line-height: 1.3; margin: 0; }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 16px 0px #F48FB1, 0 18px 25px rgba(255, 105, 180, 0.25); }
+        .card h2 { font-size: 24px; color: #C2185B; margin: 8px 0 5px 0; }
+        .card p { font-size: 16px; color: #666; line-height: 1.3; margin: 0; }
 
         .slime-zone {
-            width: 70px; height: 70px; margin: 0 auto; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; border: 3px solid #FFF; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            width: 65px; height: 65px; margin: 0 auto; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 32px; border: 3px solid #FFF; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
 
         /* 하부 레이아웃 구조 */
         .sub-layout { display: flex; flex-direction: column; gap: 25px; margin-top: 15px; width: 90%; max-width: 900px; align-items: center; }
         .sub-box {
-            background: rgba(255,255,255,0.95); border-radius: 35px; padding: 25px; width: 100%; 
+            background: rgba(255,255,255,0.96); border-radius: 35px; padding: 25px; width: 100%; 
             box-shadow: 0 12px 0px #E0BBE4, 0 20px 25px rgba(0,0,0,0.06); border: 3px solid #FFF; box-sizing: border-box;
         }
         .sub-box h3 { font-size: 28px; color: #D81B60; margin-top: 0; text-align: center; }
 
-        .chat-area { height: 160px; overflow-y: auto; background: #FFF3F8; border-radius: 20px; padding: 15px; border: 2px dashed #FFB6C1; margin-bottom: 15px; text-align: left; }
-        .chat-msg { background: #FFF; padding: 10px 15px; border-radius: 15px; margin-bottom: 10px; font-size: 19px; box-shadow: 0 2px 4px rgba(0,0,0,0.03); border-left: 5px solid #FF4081; }
+        /* 대화방 메인 스펙 */
+        .security-banner {
+            background: #E0F2FE; border: 2px solid #7DD3FC; color: #0369A1; border-radius: 15px; padding: 8px; font-size: 17px; margin-bottom: 12px; text-align: center; font-weight: bold;
+        }
+        .chat-area { height: 260px; overflow-y: auto; background: #FFF3F8; border-radius: 20px; padding: 15px; border: 2px dashed #FFB6C1; margin-bottom: 15px; text-align: left; }
+        .chat-msg { background: #FFF; padding: 10px 15px; border-radius: 15px; margin-bottom: 10px; font-size: 19px; box-shadow: 0 2px 4px rgba(0,0,0,0.02); border-left: 5px solid #FF4081; line-height: 1.4; }
         
-        .login-input { width: 70%; padding: 10px; font-size: 18px; border-radius: 12px; border: 2px solid #FFB6C1; font-family: 'Gaegu', cursive; }
+        .login-input { width: 73%; padding: 10px; font-size: 18px; border-radius: 12px; border: 2px solid #FFB6C1; font-family: 'Gaegu', cursive; }
         .login-btn {
             background: #FF4081; color: white; padding: 8px 25px; font-size: 21px; border: none; border-radius: 15px; 
             cursor: pointer; font-family: 'Gaegu', cursive; box-shadow: 0 4px 0 #C2185B; margin-top: 5px;
         }
         .login-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #C2185B; }
 
-        .study-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 10px; }
-        .study-tab-btn {
-            background: #F3E5F5; border: 2px solid #E1BEE7; padding: 10px 18px; font-size: 19px; 
-            border-radius: 15px; cursor: pointer; font-family: 'Gaegu', cursive; font-weight: bold; color: #4A148C;
+        .item-list-btn {
+            background: #FFF; padding: 12px 20px; border-radius: 20px; font-size: 19px; color: #444; 
+            display: flex; justify-content: space-between; align-items: center; border: 2px solid #FFDEEB; margin-bottom: 10px; text-decoration: none;
         }
-        .study-tab-active { background: #9C27B0 !important; color: white !important; border-color: #7B1FA2 !important; }
-        
-        /* 실시간 물길 연동 제어 상자 */
+        .item-list-btn:hover { background: #FFF0F5; border-color: #FFB6C1; }
+        .badge { color: white; padding: 4px 12px; border-radius: 15px; font-size: 15px; font-weight: bold; }
+
+        /* 중앙 제어 피드 제어판 */
         .display-main-box { background: #FFF; border: 2px dashed #9C27B0; border-radius: 20px; padding: 20px; margin-top: 15px; text-align: left; }
         .step-1-zone { background: #FFFDE7; border: 2px solid #FFF59D; border-radius: 18px; padding: 15px; display: block; }
         .step-2-zone { background: #E8F5E9; border: 2px dashed #4CAF50; border-radius: 18px; padding: 15px; margin-top: 15px; display: none; }
         
-        .item-list-btn {
-            background: #FFF; padding: 12px 20px; border-radius: 20px; font-size: 19px; color: #444; display: flex; justify-content: space-between; align-items: center; border: 2px solid #FFDEEB; margin-bottom: 10px;
-        }
-        .badge { background: #FF4081; color: white; padding: 4px 12px; border-radius: 15px; font-size: 15px; font-weight: bold; }
-
         footer { margin: 60px 0 40px 0; font-size: 22px; color: #D81B60; font-weight: bold; text-shadow: 1px white; }
     </style>
 </head>
@@ -95,63 +94,81 @@
 
     <div class="marquee-container">
         <div class="marquee-text">
-            ✨ 🌍 쫀득몰 마켓 v18.0 그랜드 마스터 대공사 완료! 홈페이지의 모든 항목이 내용 ➔ 진행 ➔ 결과까지 멈춤 없이 완벽 연동 가동 중! ✨
+            ✨ 🌍 Welcome Global Friends! 쫀득몰 마켓 1,250명 동시 접속 소통 광장 대오픈! 모든 항목을 클릭하여 진지한 의견을 나누고 토론해 보셔요! ✨
         </div>
     </div>
 
     <header>
-        <h1>🏰 쫀득몰 마켓 v18.0 🏰</h1>
+        <h1>🏰 쫀득몰 마켓 v20.0 🏰</h1>
         <button class="audio-ctrl-btn" onclick="toggleMusic()">🎵 배경 음악 ON/OFF</button>
-        <p style="font-size:25px; color:#4A148C; font-weight:bold; margin:0;">🌍 채연이와 친구들의 성장 점수: <span id="myGlobalScore" style="color:#FF4081; font-size:34px;">0</span>점</p>
+        <p style="font-size:25px; color:#4A148C; font-weight:bold; margin:0;">🌍 글로벌 축제 통합 성장 점수: <span id="myGlobalScore" style="color:#FF4081; font-size:34px;">0</span>점</p>
     </header>
 
     <div class="container">
+        <div class="card" onclick="activateMainPipeline('kpop')">
+            <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #b661ff, #61daff);">🎤</div>
+            <h2>K-POP 토론방</h2>
+            <p>[터치 클릭!]<br>뉴진스/BTS 문화 분석 및 진지한 소통방</p>
+        </div>
         <div class="card" onclick="activateMainPipeline('slime')">
             <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #ffec61, #ff80ab);">🧪</div>
             <h2>슬라임 연구소</h2>
-            <p>[터치 클릭!]<br>실험 요약 및 세부 퀴즈 결과방 개통</p>
+            <p>[터치 클릭!]<br>화학 융합 원리 내용 및 실시간 실험 퀴즈</p>
         </div>
-
         <div class="card" onclick="activateMainPipeline('math')">
-            <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #b661ff, #ffec61);">📐</div>
+            <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #ffc371, #ffec61);">📐</div>
             <h2>수학 정복 코스</h2>
-            <p>[터치 클릭!]<br>분수 연산 개념과 주관식 세부 진입방</p>
+            <p>[터치 클릭!]<br>4학년 대분수 연산 비법 및 세부 평가방</p>
         </div>
-
         <div class="card" onclick="activateMainPipeline('read')">
             <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #bae1ff, #b661ff);">📚</div>
             <h2>지식독서 코스</h2>
-            <p>[터치 클릭!]<br>강아지똥 줄거리 및 골든벨 시험지 진입</p>
+            <p>[터치 클릭!]<br>강아지똥 가치론 설명 및 골든벨 진입</p>
         </div>
-
         <div class="card" onclick="activateMainPipeline('tree')">
             <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #a8ff78, #78ffd6);">🌱</div>
             <h2>꿈나무다이어리</h2>
-            <p>[터치 클릭!]<br>행동 수칙 체크리스트 최종 마감 제어</p>
+            <p>[터치 클릭!]<br>3대 약속 행동 제어판 최종 결과 반영</p>
         </div>
     </div>
 
     <div class="sub-layout">
         
-        <div class="sub-box">
-            <h3>💬 🌍 글로벌 인공지능 안전 대화방</h3>
+        <div class="sub-box" id="globalChatBox">
+            <h3>💬 🌍 글로벌 실시간 소통 광장 대화방 (Global Friends Chat)</h3>
+            <div class="security-banner">
+                🛡️ AI 방화벽 실드 가동 중 (광고 스팸 영구 격리 100% / 욕설 실시간 지능형 필터링)
+            </div>
+            
             <div class="chat-area" id="chatArea">
-                <div class="chat-msg"><b>🤖 메인 시스템 가이드봇</b>: 상단의 카드 항목을 고르시면, 아래의 스터디 본부창에서 <b>[1단계 설명 내용] ➔ [2단계 세부 진행 과정] ➔ [3단계 최종 결과 통과]</b>까지 멈춤 현상 없이 매끄럽게 흘러갑니다!</div>
+                <div class="chat-msg" style="color: #4B148C; font-weight: bold; background: #EDE7F6;">🤖 글로벌 집행 가이드봇: 전 세계 친구들이 상단 메뉴를 통해 토론한 진지한 의견들이 이곳에 실시간 연동됩니다!</div>
+                <div class="chat-msg"><b>👑 김채연 회장님 [🧸 하츄핑]</b>: 전 세계 친구들아 반가워! 새로 만든 K-POP 방이랑 스터디방에서 너희들의 멋진 생각을 입력해서 나랑 깊은 얘기를 나눠보자! 🌍❤️</div>
+                <div class="chat-msg" style="border-left: 5px solid #FF9800;"><b>🇺🇸 Emma [☁️ 시나모롤]</b>: Wow! Grandpa rebuilt the global chat room! Let's talk about our favorite K-POP stars! <br><span style="color:#2563EB; font-weight:bold;">(번역 ➔ 와! 할아버지가 글로벌 대화방을 완벽하게 되살려주셨어! 우리가 좋아하는 케이팝 스타에 대해 진지하게 얘기하자!)</span></div>
+                <div class="chat-msg" style="border-left: 5px solid #4CAF50;"><b>🇯🇵 Sakura [🐱 키티]</b>: K-POPのボタンを押したら、真面目な意見を書く欄が出てきて感動しました！ 🎶</div>
+            </div>
+            
+            <div style="display:flex; gap:10px;">
+                <input type="text" id="chatInput" class="login-input" placeholder="전 세계 친구들과 나눌 우정 어린 한마디를 입력해 보셔요...">
+                <button class="login-btn" style="margin:0; padding:5px 15px; font-size:18px;" onclick="sendChat()">의견 전송</button>
             </div>
         </div>
 
         <div class="sub-box" id="mainCoreStation">
-            <h3 style="color: #00796B;" id="stationTitle">🌟 쫀득몰 통합 세부 항목 진행 본부 🌟</h3>
-            
+            <h3 style="color: #00796B;" id="stationTitle">🌟 쫀득몰 종합 항목 입체 토론 본부 🌟</h3>
             <div style="background:#F5F5F5; border-radius:25px; padding:20px; border:2px solid #E0E0E0;">
                 
                 <div class="display-main-box" id="step1Container">
-                    <div class="step-1-zone">
-                        <h5 style="margin:0 0 10px 0; font-size:24px; color:#C2185B;">🧪 [슬라임 1단계] 말랑말랑 액체괴물 화학 원리 설명</h5>
+                    <div class="step-1-zone" style="background:#EDE7F6; border-color:#D1C4E9;">
+                        <h5 style="margin:0 0 10px 0; font-size:24px; color:#651FFF;">🎤 [K-POP 1단계] 글로벌 문화의 중심 케이팝 상세 분석</h5>
                         <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">
-                            슬라임은 액체인 물풀과 붕산(액티베이터) 분자가 서로 그물망처럼 얽히면서 끈적끈적한 고체 형태로 변하는 '고분자 화합물' 과학 원리입니다. 손으로 만지면 촉감이 발달하고 스트레스가 해소되는 어린이들의 최고 인기 장난감입니다!
+                            대한민국의 K-POP은 이제 단순한 음악을 넘어 빌보드 차트를 석권하는 전 세계 청소년들의 거대한 소통 언어가 되었습니다. 뉴진스의 신선한 감성과 BTS의 선한 영향력은 전 세계 친구들을 하나로 묶는 강력한 파이프라인입니다! 아래 링크로 뮤직비디오를 감상하고 2단계 진지한 의견 공유방으로 진입하셔요!
                         </p>
-                        <button class="login-btn" style="background:#FF4081; box-shadow:0 4px 0 #C2185B;" onclick="goToStep2('slime')">🚀 원리 파악 완료! 2단계 비밀 실험방 진입</button>
+                        <div style="margin:10px 0;">
+                            <a class="item-list-btn" href="https://www.youtube.com/results?search_query=NewJeans+Official" target="_blank" style="background:white;">
+                                <span>🎬 [뉴진스] 공식 챌린지 및 유행 뮤직비디오 직행 시청</span> <span class="badge" style="background:#651FFF;">NewJeans</span>
+                            </a>
+                        </div>
+                        <button class="login-btn" style="background:#651FFF; box-shadow:0 4px 0 #4A148C;" onclick="goToStep2('kpop')">🚀 영상 감상 완료! 2단계 진지한 토론방 진입</button>
                     </div>
                 </div>
 
@@ -166,8 +183,7 @@
     </footer>
 
     <script>
-        let score = 0;
-        let isPlaying = false;
+        let score = 0; let isPlaying = false;
 
         function toggleMusic() {
             const audio = document.getElementById('bgmAudio');
@@ -175,24 +191,37 @@
             else { audio.pause(); isPlaying = false; }
         }
 
-        // 🛠️ 대배관 제어 1: 상단 카드를 누르면 1단계 부가 내용이 딜레이 없이 즉시 표출되는 장치
+        // 🛠️ 대배관 제어 1: 상단 항목 리스트를 클릭하면 그 즉시 내용과 부가 설명 밸브를 열어주는 시스템
         function activateMainPipeline(type) {
             const s1 = document.getElementById('step1Container');
             const s2 = document.getElementById('step2Container');
-            s2.style.display = 'none'; // 새 카드를 고르면 2단계 창은 깨끗하게 닫음
+            s2.style.display = 'none';
 
-            if(type === 'slime') {
+            if(type === 'kpop') {
+                s1.innerHTML = `
+                    <div class="step-1-zone" style="background:#EDE7F6; border-color:#D1C4E9;">
+                        <h5 style="margin:0 0 10px 0; font-size:24px; color:#651FFF;">🎤 [K-POP 1단계] 글로벌 문화의 중심 케이팝 상세 분석</h5>
+                        <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">K-POP은 뉴진스, BTS처럼 빌보드를 석권하며 전 세계 청소년들의 소통 언어가 되었습니다. 아래 공식 채널에서 신나는 뮤비를 시청하고 2단계 진지한 의견 공유방으로 진입하셔요!</p>
+                        <div style="margin:10px 0;">
+                            <a class="item-list-btn" href="https://www.youtube.com/results?search_query=NewJeans+Official" target="_blank" style="background:white;"><span>🎬 [뉴진스] 공식 챌린지 및 유행 뮤직비디오 직행 시청</span> <span class="badge" style="background:#651FFF;">NewJeans</span></a>
+                        </div>
+                        <button class="login-btn" style="background:#651FFF; box-shadow:0 4px 0 #4A148C;" onclick="goToStep2('kpop')">🚀 영상 감상 완료! 2단계 진지한 토론방 진입</button>
+                    </div>`;
+            } else if(type === 'slime') {
                 s1.innerHTML = `
                     <div class="step-1-zone">
                         <h5 style="margin:0 0 10px 0; font-size:24px; color:#C2185B;">🧪 [슬라임 1단계] 말랑말랑 액체괴물 화학 원리 설명</h5>
-                        <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">슬라임은 액체인 물풀과 붕산 분자가 서로 그물망처럼 얽히면서 끈적한 형태로 변하는 '고분자 화합물' 원리입니다. 손 촉감 발달과 재미를 선사하는 새싹들의 단짝 친구입니다.</p>
+                        <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">슬라임은 액체인 물풀과 붕산 분자가 서로 그물망처럼 얽히면서 끈적한 형태로 변하는 '고분자 화합물' 원리입니다. 손 촉감 발달과 재미를 선사하는 새싹들의 최고의 인기 놀이입니다.</p>
+                        <div style="margin:10px 0;">
+                            <a class="item-list-btn" href="https://www.youtube.com/results?search_query=%EC%8A%AC%EB%9D%BC%EC%9E%84+%EB%A7%8C%EB%93%A4%EA%B8%B0" target="_blank" style="background:white;"><span>🎬 [슬라임 연구] 말랑말랑 무지개 액체괴물 만들기 대백과 영상</span> <span class="badge" style="background:#FF4081;">슬라임TV</span></a>
+                        </div>
                         <button class="login-btn" style="background:#FF4081; box-shadow:0 4px 0 #C2185B;" onclick="goToStep2('slime')">🚀 원리 파악 완료! 2단계 비밀 실험방 진입</button>
                     </div>`;
             } else if(type === 'math') {
                 s1.innerHTML = `
                     <div class="step-1-zone" style="background:#FFF3E0; border-color:#FFB74D;">
                         <h5 style="margin:0 0 10px 0; font-size:24px; color:#E65100;">📐 [수학 1단계] 분수의 혼합계산 칠판 부가 설명</h5>
-                        <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">4학년 수학 대공사의 핵심은 <b>'대분수의 뺄셈'</b>입니다. 자연수 부분이 작아서 뺄 수 없을 때는, 자연수에서 '1'을 빌려와 분모 크기만큼 분자에 더해 가분수로 바꾸어 빼는 설계 원리를 완벽히 파악해야 합니다.</p>
+                        <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">4학년 수학 대공사의 핵심은 <b>'대분수의 뺄셈'</b>입니다. 자연수 부분이 작아서 뺄 수 없을 때는, 자연수에서 '1'을 빌려와 분모 크기만큼 분자에 더해 가분수로 바꾸어 빼는 설계 원리를 마스터해야 합니다.</p>
                         <button class="login-btn" style="background:#9C27B0; box-shadow:0 4px 0 #7B1FA2;" onclick="goToStep2('math')">🚀 원리 이해 완료! 2단계 실전 문제방 진입</button>
                     </div>`;
             } else if(type === 'read') {
@@ -210,33 +239,39 @@
                         <button class="login-btn" style="background:#388E3C; box-shadow:0 4px 0 #1B5E20;" onclick="goToStep2('tree')">🚀 실천 가이드 접수! 2단계 종합 다이어리 서명창 진입</button>
                     </div>`;
             }
-            s1.scrollIntoView({ behavior: 'smooth' });
+            document.getElementById('mainCoreStation').scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 🛠️ 대배관 제어 2: 1단계 버튼을 누르면 멈춤 없이 2단계 세부 진행 프로그램 지문을 주입하는 장치
+        // 🛠️ 대배관 제어 2: 멈춤 현상 차단! 버튼을 치면 진짜 토론 서술창 및 세부 진행 미션창 가동
         function goToStep2(type) {
-            const s2 = document.getElementById('step2Container');
-            s2.style.display = 'block'; // 세부 항목창 개방!
+            const s2 = document.getElementById('step2Container'); s2.style.display = 'block';
             
-            if(type === 'slime') {
+            if(type === 'kpop') {
                 s2.innerHTML = `
-                    <h6 style="font-size:22px; color:#C2185B; margin:0 0 10px 0;">📝 [슬라임 2단계 세부 진행] 연구소 퀴즈 검증방</h6>
-                    <p style="font-size:19px; color:#333; margin:0 0 10px 0;"><b>문제: 오래되어 굳고 단단해진 슬라임을 다시 말랑말랑하게 부드러운 수리를 할 때 넣는 세부 재료는 무엇일까요?</b></p>
-                    <input type="text" id="slimeAnswer" class="login-input" style="width:45%;" placeholder="네 글자 정답 입력 (힌트: 글리세린)">
+                    <h6 style="font-size:22px; color:#651FFF; margin:0 0 10px 0;">📝 [K-POP 2단계 세부 진행] 글로벌 친구들과 진지한 한 줄 평론 교환방</h6>
+                    <p style="font-size:19px; color:#333; margin:0 0 10px 0;"><b>질문: 여러분이 가장 좋아하는 케이팝 가수는 누구이며, 그 노래를 들으면 어떤 감정이 드나요? 전 세계 친구들에게 나의 진지한 소감을 공유해 주세요!</b></p>
+                    <input type="text" id="kpopOpinionName" class="login-input" style="width:30%; margin-bottom:5px;" placeholder="닉네임 (예: 채연)"><br>
+                    <textarea id="kpopOpinionText" class="login-input" style="width:90%; height:50px; text-align:left;" placeholder="여기에 영어 또는 한국어로 진지한 의견을 남겨주세요..."></textarea>
+                    <br><button class="login-btn" style="background:#651FFF; box-shadow:0 4px 0 #4A148C; margin-top:5px;" onclick="checkKpopAnswer()">🎙️ 평론 의견 최종 제출하기</button>`;
+            } else if(type === 'slime') {
+                s2.innerHTML = `
+                    <h6 style="font-size:22px; color:#C2185B; margin:0 0 10px 0;">📝 [슬라임 2단계 세부 진행] 연구소 과학 교과 검증방</h6>
+                    <p style="font-size:19px; color:#333; margin:0 0 10px 0;"><b>문제: 오래되어 굳고 단단해진 슬라임을 다시 말랑말랑하게 복구할 때 넣는 세부 재료는 무엇일까요?</b></p>
+                    <input type="text" id="slimeAnswer" class="login-input" style="width:45%;" placeholder="정답 입력 (힌트: 글리세린)">
                     <button class="login-btn" style="background:#FF4081; box-shadow:0 4px 0 #C2185B; margin-left:10px;" onclick="checkSlimeAnswer()">실험 결과 제출</button>
                     <div id="slimeFeedback" style="font-size:18px; margin-top:10px; font-weight:bold;"></div>`;
             } else if(type === 'math') {
                 s2.innerHTML = `
                     <h6 style="font-size:22px; color:#2E7D32; margin:0 0 10px 0;">📝 [수학 2단계 세부 진행] 4학년 분수 실전 주관식 문제지</h6>
                     <p style="font-size:19px; color:#333; margin:0 0 10px 0;"><b>문제: "3과 5분의 2" 빼기 "1과 5분의 4"의 최종 정답 숫자는 무엇일까요?</b></p>
-                    <input type="text" id="mathAnswer" class="login-input" style="width:40%;" placeholder="숫자만 입력하셔요">
+                    <input type="text" id="mathAnswer" class="login-input" style="width:40%;" placeholder="정답 입력하셔요">
                     <button class="login-btn" style="background:#4CAF50; box-shadow:0 4px 0 #2E7D32; margin-left:10px;" onclick="checkMathAnswer()">정답 최종 검증</button>
                     <div id="mathFeedback" style="font-size:18px; margin-top:10px; font-weight:bold;"></div>`;
             } else if(type === 'read') {
                 s2.innerHTML = `
                     <h6 style="font-size:22px; color:#0D47A1; margin:0 0 10px 0;">📝 [독서 2단계 세부 진행] 강아지 똥 골든벨 명예의 전당</h6>
                     <p style="font-size:19px; color:#333; margin:0 0 10px 0;"><b>질문: 강아지똥이 예쁜 민들레 꽃망울을 피워내기 위해 스스로 무엇이 되었나요?</b></p>
-                    <input type="text" id="readAnswer" class="login-input" style="width:45%;" placeholder="정답 두 글자 입력 (힌트: 거름)">
+                    <input type="text" id="readAnswer" class="login-input" style="width:45%;" placeholder="정답 두 글자 (힌트: 거름)">
                     <button class="login-btn" style="background:#1976D2; box-shadow:0 4px 0 #0D47A1; margin-left:10px;" onclick="checkReadAnswer()">골든벨 결과 제출</button>
                     <div id="readFeedback" style="font-size:18px; margin-top:10px; font-weight:bold;"></div>`;
             } else if(type === 'tree') {
@@ -253,29 +288,40 @@
             s2.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 🛠️ 대배관 제어 3: 정답 및 체크 완료 검증 시, 멈추지 않고 3단계 최종 결과를 산출하여 스코어를 연동하는 센서
+        // 🛠专 대배관 제어 3: [최종 결과 도출 및 대화방 즉시 연동] 웅장한 토론의 광장 형성 회로
+        function checkKpopAnswer() {
+            const nickname = document.getElementById('kpopOpinionName').value.trim();
+            const opinion = document.getElementById('kpopOpinionText').value.trim();
+            if(!nickname || !opinion) { alert("❌ 진지한 소통을 위해 이름과 소감 내용을 모두 작성해 주세요!"); return; }
+            updateScore(25);
+            alert("🎉 [3단계 최종 결과] 케이팝 토론 평론 등록 완료! 대화방 광장으로 나의 소중한 의견이 실시간 전송되었습니다! (+25점 수여)");
+            // 아이들의 진지한 평론 의견이 상단 글로벌 대화방에 실시간으로 박혀서 서로 토론이 시작되게 만듭니다!
+            logToChat(`🎤 K-POP 평론가 [${nickname}]`, `"${opinion}" <br><span style="color:#651FFF; font-weight:bold;">➔ 이 의견에 대해 글로벌 친구들의 진지한 피드백을 기다립니다!</span>`);
+            activateMainPipeline('kpop');
+        }
+
         function checkSlimeAnswer() {
             const ans = document.getElementById('slimeAnswer').value.trim(); const fb = document.getElementById('slimeFeedback');
             if(ans === '글리세린' || ans.includes('글리세린')) {
                 fb.innerHTML = "🎉 [3단계 최종 결과] 대정답! 슬라임 재생 복구 원리를 정확히 이해했습니다! (+20점)"; fb.style.color = "green"; updateScore(20);
-                logToChat("🧪 실험연구봇", "축하합니다! 누군가 단단해진 슬라임 복구 세부 실험 퀴즈를 맞추어 '슬라임 박사 학위'를 획득했습니다! 🌈");
-            } else { fb.innerHTML = "❌ 오답입니다. 로션이나 '글ㄹㅅㄹ'을 생각하며 다시 입력해 보셔요!"; fb.style.color = "red"; }
+                logToChat("🧪 실험연구방 알림", "축하합니다! 누군가 단단해진 슬라임 복구 세부 실험 과학 퀴즈를 완벽하게 맞추어 점수가 적립되었습니다! 🌈");
+            } else { fb.innerHTML = "❌ 오답입니다. 로션이나 '글리세린'을 생각하며 다시 입력해 보셔요!"; fb.style.color = "red"; }
         }
 
         function checkMathAnswer() {
             const ans = document.getElementById('mathAnswer').value.trim(); const fb = document.getElementById('mathFeedback');
             if(ans === '2' || ans.includes('1과5분의3') || ans.includes('1과 5분의 3')) {
                 fb.innerHTML = "🎉 [3단계 최종 결과] 완벽한 정답! 4학년 대분수 연산 회로를 마스터하셨습니다! (+20점)"; fb.style.color = "green"; updateScore(20);
-                logToChat("📐 수학연산봇", "대박! 누군가 난이도가 높은 4학년 분수 연속 혼합계산 미션을 클리어하여 성장 게이지가 상승했습니다! 🎯");
-            } else { fb.innerHTML = "❌ 오답입니다. 빌려온 대분수 계산을 차근차근 도면 설계하듯 다시 풀어보셔요!"; fb.style.color = "red"; }
+                logToChat("📐 4학년 수학본부", "대박! 누군가 대분수 연속 혼합계산 미션을 완벽 클리어하여 글로벌 성장 스코어를 높였습니다! 🎯");
+            } else { fb.innerHTML = "❌ 오답입니다. 빌려온 대분수 수식을 차근차근 다시 풀어보셔요!"; fb.style.color = "red"; }
         }
 
         function checkReadAnswer() {
             const ans = document.getElementById('readAnswer').value.trim(); const fb = document.getElementById('readFeedback');
             if(ans === '거름' || ans.includes('거름')) {
                 fb.innerHTML = "🎉 [3단계 최종 결과] 주관식 정답! 생명의 가치를 배우는 골든벨 마스터 등극! (+20점)"; fb.style.color = "green"; updateScore(20);
-                logToChat("📚 독서골든벨봇", "👑 명예의 전당 알림: 누군가 [강아지 똥] 세부 독서 퀴즈 정답을 완벽히 맞추어 골든벨 왕관을 썼습니다!");
-            } else { fb.innerHTML = "❌ 아쉬워요! 식물이 잘 자라도록 영양분을 주는 두 글자 단어(ㄱㄹ)를 적어주셔요!"; fb.style.color = "red"; }
+                logToChat("📚 독서골든벨 광장", "👑 명예 알림: 누군가 [강아지 똥] 세부 가치론 퀴즈 정답을 완벽히 맞추어 골든벨 마스터가 되었습니다!");
+            } else { fb.innerHTML = "❌ 아쉬워요! 식물이 잘 자라도록 영양분을 주는 두 글자 단어(거름)를 적어주셔요!"; fb.style.color = "red"; }
         }
 
         function checkDiaryAnswer() {
@@ -283,11 +329,12 @@
             const fb = document.getElementById('diaryFeedback');
             if(!c1 || !c2 || !c3) { fb.innerHTML = "⚠️ 흐름 중단 현상 발생! 실천 체크박스 3가지를 모두 체크하셔야 결과가 도출됩니다!"; fb.style.color = "red"; return; }
             fb.innerHTML = "🎉 [3단계 최종 결과] 실천 100% 승인 성공! 오늘의 성실 훈장이 수여되었습니다! (+20점)"; fb.style.color = "green"; updateScore(20);
-            logToChat("🌱 성장관리봇", "👑 종합 결과 보고: 채연이네 글로벌 임원진 중 한 명이 오늘 약속 수칙 3가지를 완벽 달성하여 최고 포인트를 획득했습니다!");
+            logToChat("🌱 일과성실성 보증방", "👑 종합 보고: 한 임원진 어린이가 오늘 정해진 행동 약속 수칙 3가지를 완벽 달성하고 도장을 찍었습니다!");
         }
 
         function updateScore(points) { score += points; document.getElementById('myGlobalScore').innerText = score; }
         function logToChat(botName, text) { document.getElementById('chatArea').innerHTML += `<div class="chat-msg"><b>${botName}</b>: ${text}</div>`; document.getElementById('chatArea').scrollTop = document.getElementById('chatArea').scrollHeight; }
+        function sendChat() { const input = document.getElementById('chatInput'); const text = input.value.trim(); if(!text) return; document.getElementById('chatArea').innerHTML += `<div class="chat-msg"><b>나의 의견</b>: ${text}</div>`; input.value = ""; document.getElementById('chatArea').scrollTop = document.getElementById('chatArea').scrollHeight; }
     </script>
 </body>
 </html>
