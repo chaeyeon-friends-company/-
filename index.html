@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>쫀득몰 마켓 v14.6 동영상 & 사진첩 완벽 복구판</title>
+    <title>쫀득몰 마켓 v15.0 글로벌 부활 최종 마스터판</title>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
@@ -36,7 +36,7 @@
             text-shadow: 1px 1px 0px #FFF, 2px 2px 0px #FFB6C1, 3px 3px 0px #FF80AB, 5px 5px 15px rgba(0,0,0,0.2);
         }
 
-        /* 배경음악 제어 오디오 스위치 */
+        /* 배경음악 제어 스위치 */
         .audio-ctrl-btn {
             position: absolute; top: 15px; right: 20px; background: #FF4081; color: white;
             border: 3px solid #FFF; padding: 8px 15px; font-family: 'Gaegu', cursive; font-size: 20px;
@@ -56,7 +56,6 @@
             -webkit-user-select: none; user-select: none;
         }
         .card:hover { top: -6px; box-shadow: 0 18px 0px #F48FB1, 0 25px 30px rgba(255, 105, 180, 0.3); }
-        .card:active { top: 10px; box-shadow: 0 2px 0px #F48FB1, 0 6px 8px rgba(0,0,0,0.15); }
         .card h2 { font-size: 28px; color: #C2185B; margin: 10px 0 5px 0; }
         .card p { font-size: 18px; color: #666; line-height: 1.3; margin-bottom: 5px; }
 
@@ -70,7 +69,6 @@
             animation: spinSlime 1.5s linear infinite;
             background: conic-gradient(#ff5f6d, #ffc371, #ffec61, #61ffaf, #61daff, #b661ff, #ff5f6d) !important;
         }
-        @keyframes spinSlime { 100% { transform: rotate(360deg); } }
 
         /* 하부 구조 레이아웃 */
         .sub-layout {
@@ -80,8 +78,6 @@
             background: rgba(255,255,255,0.95); border-radius: 35px; padding: 25px; width: 100%; box-shadow: 0 12px 0px #E0BBE4, 0 20px 25px rgba(0,0,0,0.08); border: 3px solid #FFF; box-sizing: border-box;
         }
         .sub-box h3 { font-size: 28px; color: #D81B60; margin-top: 0; }
-        
-        .folder-content { display: block !important; } 
 
         .sub-box a { text-decoration: none; display: block; margin-bottom: 12px; }
         .item-list-btn {
@@ -90,6 +86,20 @@
         .item-list-btn:hover { background: #FFF0F5; border-color: #FFB6C1; transform: scale(1.01); }
         .badge { background: #FF4081; color: white; padding: 4px 12px; border-radius: 15px; font-size: 16px; font-weight: bold; }
 
+        /* 대화방 & 방화벽 디자인 */
+        .security-banner {
+            background: #E0F2FE; border: 2px solid #7DD3FC; color: #0369A1; border-radius: 15px; padding: 10px; font-size: 18px; margin-bottom: 15px; text-align: center; font-weight: bold;
+        }
+        .chat-area { height: 280px; overflow-y: auto; background: #FFF3F8; border-radius: 20px; padding: 15px; border: 2px dashed #FFB6C1; margin-bottom: 15px; text-align: left; }
+        .chat-msg { background: #FFF; padding: 10px 15px; border-radius: 15px; margin-bottom: 12px; font-size: 19px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 5px solid #FF4081; line-height: 1.4; }
+        .login-input {
+            width: 73%; padding: 10px; font-size: 18px; border-radius: 12px; border: 2px solid #FFB6C1; font-family: 'Gaegu', cursive; display: inline-block;
+        }
+        .login-btn {
+            background: #FF4081; color: white; padding: 8px 20px; font-size: 20px; border: none; border-radius: 15px; cursor: pointer; font-family: 'Gaegu', cursive; box-shadow: 0 4px 0 #C2185B; margin-top: 5px;
+        }
+
+        /* 스터디방 인프라 */
         .avatar-select-btn {
             background: #FFF; border: 2px solid #FFB6C1; border-radius: 15px; padding: 8px 15px; font-size: 18px; cursor: pointer; margin: 5px; font-family: 'Gaegu', cursive; transition: all 0.2s;
         }
@@ -102,25 +112,18 @@
         .study-tab-active { background: #9C27B0 !important; color: white !important; border-color: #7B1FA2 !important; }
         .study-display-box { background: #FFF; border: 2px dashed #9C27B0; border-radius: 20px; padding: 18px; margin-top: 15px; text-align: left; }
 
-        /* 📸 미디어 갤러리 그리드 레이아웃 */
+        /* 사진첩 미디어 인프라 */
         .media-grid { display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; margin-top: 15px; }
         .media-card {
-            background: #FFF; border: 3px solid #FFDEEB; border-radius: 25px; width: 250px; padding: 12px; box-shadow: 0 6px 12px rgba(0,0,0,0.05); text-align: center; transition: transform 0.2s;
+            background: #FFF; border: 3px solid #FFDEEB; border-radius: 25px; width: 240px; padding: 12px; box-shadow: 0 6px 12px rgba(0,0,0,0.05); text-align: center;
         }
-        .media-card:hover { transform: scale(1.03); border-color: #FFB6C1; }
         .media-box {
-            width: 100%; height: 150px; background: #FFF0F5; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 50px; overflow: hidden; box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+            width: 100%; height: 140px; background: #FFF0F5; border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 50px; overflow: hidden;
         }
         .like-btn {
-            background: #FFF0F5; border: 2px solid #FFB6C1; color: #D81B60; padding: 6px 16px; border-radius: 15px; font-size: 18px; cursor: pointer; font-family: 'Gaegu', cursive; font-weight: bold; transition: all 0.2s; margin-top: 5px;
+            background: #FFF0F5; border: 2px solid #FFB6C1; color: #D81B60; padding: 6px 16px; border-radius: 15px; font-size: 18px; cursor: pointer; font-family: 'Gaegu', cursive; font-weight: bold; margin-top: 5px;
         }
-        .like-btn:hover { background: #FF4081; color: white; transform: scale(1.05); }
-
-        .security-banner {
-            background: #E0F2FE; border: 2px solid #7DD3FC; color: #0369A1; border-radius: 15px; padding: 10px; font-size: 18px; margin-bottom: 15px; text-align: center; font-weight: bold;
-        }
-        .chat-area { height: 300px; overflow-y: auto; background: #FFF3F8; border-radius: 20px; padding: 15px; border: 2px dashed #FFB6C1; margin-bottom: 15px; text-align: left; }
-        .chat-msg { background: #FFF; padding: 10px 15px; border-radius: 15px; margin-bottom: 12px; font-size: 19px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 5px solid #FF4081; line-height: 1.4; }
+        .like-btn:hover { background: #FF4081; color: white; }
 
         footer { margin: 60px 0 40px 0; font-size: 22px; color: #D81B60; font-weight: bold; text-shadow: 1px white; z-index: 20; }
         .heart-particle { position: absolute; pointer-events: none; font-size: 30px; animation: flyUp 1.2s ease-out forwards; z-index: 100; }
@@ -136,12 +139,12 @@
 
     <div class="marquee-container">
         <div class="marquee-text">
-            ✨ 🌍 Welcome Global Friends! 동영상방 및 소중한 추억 사진 갤러리까지 대공사 완공! 오른쪽 위 🎵단추를 누르고 신나게 축제를 즐겨봐요! ✨
+            ✨ 🌍 Welcome Global Friends! 쫀득몰 마켓 1,250명 돌파! 글로벌 안전 대화방 및 4학년 스터디방 전면 복구 완료! 🎵버튼을 누르면 음악이 나옵니다! ✨
         </div>
     </div>
 
     <header>
-        <h1>🏰 쫀득몰 마켓 v14.6 🏰</h1>
+        <h1>🏰 쫀득몰 마켓 v15.0 🏰</h1>
         <button class="audio-ctrl-btn" onclick="toggleMusic()">🎵 음악 켜기</button>
         <p style="font-size:24px; color:#4A148C; font-weight:bold; margin:0;">🌍 실시간 접속 전 세계 어린이: <span style="color:#FF4081; font-size:28px;">1,250</span>명</p>
     </header>
@@ -174,7 +177,7 @@
 
     <div class="sub-layout">
         
-        <div class="sub-box">
+        <div class="sub-box" id="globalChatBox">
             <h3>💬 🌍 글로벌 인공지능 안전 대화방 (Global Friends Room)</h3>
             <div class="security-banner">
                 🛡️ AI 클린 방화벽 시스템 작동 중 (광고 스팸 차단 100% / 욕설 실시간 필터링 / 개인정보 암호화 보호)
@@ -182,12 +185,13 @@
             
             <div class="chat-area" id="chatArea">
                 <div class="chat-msg" style="color: #4B148C; font-weight: bold; background: #EDE7F6;">🤖 글로벌 가상 통역 가이드: 외국인 친구들이 보내온 따뜻한 메시지 리스트입니다!</div>
-                <div class="chat-msg"><b>👑 김채연 회장님 [🧸 하츄핑]</b>: 전 세계 친구들아! 아래 사진첩과 동영상방 구경하러 와! 너무 신나! 🌍❤️</div>
-                <div class="chat-msg" style="border-left: 5px solid #FF9800;"><b>🇺🇸 Emma [☁️ 시나모롤]</b>: Wow! Look at the movie room! It's super fun! <br><span style="color:#2563EB; font-weight:bold;">(번역 ➔ 와! 동영상방 좀 봐! 진짜 엄청 재미있어!)</span></div>
+                <div class="chat-msg"><b>👑 김채연 회장님 [🧸 하츄핑]</b>: 전 세계 친구들아 모두 반가워! 스터디방에서 같이 공부하고 사진첩도 구경하자! 🌍❤️</div>
+                <div class="chat-msg" style="border-left: 5px solid #FF9800;"><b>🇺🇸 Emma [☁️ 시나모롤]</b>: Let's talk here! I want to be your best friend! <br><span style="color:#2563EB; font-weight:bold;">(번역 ➔ 여기서 같이 대화 나누자! 나 너랑 가장 친한 친구가 되고 싶어!)</span></div>
+                <div class="chat-msg" style="border-left: 5px solid #4CAF50;"><b>🇯🇵 Sakura [🐱 키티]</b>: 대화방과 사진첩이 완벽하게 돌아왔어요! 할아버지 최고! 🌸</div>
             </div>
             
             <div style="display:flex; gap:10px;">
-                <input type="text" id="chatInput" style="width:75%; margin:0; padding:10px; font-size:18px; border-radius:12px; border:2px solid #FFB6C1; font-family: 'Gaegu', cursive;" placeholder="메시지를 입력해 보세요...">
+                <input type="text" id="chatInput" class="login-input" style="font-family: 'Gaegu', cursive;" placeholder="글로벌 친구들과 나눌 다정한 대화를 입력해 보셔요...">
                 <button class="login-btn" style="margin:0; padding:5px 15px; font-size:18px;" onclick="sendChat()">전송</button>
             </div>
         </div>
@@ -214,21 +218,20 @@
                 </div>
                 <div class="study-display-box" id="studyContentBox">
                     <h5 style="margin:0 0 10px 0; font-size:22px; color:#7B1FA2;">📐 [수학 정복] 분수와 혼합계산 칠판 설명 미션</h5>
-                    <p style="margin:0 0 12px 0; font-size:19px; color:#444;">4학년 수학 마스터! 분수의 개념을 친구들에게 설명해 보아요.</p>
-                    <button class="login-btn" style="margin:0; background:#9C27B0; box-shadow:0 4px 0 #7B1FA2;" onclick="alert('🎉 성장 마스터 도장 꾹!')">🎯 과제 완료 인증</button>
+                    <p style="margin:0 0 12px 0; font-size:19px; color:#444; line-height:1.4;"><b>🎯 스터디 핵심 목표:</b> 4학년 수학 개념 확실하게 내 것으로 만들기!<br><b>📝 오늘의 활동 과제:</b> 오늘 푼 수학 문제 하나를 골라 풀이 과정을 친구들에게 설명해 주어요.</p>
+                    <button class="login-btn" style="margin:0; background:#9C27B0; box-shadow:0 4px 0 #7B1FA2;" onclick="alert('🎯 과제 인증 완료 스탬프 꾹!')">🎯 과제 완료 인증</button>
                 </div>
             </div>
         </div>
 
         <div class="sub-box" id="mediaGalleryBox">
             <h3 style="color: #FF1744; text-align:center; font-size:32px; margin-bottom:5px;">🎥 글로벌 친구들의 동영상 & 추억 사진첩 📸</h3>
-            <p style="text-align:center; font-size:18px; color:#555; margin:0 0 20px 0;">친구들의 멋진 장기자랑 영상 링크와 소중한 추억 사진들이 가득 보관되는 보물창고</p>
             
             <div class="media-grid">
                 <div class="media-card">
                     <div class="media-box" style="background:#E8F5E9;">🎬</div>
                     <h5 style="font-size:22px; margin:10px 0 5px 0; color:#2E7D32;">💃 슬라임 장기자랑 동영상</h5>
-                    <p style="font-size:16px; color:#666; margin:0 0 10px 0;">친구들의 신나는 플레이 비디오</p>
+                    <p style="font-size:16px; color:#666; margin:0 0 10px 0;">친구들의 유행 댄스 비디오방</p>
                     <a href="https://www.youtube.com/results?search_query=%EC%8A%AC%EB%9D%BC%EC%9E%84+%EB%A7%8C%EB%93%A4%EA%B8%B0" target="_blank">
                         <button class="login-btn" style="margin:0; background:#4CAF50; box-shadow:0 4px 0 #2E7D32; font-size:17px; padding:5px 12px;">📺 영상 보러가기</button>
                     </a>
@@ -238,32 +241,25 @@
                     <div class="media-box" style="background:#FFF3E0;">🖼️</div>
                     <h5 style="font-size:22px; margin:10px 0 5px 0; color:#E65100;">🌸 즐거운 유치원 졸업식</h5>
                     <p style="font-size:16px; color:#666; margin:0 0 10px 0;">올린이: 👑 김채연 회장님</p>
-                    <button class="like-btn" onclick="clickLike(this)">❤️ 좋아요 <span class="like-count">32</span></button>
-                </div>
-
-                <div class="media-card">
-                    <div class="media-box" style="background:#E3F2FD;">📸</div>
-                    <h5 style="font-size:22px; margin:10px 0 5px 0; color:#0D47A1;">🎈 글로벌 친구 파티 날</h5>
-                    <p style="font-size:16px; color:#666; margin:0 0 10px 0;">우리들의 행복한 아지트</p>
-                    <button class="like-btn" onclick="clickLike(this)">❤️ 좋아요 <span class="like-count">27</span></button>
+                    <button class="like-btn" onclick="clickLike(this)">❤️ 좋아요 <span class="like-count">45</span></button>
                 </div>
             </div>
         </div>
 
-        <div class="sub-box folder-content" id="kpopBox">
+        <div class="sub-box" id="kpopBox">
             <h3 style="color: #651FFF;">🎤 해외 친구들이 가장 사랑하는 최신 K-POP 정보방</h3>
             <a href="https://www.youtube.com/results?search_query=NewJeans+Official" target="_blank">
-                <div class="item-list-btn"><span>✨ [글로벌 아이돌] 뉴진스(NewJeans) 공식 뮤직비디오 </span> <span class="badge" style="background:#651FFF;">NewJeans</span></div>
+                <div class="item-list-btn"><span>✨ [글로벌 아이돌] 뉴진스(NewJeans) 공식 뮤직비디오 & 챌린지 </span> <span class="badge" style="background:#651FFF;">NewJeans</span></div>
             </a>
             <a href="https://www.youtube.com/results?search_query=BTS+Official" target="_blank">
-                <div class="item-list-btn"><span>✨ [우주 대스타] 방탄소년단(BTS) 인기곡 무대 </span> <span class="badge" style="background:#651FFF;">BTS</span></div>
+                <div class="item-list-btn"><span>✨ [우주 대스타] 방탄소년단(BTS) 빌보드 인기곡 무대 모아보기</span> <span class="badge" style="background:#651FFF;">BTS</span></div>
             </a>
         </div>
 
-        <div class="sub-box folder-content" id="treasureBox">
+        <div class="sub-box" id="treasureBox">
             <h3 style="color: #FF9800;">🔓 자물쇠 해제! 쫀득몰 비밀 유튜브 정보방</h3>
             <a href="https://www.youtube.com/@TeeniepingTV" target="_blank">
-                <div class="item-list-btn"><span>🎬 [인기 장난감] 캐치! 티니핑 공식 채널 직행</span> <span class="badge" style="background:#FF9800;">티니핑TV</span></div>
+                <div class="item-list-btn"><span>🎬 [인기 장난감] 캐치! 티니핑 공식 유튜브 비디오 보러가기</span> <span class="badge" style="background:#FF9800;">티니핑TV</span></div>
             </a>
         </div>
     </div>
@@ -276,6 +272,7 @@
         let myName = "할아버지";
         let isPlaying = false;
 
+        // 배경음악 ON/OFF 제어 밸브
         function toggleMusic() {
             const audio = document.getElementById('bgmAudio');
             const btn = document.querySelector('.audio-ctrl-btn');
@@ -296,6 +293,7 @@
             }
         }
 
+        // 글로벌 대화방 전송 장치
         function sendChat() {
             const input = document.getElementById('chatInput');
             const text = input.value.trim();
@@ -306,6 +304,7 @@
             chatArea.scrollTop = chatArea.scrollHeight;
         }
 
+        // 스터디방 전환 시스템
         function switchStudy(type) {
             const container = document.getElementById('studyContentBox');
             document.getElementById('btnMath').classList.remove('study-tab-active');
@@ -314,20 +313,20 @@
 
             if(type === 'math') {
                 document.getElementById('btnMath').classList.add('study-tab-active');
-                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#7B1FA2;">📐 [수학 정복] 분수와 혼합계산 칠판 설명 미션</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">4학년 수학 마스터! 분수의 개념을 친구들에게 설명해 보아요.</p><button class="login-btn" style="margin:0; background:#9C27B0; box-shadow:0 4px 0 #7B1FA2;" onclick="alert('🎯 수학 미션 완료!')">🎯 과제 완료 인증</button>`;
+                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#7B1FA2;">📐 [수학 정복] 분수와 혼합계산 칠판 설명 미션</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">4학년 수학 마스터! 분수의 개념을 친구들에게 설명해 보아요.</p><button class="login-btn" style="margin:0; background:#9C27B0; box-shadow:0 4px 0 #7B1FA2;" onclick="alert('🎯 수학 미션 인증 완료!')">🎯 과제 완료 인증</button>`;
             } else if(type === 'read') {
                 document.getElementById('btnRead').classList.add('study-tab-active');
-                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#0D47A1;">📚 [지식 쑥쑥] 문해력 킹 독서·토론 일지방</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">위인전을 읽고 가장 기억에 남는 한 줄을 공유해봐요.</p><button class="login-btn" style="margin:0; background:#1976D2; box-shadow:0 4px 0 #0D47A1;" onclick="alert('🎯 독서 미션 완료!')">🎯 과제 완료 인증</button>`;
+                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#0D47A1;">📚 [지식 쑥쑥] 문해력 킹 독서·토론 일지방</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">위인전을 읽고 가장 기억에 남는 한 줄을 공유해봐요.</p><button class="login-btn" style="margin:0; background:#1976D2; box-shadow:0 4px 0 #0D47A1;" onclick="alert('🎯 독서 미션 인증 완료!')">🎯 과제 완료 인증</button>`;
             } else if(type === 'tree') {
                 document.getElementById('btnTree').classList.add('study-tab-active');
-                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#1B5E20;">🌱 [꿈 나무] 자기주도 일과 계획 다이어리방</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">오늘 스스로 정한 목표를 실천하고 도장을 찍어보아요.</p><button class="login-btn" style="margin:0; background:#388E3C; box-shadow:0 4px 0 #1B5E20;" onclick="alert('🎯 다이어리 미션 완료!')">🎯 과제 완료 인증</button>`;
+                container.innerHTML = `<h5 style="margin:0 0 10px 0; font-size:22px; color:#1B5E20;">🌱 [꿈 나무] 자기주도 일과 계획 다이어리방</h5><p style="margin:0 0 12px 0; font-size:19px; color:#444;">오늘 스스로 정한 목표를 실천하고 도장을 찍어보아요.</p><button class="login-btn" style="margin:0; background:#388E3C; box-shadow:0 4px 0 #1B5E20;" onclick="alert('🎯 다이어리 미션 인증 완료!')">🎯 과제 완료 인증</button>`;
             }
         }
 
         function setAvatar(name, btn) {
             document.querySelectorAll('.avatar-select-btn').forEach(b => b.classList.remove('avatar-selected'));
             btn.classList.add('avatar-selected');
-            alert(`🎭 캐릭터가 [${name}]로 설정되었습니다!`);
+            alert(`🎭 캐릭터가 [${name}]로 지정되었습니다!`);
         }
 
         function clickLike(btn) {
@@ -335,7 +334,7 @@
             countSpan.innerText = parseInt(countSpan.innerText) + 1;
         }
 
-        // 슬라임 누르기 기믹
+        // 슬라임 꾹 누르기 기믹
         const slimeCard = document.getElementById('slimeCard'); const slimeCircle = document.getElementById('slimeCircle');
         function startPress(e) { e.preventDefault(); slimeCircle.classList.add('spinning'); slimeCircle.innerText = "🌈"; }
         function endPress(e) { slimeCircle.classList.remove('spinning'); slimeCircle.innerText = "🧪"; }
@@ -355,8 +354,6 @@
                 document.body.appendChild(heart); setTimeout(() => { heart.remove(); }, 1200);
             }
         }
-    </style>
-</head>
-<body>
+    </script>
 </body>
 </html>
