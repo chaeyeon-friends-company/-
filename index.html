@@ -3,23 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>쫀득몰 마켓 v17.0 매끄러운 연속 진행판</title>
+    <title>쫀득몰 마켓 v18.0 완벽한 진행과 결과판</title>
     <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
             background: linear-gradient(135deg, #FFD1DC 0%, #FFF0F5 40%, #E0BBE4 70%, #BBAED4 100%);
-            font-family: 'Gaegu', cursive;
-            margin: 0; padding: 0;
-            overflow-x: hidden;
-            display: flex; flex-direction: column; align-items: center;
-            min-height: 100vh;
+            font-family: 'Gaegu', cursive; margin: 0; padding: 0; overflow-x: hidden;
+            display: flex; flex-direction: column; align-items: center; min-height: 100vh;
         }
 
-        /* 상단 글로벌 전광판 */
         .marquee-container {
             width: 100%; background: rgba(255, 255, 255, 0.9); padding: 12px 0;
-            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.25); overflow: hidden; position: relative;
-            border-bottom: 5px solid #FFF; pointer-events: none;
+            box-shadow: 0 8px 25px rgba(255, 105, 180, 0.25); overflow: hidden; pointer-events: none;
         }
         .marquee-text {
             display: inline-block; white-space: nowrap; font-size: 30px; font-weight: bold;
@@ -41,42 +36,56 @@
             cursor: pointer; box-shadow: 0 4px 10px rgba(0,0,0,0.15); margin-bottom: 10px;
         }
 
-        /* 하부 구조 레이아웃 */
-        .sub-layout {
-            display: flex; flex-direction: column; gap: 30px; margin-top: 15px; width: 90%; max-width: 900px; align-items: center;
+        /* 3D 카드 상단 메뉴 */
+        .container { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 10px; max-width: 1200px; }
+        .card {
+            background: #FFF; border-radius: 35px; width: 220px; padding: 15px; text-align: center;
+            border: 4px solid #FFF; box-shadow: 0 12px 0px #F48FB1, 0 15px 20px rgba(0,0,0,0.1);
+            cursor: pointer; transition: all 0.15s ease-in-out;
         }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 18px 0px #F48FB1, 0 20px 25px rgba(255, 105, 180, 0.25); }
+        .card h2 { font-size: 26px; color: #C2185B; margin: 8px 0 5px 0; }
+        .card p { font-size: 17px; color: #666; line-height: 1.3; margin: 0; }
+
+        .slime-zone {
+            width: 70px; height: 70px; margin: 0 auto; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 35px; border: 3px solid #FFF; box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        /* 하부 레이아웃 구조 */
+        .sub-layout { display: flex; flex-direction: column; gap: 25px; margin-top: 15px; width: 90%; max-width: 900px; align-items: center; }
         .sub-box {
             background: rgba(255,255,255,0.95); border-radius: 35px; padding: 25px; width: 100%; 
-            box-shadow: 0 12px 0px #E0BBE4, 0 20px 25px rgba(0,0,0,0.08); border: 3px solid #FFF; box-sizing: border-box;
+            box-shadow: 0 12px 0px #E0BBE4, 0 20px 25px rgba(0,0,0,0.06); border: 3px solid #FFF; box-sizing: border-box;
         }
         .sub-box h3 { font-size: 28px; color: #D81B60; margin-top: 0; text-align: center; }
 
-        .chat-area { height: 180px; overflow-y: auto; background: #FFF3F8; border-radius: 20px; padding: 15px; border: 2px dashed #FFB6C1; margin-bottom: 15px; text-align: left; }
-        .chat-msg { background: #FFF; padding: 10px 15px; border-radius: 15px; margin-bottom: 12px; font-size: 19px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); border-left: 5px solid #FF4081; }
+        .chat-area { height: 160px; overflow-y: auto; background: #FFF3F8; border-radius: 20px; padding: 15px; border: 2px dashed #FFB6C1; margin-bottom: 15px; text-align: left; }
+        .chat-msg { background: #FFF; padding: 10px 15px; border-radius: 15px; margin-bottom: 10px; font-size: 19px; box-shadow: 0 2px 4px rgba(0,0,0,0.03); border-left: 5px solid #FF4081; }
         
-        .login-input {
-            width: 70%; padding: 10px; font-size: 18px; border-radius: 12px; border: 2px solid #FFB6C1; font-family: 'Gaegu', cursive;
-        }
+        .login-input { width: 70%; padding: 10px; font-size: 18px; border-radius: 12px; border: 2px solid #FFB6C1; font-family: 'Gaegu', cursive; }
         .login-btn {
             background: #FF4081; color: white; padding: 8px 25px; font-size: 21px; border: none; border-radius: 15px; 
-            cursor: pointer; font-family: 'Gaegu', cursive; box-shadow: 0 4px 0 #C2185B; margin-top: 5px; transition: all 0.1s;
+            cursor: pointer; font-family: 'Gaegu', cursive; box-shadow: 0 4px 0 #C2185B; margin-top: 5px;
         }
         .login-btn:active { transform: translateY(3px); box-shadow: 0 1px 0 #C2185B; }
 
-        /* 스터디 인프라 */
-        .study-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 15px; }
+        .study-grid { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; margin-top: 10px; }
         .study-tab-btn {
-            background: #F3E5F5; border: 2px solid #E1BEE7; padding: 10px 18px; font-size: 20px; 
+            background: #F3E5F5; border: 2px solid #E1BEE7; padding: 10px 18px; font-size: 19px; 
             border-radius: 15px; cursor: pointer; font-family: 'Gaegu', cursive; font-weight: bold; color: #4A148C;
         }
         .study-tab-active { background: #9C27B0 !important; color: white !important; border-color: #7B1FA2 !important; }
         
-        /* 층층이 연속 배치되는 파이프라인 박스들 */
-        .study-display-box { background: #FFF; border: 2px dashed #9C27B0; border-radius: 20px; padding: 20px; margin-top: 15px; text-align: left; }
-        
-        .step-1-zone { background: #FFFDE7; border: 2px solid #FFF59D; border-radius: 18px; padding: 15px; margin-top: 15px; display: block; }
+        /* 실시간 물길 연동 제어 상자 */
+        .display-main-box { background: #FFF; border: 2px dashed #9C27B0; border-radius: 20px; padding: 20px; margin-top: 15px; text-align: left; }
+        .step-1-zone { background: #FFFDE7; border: 2px solid #FFF59D; border-radius: 18px; padding: 15px; display: block; }
         .step-2-zone { background: #E8F5E9; border: 2px dashed #4CAF50; border-radius: 18px; padding: 15px; margin-top: 15px; display: none; }
         
+        .item-list-btn {
+            background: #FFF; padding: 12px 20px; border-radius: 20px; font-size: 19px; color: #444; display: flex; justify-content: space-between; align-items: center; border: 2px solid #FFDEEB; margin-bottom: 10px;
+        }
+        .badge { background: #FF4081; color: white; padding: 4px 12px; border-radius: 15px; font-size: 15px; font-weight: bold; }
+
         footer { margin: 60px 0 40px 0; font-size: 22px; color: #D81B60; font-weight: bold; text-shadow: 1px white; }
     </style>
 </head>
@@ -86,53 +95,67 @@
 
     <div class="marquee-container">
         <div class="marquee-text">
-            ✨ 🌍 전 세계 친구들과 함께하는 4학년 스토리 연속 진행 스터디 시스템 구축 완료! 흐름 차단 현상을 완벽히 해결했습니다! ✨
+            ✨ 🌍 쫀득몰 마켓 v18.0 그랜드 마스터 대공사 완료! 홈페이지의 모든 항목이 내용 ➔ 진행 ➔ 결과까지 멈춤 없이 완벽 연동 가동 중! ✨
         </div>
     </div>
 
     <header>
-        <h1>🏰 쫀득몰 마켓 v17.0 🏰</h1>
+        <h1>🏰 쫀득몰 마켓 v18.0 🏰</h1>
         <button class="audio-ctrl-btn" onclick="toggleMusic()">🎵 배경 음악 ON/OFF</button>
-        <p style="font-size:24px; color:#4A148C; font-weight:bold; margin:0;">🌍 나의 실시간 열공 스코어: <span id="myGlobalScore" style="color:#FF4081; font-size:32px;">0</span>점</p>
+        <p style="font-size:25px; color:#4A148C; font-weight:bold; margin:0;">🌍 채연이와 친구들의 성장 점수: <span id="myGlobalScore" style="color:#FF4081; font-size:34px;">0</span>점</p>
     </header>
+
+    <div class="container">
+        <div class="card" onclick="activateMainPipeline('slime')">
+            <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #ffec61, #ff80ab);">🧪</div>
+            <h2>슬라임 연구소</h2>
+            <p>[터치 클릭!]<br>실험 요약 및 세부 퀴즈 결과방 개통</p>
+        </div>
+
+        <div class="card" onclick="activateMainPipeline('math')">
+            <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #b661ff, #ffec61);">📐</div>
+            <h2>수학 정복 코스</h2>
+            <p>[터치 클릭!]<br>분수 연산 개념과 주관식 세부 진입방</p>
+        </div>
+
+        <div class="card" onclick="activateMainPipeline('read')">
+            <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #bae1ff, #b661ff);">📚</div>
+            <h2>지식독서 코스</h2>
+            <p>[터치 클릭!]<br>강아지똥 줄거리 및 골든벨 시험지 진입</p>
+        </div>
+
+        <div class="card" onclick="activateMainPipeline('tree')">
+            <div class="slime-zone" style="background: radial-gradient(circle at 30% 30%, #a8ff78, #78ffd6);">🌱</div>
+            <h2>꿈나무다이어리</h2>
+            <p>[터치 클릭!]<br>행동 수칙 체크리스트 최종 마감 제어</p>
+        </div>
+    </div>
 
     <div class="sub-layout">
         
         <div class="sub-box">
             <h3>💬 🌍 글로벌 인공지능 안전 대화방</h3>
             <div class="chat-area" id="chatArea">
-                <div class="chat-msg"><b>🤖 안내 가이드봇</b>: 스터디 탭을 고르시면 <b>[1단계 부가 설명] ➔ [2단계 세부 공부방]</b>이 멈춤 없이 매끄러운 연속 파이프라인으로 흘러갑니다!</div>
-            </div>
-            <div style="display:flex; gap:10px;">
-                <input type="text" id="chatInput" class="login-input" placeholder="대화를 입력해 보셔요...">
-                <button class="login-btn" style="margin:0; padding:5px 15px;" onclick="sendChat()">전송</button>
+                <div class="chat-msg"><b>🤖 메인 시스템 가이드봇</b>: 상단의 카드 항목을 고르시면, 아래의 스터디 본부창에서 <b>[1단계 설명 내용] ➔ [2단계 세부 진행 과정] ➔ [3단계 최종 결과 통과]</b>까지 멈춤 현상 없이 매끄럽게 흘러갑니다!</div>
             </div>
         </div>
 
-        <div class="sub-box" id="interestBox">
-            <h3 style="color: #26A69A;">🌟 자아실현 & 4학년 스터디 연속 진행방 🌟</h3>
+        <div class="sub-box" id="mainCoreStation">
+            <h3 style="color: #00796B;" id="stationTitle">🌟 쫀득몰 통합 세부 항목 진행 본부 🌟</h3>
             
-            <div style="background:#F3E5F5; border-radius:25px; padding:20px; border:2px solid #D1C4E9;">
-                <h4 style="margin:0 0 10px 0; font-size:24px; color:#4A148C; text-align:center;">✏️ 과목을 클릭하면 매끄러운 단계별 코스가 아래에 바로 가동됩니다</h4>
+            <div style="background:#F5F5F5; border-radius:25px; padding:20px; border:2px solid #E0E0E0;">
                 
-                <div class="study-grid">
-                    <button class="study-tab-btn study-tab-active" id="btnMath" onclick="switchStudy('math')">📐 수학 정복 코스</button>
-                    <button class="study-tab-btn" id="btnRead" onclick="switchStudy('read')">📚 지식 쑥쑥 독서 코스</button>
-                    <button class="study-tab-btn" id="btnTree" onclick="switchStudy('tree')">🌱 꿈 나무 다이어리 코스</button>
-                </div>
-
-                <div class="study-display-box" id="step1Container">
-                    <div class="step-1-zone" id="step1Content">
-                        <h5 style="margin:0 0 10px 0; font-size:24px; color:#E65100;">💡 [수학 1단계] 분수의 혼합계산 칠판 부가 설명</h5>
+                <div class="display-main-box" id="step1Container">
+                    <div class="step-1-zone">
+                        <h5 style="margin:0 0 10px 0; font-size:24px; color:#C2185B;">🧪 [슬라임 1단계] 말랑말랑 액체괴물 화학 원리 설명</h5>
                         <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">
-                            4학년 수학에서 가장 중요한 배관은 바로 <b>'대분수의 뺄셈'</b>입니다. 자연수 부분이 작아서 뺄 수 없을 때는, 대분수의 자연수에서 <b>'1'을 빌려와 분모 크기만큼 분자에 더해주는 가분수 변환 기술</b>이 핵심 설계도입니다!
+                            슬라임은 액체인 물풀과 붕산(액티베이터) 분자가 서로 그물망처럼 얽히면서 끈적끈적한 고체 형태로 변하는 '고분자 화합물' 과학 원리입니다. 손으로 만지면 촉감이 발달하고 스트레스가 해소되는 어린이들의 최고 인기 장난감입니다!
                         </p>
-                        <button class="login-btn" style="background:#9C27B0; box-shadow:0 4px 0 #7B1FA2;" onclick="goToStep2('math')">🚀 원리 이해 완료! 2단계 실전 문제방 진입</button>
+                        <button class="login-btn" style="background:#FF4081; box-shadow:0 4px 0 #C2185B;" onclick="goToStep2('slime')">🚀 원리 파악 완료! 2단계 비밀 실험방 진입</button>
                     </div>
                 </div>
 
-                <div class="detail-study-zone" id="step2Container">
-                    </div>
+                <div class="step-2-zone" id="step2Container"></div>
 
             </div>
         </div>
@@ -148,111 +171,123 @@
 
         function toggleMusic() {
             const audio = document.getElementById('bgmAudio');
-            if (!isPlaying) { audio.volume = 0.3; audio.play(); isPlaying = true; }
+            if (!isPlaying) { audio.volume = 0.3; audio.play().then(() => isPlaying = true); }
             else { audio.pause(); isPlaying = false; }
         }
 
-        // 🛠️ 파이프라인 흐름 제어 1: 메인 탭 전환 시 1단계를 깔끔히 세팅하고 2단계는 대기 상태로 리셋
-        function switchStudy(type) {
-            const step1 = document.getElementById('step1Container');
-            const step2 = document.getElementById('step2Container');
-            step2.style.display = 'none'; // 2단계는 닫아둠
+        // 🛠️ 대배관 제어 1: 상단 카드를 누르면 1단계 부가 내용이 딜레이 없이 즉시 표출되는 장치
+        function activateMainPipeline(type) {
+            const s1 = document.getElementById('step1Container');
+            const s2 = document.getElementById('step2Container');
+            s2.style.display = 'none'; // 새 카드를 고르면 2단계 창은 깨끗하게 닫음
 
-            document.getElementById('btnMath').classList.remove('study-tab-active');
-            document.getElementById('btnRead').classList.remove('study-tab-active');
-            document.getElementById('btnTree').classList.remove('study-tab-active');
-
-            if(type === 'math') {
-                document.getElementById('btnMath').classList.add('study-tab-active');
-                step1.innerHTML = `
+            if(type === 'slime') {
+                s1.innerHTML = `
                     <div class="step-1-zone">
-                        <h5 style="margin:0 0 10px 0; font-size:24px; color:#E65100;">💡 [수학 1단계] 분수의 혼합계산 칠판 부가 설명</h5>
-                        <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">4학년 수학에서 가장 중요한 배관은 바로 <b>'대분수의 뺄셈'</b>입니다. 자연수 부분이 작아서 뺄 수 없을 때는, 대분수의 자연수에서 <b>'1'을 빌려와 분모 크기만큼 분자에 더해주는 가분수 변환 기술</b>이 핵심 설계도입니다!</p>
+                        <h5 style="margin:0 0 10px 0; font-size:24px; color:#C2185B;">🧪 [슬라임 1단계] 말랑말랑 액체괴물 화학 원리 설명</h5>
+                        <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">슬라임은 액체인 물풀과 붕산 분자가 서로 그물망처럼 얽히면서 끈적한 형태로 변하는 '고분자 화합물' 원리입니다. 손 촉감 발달과 재미를 선사하는 새싹들의 단짝 친구입니다.</p>
+                        <button class="login-btn" style="background:#FF4081; box-shadow:0 4px 0 #C2185B;" onclick="goToStep2('slime')">🚀 원리 파악 완료! 2단계 비밀 실험방 진입</button>
+                    </div>`;
+            } else if(type === 'math') {
+                s1.innerHTML = `
+                    <div class="step-1-zone" style="background:#FFF3E0; border-color:#FFB74D;">
+                        <h5 style="margin:0 0 10px 0; font-size:24px; color:#E65100;">📐 [수학 1단계] 분수의 혼합계산 칠판 부가 설명</h5>
+                        <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">4학년 수학 대공사의 핵심은 <b>'대분수의 뺄셈'</b>입니다. 자연수 부분이 작아서 뺄 수 없을 때는, 자연수에서 '1'을 빌려와 분모 크기만큼 분자에 더해 가분수로 바꾸어 빼는 설계 원리를 완벽히 파악해야 합니다.</p>
                         <button class="login-btn" style="background:#9C27B0; box-shadow:0 4px 0 #7B1FA2;" onclick="goToStep2('math')">🚀 원리 이해 완료! 2단계 실전 문제방 진입</button>
                     </div>`;
             } else if(type === 'read') {
-                document.getElementById('btnRead').classList.add('study-tab-active');
-                step1.innerHTML = `
+                s1.innerHTML = `
                     <div class="step-1-zone" style="background:#E3F2FD; border-color:#90CAF9;">
                         <h5 style="margin:0 0 10px 0; font-size:24px; color:#0D47A1;">💡 [독서 1단계] 권정생 작가 [강아지 똥] 줄거리 부가 설명</h5>
-                        <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">아무짝에도 쓸모없는 줄 알았던 강아지똥이, 자신의 몸을 녹여 아름다운 민들레 꽃의 <b>'거름'</b>이 되어주는 눈물겹고 숭고한 한국 대표 동화 이야기입니다. 생명의 소중함과 가치를 일깨워주는 명작입니다.</p>
+                        <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">아무 쓸모없다고 놀림당하던 강아지똥이 아름다운 민들레 꽃을 피우기 위해 자신의 온몸을 녹여 <b>'거름'</b>이 되어주는 숭고한 이야기입니다. 모든 생명체는 고유의 가치와 존재 이유가 있음을 일깨워 줍니다.</p>
                         <button class="login-btn" style="background:#1976D2; box-shadow:0 4px 0 #0D47A1;" onclick="goToStep2('read')">🚀 줄거리 정독 완료! 2단계 골든벨 시험지 진입</button>
                     </div>`;
             } else if(type === 'tree') {
-                document.getElementById('btnTree').classList.add('study-tab-active');
-                step1.innerHTML = `
+                s1.innerHTML = `
                     <div class="step-1-zone" style="background:#F1F8E9; border-color:#C5E1A5;">
-                        <h5 style="margin:0 0 10px 0; font-size:24px; color:#1B5E20;">💡 [다이어리 1단계] 어린이 자기주도 행동 수칙 가이드</h5>
-                        <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">훌륭한 글로벌 리더로 자라기 위해서는 매일 스스로와의 약속을 성실하게 실천하는 배관 작업이 필수입니다. 아침 정리, 꾸준한 운동(줄넘기), 외국어 공부 습관이 명품 인성을 만듭니다.</p>
+                        <h5 style="margin:0 0 10px 0; font-size:24px; color:#1B5E20;">💡 [다이어리 1단계] 어린이 자기주도 수칙 행동 요령</h5>
+                        <p style="font-size:19px; color:#333; line-height:1.5; margin:0 0 12px 0;">멋진 글로벌 어린이 리더가 되기 위해서는 스스로 세운 규칙을 올바르게 지키는 훈련이 필요합니다. 아침 정돈, 건강한 운동(줄넘기), 꾸준한 글로벌 학습 습관이 완벽한 결과를 만들어냅니다.</p>
                         <button class="login-btn" style="background:#388E3C; box-shadow:0 4px 0 #1B5E20;" onclick="goToStep2('tree')">🚀 실천 가이드 접수! 2단계 종합 다이어리 서명창 진입</button>
                     </div>`;
             }
+            s1.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 🛠️ 파이프라인 흐름 제어 2: 1단계 버튼을 누르면 멈추지 않고 매끄럽게 2단계 내부 세부 항목으로 쑥 물길을 열어주는 장치
+        // 🛠️ 대배관 제어 2: 1단계 버튼을 누르면 멈춤 없이 2단계 세부 진행 프로그램 지문을 주입하는 장치
         function goToStep2(type) {
-            const step2 = document.getElementById('step2Container');
-            step2.style.display = 'block'; // 숨어있던 세부 진입로 완전 해제!
+            const s2 = document.getElementById('step2Container');
+            s2.style.display = 'block'; // 세부 항목창 개방!
             
-            if(type === 'math') {
-                step2.innerHTML = `
-                    <h6 style="font-size:22px; color:#2E7D32; margin:0 0 10px 0;">📝 [수학 2단계 최종 평가] 4학년 분수 실전 연산 시험지</h6>
-                    <p style="font-size:19px; color:#333; margin:0 0 10px 0;"><b>문제: "3과 5분의 2" 빼기 "1과 5분의 4"의 정답 숫자는 무엇일까요?</b></p>
-                    <input type="text" id="mathAnswer" class="login-input" style="width:40%;" placeholder="숫자만 적어주셔요">
-                    <button class="login-btn" style="background:#4CAF50; box-shadow:0 4px 0 #2E7D32; margin-left:10px;" onclick="checkMathAnswer()">정답 최종 제출</button>
+            if(type === 'slime') {
+                s2.innerHTML = `
+                    <h6 style="font-size:22px; color:#C2185B; margin:0 0 10px 0;">📝 [슬라임 2단계 세부 진행] 연구소 퀴즈 검증방</h6>
+                    <p style="font-size:19px; color:#333; margin:0 0 10px 0;"><b>문제: 오래되어 굳고 단단해진 슬라임을 다시 말랑말랑하게 부드러운 수리를 할 때 넣는 세부 재료는 무엇일까요?</b></p>
+                    <input type="text" id="slimeAnswer" class="login-input" style="width:45%;" placeholder="네 글자 정답 입력 (힌트: 글리세린)">
+                    <button class="login-btn" style="background:#FF4081; box-shadow:0 4px 0 #C2185B; margin-left:10px;" onclick="checkSlimeAnswer()">실험 결과 제출</button>
+                    <div id="slimeFeedback" style="font-size:18px; margin-top:10px; font-weight:bold;"></div>`;
+            } else if(type === 'math') {
+                s2.innerHTML = `
+                    <h6 style="font-size:22px; color:#2E7D32; margin:0 0 10px 0;">📝 [수학 2단계 세부 진행] 4학년 분수 실전 주관식 문제지</h6>
+                    <p style="font-size:19px; color:#333; margin:0 0 10px 0;"><b>문제: "3과 5분의 2" 빼기 "1과 5분의 4"의 최종 정답 숫자는 무엇일까요?</b></p>
+                    <input type="text" id="mathAnswer" class="login-input" style="width:40%;" placeholder="숫자만 입력하셔요">
+                    <button class="login-btn" style="background:#4CAF50; box-shadow:0 4px 0 #2E7D32; margin-left:10px;" onclick="checkMathAnswer()">정답 최종 검증</button>
                     <div id="mathFeedback" style="font-size:18px; margin-top:10px; font-weight:bold;"></div>`;
             } else if(type === 'read') {
-                step2.innerHTML = `
-                    <h6 style="font-size:22px; color:#0D47A1; margin:0 0 10px 0;">📝 [독서 2단계 최종 평가] 강아지 똥 골든벨 주관식 시험지</h6>
-                    <p style="font-size:19px; color:#333; margin:0 0 10px 0;"><b>질문: 강아지똥이 민들레 꽃을 피우기 위해 눈물을 흘리며 스스로 무엇이 되었나요?</b></p>
-                    <input type="text" id="readAnswer" class="login-input" style="width:50%;" placeholder="정답 두 글자 입력 (힌트: ㄱㄹ)">
-                    <button class="login-btn" style="background:#1976D2; box-shadow:0 4px 0 #0D47A1; margin-left:10px;" onclick="checkReadAnswer()">골든벨 정답 제출</button>
+                s2.innerHTML = `
+                    <h6 style="font-size:22px; color:#0D47A1; margin:0 0 10px 0;">📝 [독서 2단계 세부 진행] 강아지 똥 골든벨 명예의 전당</h6>
+                    <p style="font-size:19px; color:#333; margin:0 0 10px 0;"><b>질문: 강아지똥이 예쁜 민들레 꽃망울을 피워내기 위해 스스로 무엇이 되었나요?</b></p>
+                    <input type="text" id="readAnswer" class="login-input" style="width:45%;" placeholder="정답 두 글자 입력 (힌트: 거름)">
+                    <button class="login-btn" style="background:#1976D2; box-shadow:0 4px 0 #0D47A1; margin-left:10px;" onclick="checkReadAnswer()">골든벨 결과 제출</button>
                     <div id="readFeedback" style="font-size:18px; margin-top:10px; font-weight:bold;"></div>`;
             } else if(type === 'tree') {
-                step2.innerHTML = `
-                    <h6 style="font-size:22px; color:#E65100; margin:0 0 10px 0;">📝 [다이어리 2단계 최종 평가] 오늘 하루 성실 약속 체크표</h6>
-                    <div style="font-size:19px; text-align:left; padding:15px; line-height:1.8; background:white; border-radius:15px; border:1px solid #FFE0B2; margin-bottom:10px;">
-                        <input type="checkbox" id="chk1"> <label for="chk1" style="cursor:pointer;">1. 아침에 스스로 이부자리 깔끔하게 정돈하기 완료 🛏/label><br>
-                        <input type="checkbox" id="chk2"> <label for="chk2" style="cursor:pointer;">2. 대구 달서구 줄넘기 시험 합격을 위한 30분 연습 달성 👟</label><br>
-                        <input type="checkbox" id="chk3"> <label for="chk3" style="cursor:pointer;">3. 글로벌 소통방용 매일 영어 단어 5개 암기 통과 ✏️</label>
+                s2.innerHTML = `
+                    <h6 style="font-size:22px; color:#1B5E20; margin:0 0 10px 0;">📝 [다이어리 2단계 세부 진행] 성실 행동 강령 체크 리스트</h6>
+                    <div style="font-size:19px; text-align:left; padding:15px; background:white; border-radius:15px; border:1px solid #C5E1A5; margin-bottom:10px; line-height:1.8;">
+                        <input type="checkbox" id="chk1"> <label for="chk1" style="cursor:pointer;">1. 아침에 스스로 내 이부자리 깔끔하게 정돈하기 달성 🛏️</label><br>
+                        <input type="checkbox" id="chk2"> <label for="chk2" style="cursor:pointer;">2. 대구 달서구 시험장 합격을 위한 줄넘기 30분 연습 통과 👟</label><br>
+                        <input type="checkbox" id="chk3"> <label for="chk3" style="cursor:pointer;">3. 글로벌 대화용 하루 영어 필수 단어 5개 완벽 암기 완료 ✏️</label>
                     </div>
-                    <button class="login-btn" style="background:#F57C00; box-shadow:0 4px 0 #E65100; width:100%;" onclick="checkDiaryAnswer()">오늘 실천 최종 마감 도장 찍기</button>
+                    <button class="login-btn" style="background:#388E3C; box-shadow:0 4px 0 #1B5E20; width:100%;" onclick="checkDiaryAnswer()">오늘의 실천 최종 마감 승인</button>
                     <div id="diaryFeedback" style="font-size:18px; margin-top:10px; font-weight:bold;"></div>`;
             }
-            // 자연스럽게 아래 세부 창으로 화면을 슥 밀어주기
-            step2.scrollIntoView({ behavior: 'smooth' });
+            s2.scrollIntoView({ behavior: 'smooth' });
         }
 
-        // 🛠️ 파이프라인 흐름 제어 3: 정답 및 완료 검사 시 연속으로 점수가 쌓이고 대화방에 실시간 기록 주입
+        // 🛠️ 대배관 제어 3: 정답 및 체크 완료 검증 시, 멈추지 않고 3단계 최종 결과를 산출하여 스코어를 연동하는 센서
+        function checkSlimeAnswer() {
+            const ans = document.getElementById('slimeAnswer').value.trim(); const fb = document.getElementById('slimeFeedback');
+            if(ans === '글리세린' || ans.includes('글리세린')) {
+                fb.innerHTML = "🎉 [3단계 최종 결과] 대정답! 슬라임 재생 복구 원리를 정확히 이해했습니다! (+20점)"; fb.style.color = "green"; updateScore(20);
+                logToChat("🧪 실험연구봇", "축하합니다! 누군가 단단해진 슬라임 복구 세부 실험 퀴즈를 맞추어 '슬라임 박사 학위'를 획득했습니다! 🌈");
+            } else { fb.innerHTML = "❌ 오답입니다. 로션이나 '글ㄹㅅㄹ'을 생각하며 다시 입력해 보셔요!"; fb.style.color = "red"; }
+        }
+
         function checkMathAnswer() {
-            const ans = document.getElementById('mathAnswer').value.trim();
-            const fb = document.getElementById('mathFeedback');
+            const ans = document.getElementById('mathAnswer').value.trim(); const fb = document.getElementById('mathFeedback');
             if(ans === '2' || ans.includes('1과5분의3') || ans.includes('1과 5분의 3')) {
-                fb.innerHTML = "🎉 대정답입니다! 완벽하게 마스터했네요! (+20점)"; fb.style.color = "green"; updateScore(20);
-                logToChat("📐 수학인증방", "누군가 분수 연산 실전 문제를 정확하게 해결하고 점수를 획득했습니다!");
-            } else { fb.innerHTML = "❌ 오답입니다. 빌려온 자연수 1을 분모 5로 바꾸어 분자에 더해 다시 계산해 보셔요!"; fb.style.color = "red"; }
+                fb.innerHTML = "🎉 [3단계 최종 결과] 완벽한 정답! 4학년 대분수 연산 회로를 마스터하셨습니다! (+20점)"; fb.style.color = "green"; updateScore(20);
+                logToChat("📐 수학연산봇", "대박! 누군가 난이도가 높은 4학년 분수 연속 혼합계산 미션을 클리어하여 성장 게이지가 상승했습니다! 🎯");
+            } else { fb.innerHTML = "❌ 오답입니다. 빌려온 대분수 계산을 차근차근 도면 설계하듯 다시 풀어보셔요!"; fb.style.color = "red"; }
         }
 
         function checkReadAnswer() {
-            const ans = document.getElementById('readAnswer').value.trim();
-            const fb = document.getElementById('readFeedback');
+            const ans = document.getElementById('readAnswer').value.trim(); const fb = document.getElementById('readFeedback');
             if(ans === '거름' || ans.includes('거름')) {
-                fb.innerHTML = "🎉 골든벨 대정답입니다! 아름다운 희생의 가치를 이해했군요! (+20점)"; fb.style.color = "green"; updateScore(20);
-                logToChat("📚 독서인증방", "👑 누군가 [강아지 똥] 실전 퀴즈 정답을 맞추어 독서 골든벨 마스터가 되었습니다!");
-            } else { fb.innerHTML = "❌ 아쉬워요! 힌트인 'ㄱㄹ'을 생각하며 민들레의 영양분이 된 단어를 입력해 보셔요!"; fb.style.color = "red"; }
+                fb.innerHTML = "🎉 [3단계 최종 결과] 주관식 정답! 생명의 가치를 배우는 골든벨 마스터 등극! (+20점)"; fb.style.color = "green"; updateScore(20);
+                logToChat("📚 독서골든벨봇", "👑 명예의 전당 알림: 누군가 [강아지 똥] 세부 독서 퀴즈 정답을 완벽히 맞추어 골든벨 왕관을 썼습니다!");
+            } else { fb.innerHTML = "❌ 아쉬워요! 식물이 잘 자라도록 영양분을 주는 두 글자 단어(ㄱㄹ)를 적어주셔요!"; fb.style.color = "red"; }
         }
 
         function checkDiaryAnswer() {
             const c1 = document.getElementById('chk1').checked; const c2 = document.getElementById('chk2').checked; const c3 = document.getElementById('chk3').checked;
             const fb = document.getElementById('diaryFeedback');
-            if(!c1 || !c2 || !c3) { fb.innerHTML = "⚠️ 멈춤! 아직 실천하지 않은 항목이 있습니다. 3가지를 다 체크하고 도장을 누르셔요!"; fb.style.color = "red"; return; }
-            fb.innerHTML = "🎉 [종합 실천 도장 완료] 성실 수칙을 모두 달성했습니다! 최고의 하루입니다! (+20점)"; fb.style.color = "green"; updateScore(20);
-            logToChat("🌱 성장관리방", "👑 누군가 오늘 정해진 자기주도 행동 약속 수칙 3가지를 완벽히 달성하고 도장을 찍었습니다!");
+            if(!c1 || !c2 || !c3) { fb.innerHTML = "⚠️ 흐름 중단 현상 발생! 실천 체크박스 3가지를 모두 체크하셔야 결과가 도출됩니다!"; fb.style.color = "red"; return; }
+            fb.innerHTML = "🎉 [3단계 최종 결과] 실천 100% 승인 성공! 오늘의 성실 훈장이 수여되었습니다! (+20점)"; fb.style.color = "green"; updateScore(20);
+            logToChat("🌱 성장관리봇", "👑 종합 결과 보고: 채연이네 글로벌 임원진 중 한 명이 오늘 약속 수칙 3가지를 완벽 달성하여 최고 포인트를 획득했습니다!");
         }
 
         function updateScore(points) { score += points; document.getElementById('myGlobalScore').innerText = score; }
         function logToChat(botName, text) { document.getElementById('chatArea').innerHTML += `<div class="chat-msg"><b>${botName}</b>: ${text}</div>`; document.getElementById('chatArea').scrollTop = document.getElementById('chatArea').scrollHeight; }
-        function sendChat() { const input = document.getElementById('chatInput'); const text = input.value.trim(); if(!text) return; document.getElementById('chatArea').innerHTML += `<div class="chat-msg"><b>할아버지</b>: ${text}</div>`; input.value = ""; document.getElementById('chatArea').scrollTop = document.getElementById('chatArea').scrollHeight; }
     </script>
 </body>
 </html>
